@@ -8,210 +8,146 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
     :root {
       --navy: #162038;
       --gold: #b8943f;
       --gold-light: #d4ad5c;
-      --cream: #f7f3ec;
       --white: #ffffff;
-      --glass: rgba(22, 32, 56, 0.85);
-      --glass-card: rgba(255, 255, 255, 0.08);
+      --glass: rgba(22, 32, 56, 0.8);
       --blur: blur(12px);
     }
 
-    body {
-      font-family: 'Jost', sans-serif;
-      background-color: var(--navy);
-      color: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background-color: var(--navy); color: var(--white); overflow-x: hidden; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- PARALLAX BACKGROUND --- */
-    .parallax-bg {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 110%;
-      background: linear-gradient(rgba(22, 32, 56, 0.7), rgba(22, 32, 56, 0.8)), 
-                  url('https://images.unsplash.com/photo-1548625361-073740e69882?auto=format&fit=crop&q=80&w=2000');
-      background-size: cover;
-      background-position: center;
-      z-index: -1;
-      will-change: transform;
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
 
-    /* --- NAVIGATION --- */
+    .reveal { opacity: 0; transition: all 1s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
+    .reveal.visible { opacity: 1; animation: fadeInUp 1s ease-out forwards; }
+
+    /* ── HERO & NAV ── */
     nav {
-      position: fixed;
-      top: 0; width: 100%; padding: 1.5rem 5%;
+      position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
       display: flex; justify-content: space-between; align-items: center;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      background: rgba(22, 32, 56, 0.5);
+      z-index: 1000; background: rgba(22, 32, 56, 0.4); backdrop-filter: var(--blur);
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 700; color: var(--gold);
-      text-decoration: none; letter-spacing: 1px;
-    }
-
-    .nav-links { display: flex; list-style: none; align-items: center; gap: 2rem; }
-    .nav-links a { color: var(--white); text-decoration: none; font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-    .nav-links a:hover { color: var(--gold); }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); text-decoration: none; }
     
-    .insta-icon svg { fill: currentColor; transition: 0.3s; }
-    .insta-icon:hover { color: #E1306C; }
-
-    /* --- HERO --- */
     #hero {
-      height: 100vh;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; padding: 0 10%;
+      height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; position: relative;
+      background: linear-gradient(rgba(22, 32, 56, 0.6), rgba(22, 32, 56, 0.7)), 
+                  url('https://images.unsplash.com/photo-1548625361-073740e69882?auto=format&fit=crop&q=80&w=2000') center/cover fixed;
     }
 
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 300; margin-bottom: 1rem;
-    }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 10vw, 6rem); font-weight: 300; animation: float 5s ease-in-out infinite; }
 
-    .hero-sub {
-      font-size: 1.2rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 2rem;
-    }
-
-    /* --- GLASS CARDS --- */
-    .container { max-width: 1100px; margin: 0 auto; padding: 80px 5%; }
+    /* ── CONTENT SECTIONS ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 100px 5%; }
     
     .glass-card {
-      background: var(--glass-card);
-      backdrop-filter: var(--blur);
-      -webkit-backdrop-filter: var(--blur);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 24px;
-      padding: 3rem;
-      margin-bottom: 4rem;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: var(--blur); border-radius: 24px; padding: 3.5rem; margin-bottom: 3rem;
     }
 
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--gold-light);
-    }
-
-    /* --- FORM --- */
-    .contact-form { display: grid; gap: 1.5rem; }
-    .contact-form input, .contact-form textarea {
-      width: 100%; padding: 1rem; background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
-      color: white; font-family: inherit;
-    }
-
-    .btn-submit {
-      background: var(--gold); color: var(--navy);
-      padding: 1rem 2rem; border: none; border-radius: 8px;
-      font-weight: 700; cursor: pointer; transition: 0.3s;
-    }
-    .btn-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
-
-    /* --- ANIMATIONS --- */
-    .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    #form-success { display: none; text-align: center; padding: 2rem; }
-    #form-success.visible { display: block; animation: fadeIn 0.5s ease; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: var(--gold); margin-bottom: 1rem; }
     
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    /* ── PILLARS GRID ── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .pillar-box { padding: 2rem; border-radius: 15px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+    .pillar-box:hover { transform: translateY(-10px); border-color: var(--gold); }
+
+    /* ── FORM ── */
+    #join { background: linear-gradient(rgba(22,32,56,0.9), rgba(22,32,56,0.9)), url('https://images.unsplash.com/photo-1515606349312-d9616e017e65?auto=format&fit=crop&q=80&w=2000') center/cover fixed; padding: 100px 0; }
+    .input-group { margin-bottom: 1.5rem; text-align: left; }
+    input, textarea { width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; }
+    .btn { background: var(--gold); color: var(--navy); padding: 1rem 3rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; }
+    .btn:hover { background: var(--gold-light); transform: scale(1.02); }
   </style>
 </head>
 <body>
 
-  <div class="parallax-bg" id="bg"></div>
-
   <nav>
     <a href="#" class="logo">IVC SEOUL</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#schedule">Schedule</a></li>
-      <li>
-        <a href="https://www.instagram.com/ivcseoul" target="_blank" class="insta-icon" title="Follow us on Instagram">
-          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-      </li>
-    </ul>
+    <div style="display:flex; gap: 20px; align-items:center;">
+      <a href="#about" style="color:white; text-decoration:none; font-size:0.9rem;">ABOUT</a>
+      <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:var(--gold); text-decoration:none; font-size:0.9rem; font-weight:700;">INSTAGRAM</a>
+    </div>
   </nav>
 
-  <header id="hero" class="reveal">
-    <div class="hero-sub">Seoul, South Korea</div>
-    <h1>International Volunteers Community</h1>
-    <p style="max-width: 600px; font-weight: 300;">A sanctuary for international Catholics and volunteers to serve, pray, and grow together in the heart of the city.</p>
+  <header id="hero">
+    <div class="reveal">
+      <p style="letter-spacing: 5px; color: var(--gold-light);">SEOUL, KOREA</p>
+      <h1>IVC Seoul</h1>
+      <p style="font-size: 1.2rem; font-weight: 300;">International Volunteers Community</p>
+    </div>
   </header>
 
-  <main class="container">
-    <section id="about" class="glass-card reveal">
-      <h2 class="section-title">Our Mission</h2>
-      <p>IVC Seoul is a multicultural community dedicated to fostering spiritual growth and social impact. We connect international residents and locals through the shared values of the Catholic faith and active volunteerism.</p>
-    </section>
-
-    <section id="join" class="glass-card reveal">
-      <h2 class="section-title">Join the Community</h2>
-      <div id="form-fields">
-        <form class="contact-form" onsubmit="submitForm(event)">
-          <input type="text" id="name" placeholder="Full Name" required />
-          <input type="email" id="email" placeholder="Email Address" required />
-          <textarea id="message" rows="4" placeholder="How would you like to get involved?" required></textarea>
-          <button type="submit" class="btn-submit">Send Message</button>
-        </form>
+  <section class="container" id="about">
+    <div class="glass-card reveal">
+      <h2 class="section-title">Our Pillars</h2>
+      <div class="grid">
+        <div class="pillar-box">
+          <h3 style="color:var(--gold)">Faith</h3>
+          <p>Rooted in Catholic tradition, providing a spiritual home for internationals.</p>
+        </div>
+        <div class="pillar-box">
+          <h3 style="color:var(--gold)">Community</h3>
+          <p>Building meaningful friendships and support networks in the heart of Seoul.</p>
+        </div>
+        <div class="pillar-box">
+          <h3 style="color:var(--gold)">Service</h3>
+          <p>Impactful volunteer opportunities across the city to serve those in need.</p>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <div id="form-success">
-        <h3 style="color: var(--gold); font-size: 2rem; margin-bottom: 1rem;">Message Sent!</h3>
-        <p>Thank you for reaching out. The IVC team will contact you shortly.</p>
-        <p style="margin-top: 1rem;">Meanwhile, follow us on Instagram for updates: 
-          <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color: var(--gold-light); font-weight: 600;">@ivcseoul</a>
-        </p>
+  <section id="join">
+    <div class="container">
+      <div class="glass-card reveal" style="max-width: 600px; margin: 0 auto;">
+        <h2 class="section-title">Join Us</h2>
+        <div id="form-container">
+          <form onsubmit="submitForm(event)">
+            <div class="input-group"><input type="text" placeholder="Name" required></div>
+            <div class="input-group"><input type="email" placeholder="Email" required></div>
+            <div class="input-group"><textarea rows="4" placeholder="Message"></textarea></div>
+            <button type="submit" class="btn">Send Request</button>
+          </form>
+        </div>
+        <div id="success" style="display:none; padding-top: 20px;">
+          <h3 style="color:var(--gold)">Thank you!</h3>
+          <p>Your message has been sent. DM us on Instagram <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:var(--gold-light)">@ivcseoul</a> for a faster response.</p>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <script>
-    // Configuration - Add your keys here
-    const CONFIG = {
-      ntfyTopic: '', // e.g. 'ivc_seoul_alerts'
-      formspreeId: '' // e.g. 'your_id'
-    };
-
-    // Parallax Effect
-    window.addEventListener('scroll', () => {
-      const scroll = window.pageYOffset;
-      document.getElementById('bg').style.transform = `translateY(${scroll * 0.15}px)`;
-    });
-
-    // Reveal on Scroll
+    // Reveal Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Form Logic
-    async function submitForm(e) {
+    // Form Handling
+    function submitForm(e) {
       e.preventDefault();
-      
-      const data = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-      };
-
-      // Mock delivery if not configured
-      if (!CONFIG.ntfyTopic || !CONFIG.formspreeId) {
-        console.log("Form data collected:", data);
-      }
-
-      document.getElementById('form-fields').style.display = 'none';
-      document.getElementById('form-success').classList.add('visible');
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
     }
   </script>
 </body>
