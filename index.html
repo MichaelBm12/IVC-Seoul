@@ -4,136 +4,149 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IVC Seoul — International Volunteers Community</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Jost:wght@300;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy: #162038;
+      --navy: #0a0e1a;
       --gold: #b8943f;
       --gold-light: #d4ad5c;
       --white: #ffffff;
-      --glass: rgba(22, 32, 56, 0.8);
-      --blur: blur(12px);
+      --blur: blur(15px);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', sans-serif; background-color: var(--navy); color: var(--white); overflow-x: hidden; }
+    body { font-family: 'Jost', sans-serif; background-color: var(--navy); color: var(--white); line-height: 1.6; }
 
-    /* ── ANIMATIONS ── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    /* ── CATHOLIC ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── NAVIGATION ── */
-    nav {
-      position: fixed; top: 0; width: 100%; padding: 1.2rem 5%;
-      display: flex; justify-content: space-between; align-items: center;
-      z-index: 1000; background: rgba(22, 32, 56, 0.6); backdrop-filter: var(--blur);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .logo { font-family: 'Cormorant+Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--gold); text-decoration: none; }
-
-    /* ── HERO SECTION ── */
+    /* ── HERO: Gothic Cathedral ── */
     #hero {
-      height: 100vh; width: 100%;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center;
-      /* PHOTO 1: Gothic Cathedral */
-      background: linear-gradient(rgba(22, 32, 56, 0.5), rgba(22, 32, 56, 0.7)), 
-                  url('https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?auto=format&fit=crop&q=80&w=1920') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
+      height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+      background: linear-gradient(rgba(10, 14, 26, 0.5), rgba(10, 14, 26, 0.8)), 
+                  url('https://images.unsplash.com/photo-1515706886582-54c73c5eaf41?q=80&w=2000&auto=format') center/cover fixed;
     }
 
-    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 300; letter-spacing: -1px; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; letter-spacing: 2px; }
 
-    /* ── CONTENT ── */
-    .container { max-width: 1100px; margin: 0 auto; padding: 100px 5%; }
-    
+    /* ── GLASS CONTENT ── */
+    .container { max-width: 900px; margin: 0 auto; padding: 100px 5%; }
     .glass-card {
-      background: rgba(255, 255, 255, 0.07); 
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
       backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-      border-radius: 24px; padding: 3rem; margin-bottom: 3rem;
+      border-radius: 30px; padding: 4rem; text-align: center;
     }
 
-    /* ── JOIN SECTION ── */
+    /* ── FORM SECTION: Prayer Candles ── */
     #join-bg { 
-      width: 100%;
-      /* PHOTO 2: Serene Textural Background */
-      background: linear-gradient(rgba(22, 32, 56, 0.85), rgba(22, 32, 56, 0.9)), 
-                  url('https://images.unsplash.com/photo-1515606349312-d9616e017e65?auto=format&fit=crop&q=80&w=1920') no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
-      padding: 100px 0;
+      background: linear-gradient(rgba(10, 14, 26, 0.8), rgba(10, 14, 26, 0.9)), 
+                  url('https://images.unsplash.com/photo-1543096231-3196987f2256?q=80&w=2000&auto=format') center/cover fixed;
+      padding: 120px 0;
     }
 
-    .btn { background: var(--gold); color: var(--navy); padding: 1rem 3rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; font-size: 1rem; }
-    .btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white; outline: none; }
+    input:focus, textarea:focus { border-color: var(--gold); }
+    .btn { background: var(--gold); color: var(--navy); padding: 1.2rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.4s; text-transform: uppercase; letter-spacing: 1px; }
+    .btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
-    input, textarea { width: 100%; padding: 1rem; margin-bottom: 1.2rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; }
+    nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(10,14,26,0.6); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .insta-link { color: white; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; border: 1px solid var(--gold); padding: 8px 15px; border-radius: 20px; transition: 0.3s; }
+    .insta-link:hover { background: var(--gold); color: var(--navy); }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="#" class="logo">IVC SEOUL</a>
-    <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:var(--gold); text-decoration:none; font-weight:600; font-size: 0.9rem;">FOLLOW @IVCSEOUL</a>
+    <a href="#" style="font-family:'Cormorant Garamond'; color:var(--gold); text-decoration:none; font-weight:700; font-size:1.5rem;">IVC SEOUL</a>
+    <a href="https://www.instagram.com/ivcseoul" target="_blank" class="insta-link">FOLLOW @IVCSEOUL</a>
   </nav>
 
-  <section id="hero">
+  <header id="hero">
     <div class="reveal">
-      <p style="letter-spacing: 4px; color: var(--gold-light); margin-bottom: 10px;">SEOUL, SOUTH KOREA</p>
-      <h1>International Volunteers</h1>
-      <p style="font-size: 1.3rem; font-weight: 300;">A Community of Faith & Service</p>
+      <h1 style="margin-bottom: 10px;">IVC Seoul</h1>
+      <p style="letter-spacing: 6px; color: var(--gold);">FAITH • COMMUNITY • SERVICE</p>
     </div>
-  </section>
+  </header>
 
   <section class="container" id="about">
     <div class="glass-card reveal">
-      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;">Our Mission</h2>
-      <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.9;">
-        IVC Seoul is dedicated to providing a spiritual and social home for international residents. 
-        We believe in the power of community to transform lives through prayer, friendship, and 
-        active volunteerism across the city.
-      </p>
+      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem;">Our Mission</h2>
+      <p style="font-size: 1.2rem; font-weight: 300;">Building a vibrant home for international Catholics in Seoul through prayer, shared community, and dedicated service.</p>
     </div>
   </section>
 
   <div id="join-bg">
     <div class="container">
-      <div class="glass-card reveal" style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <h2 style="font-family:'Cormorant Garamond'; font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem;">Join Us</h2>
-        <div id="form-container">
-          <form onsubmit="submitForm(event)">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea rows="4" placeholder="How would you like to get involved?"></textarea>
-            <button type="submit" class="btn">Send Request</button>
+      <div class="glass-card reveal" style="max-width: 600px; margin: 0 auto;">
+        <h2 style="font-family:'Cormorant Garamond'; color: var(--gold); margin-bottom: 2rem; font-size: 2.2rem;">Join the Community</h2>
+        <div id="form-wrap">
+          <form onsubmit="handleSubmission(event)">
+            <input type="text" id="userName" placeholder="Full Name" required>
+            <input type="email" id="userEmail" placeholder="Email Address" required>
+            <textarea id="userMsg" rows="4" placeholder="Tell us about yourself..."></textarea>
+            <button type="submit" class="btn">Send to IVC Team</button>
           </form>
         </div>
-        <div id="success" style="display:none; padding: 20px 0;">
-          <h3 style="color:var(--gold)">Message Sent!</h3>
-          <p>We'll reach out to you soon. In the meantime, join us on Instagram!</p>
+        <div id="success-msg" style="display:none; color: var(--gold); animation: fadeInUp 0.5s ease;">
+          <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">God Bless You!</h3>
+          <p style="color: white;">We've received your inquiry. We will contact you soon via email.</p>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // Animation Observer
-    const observer = new IntersectionObserver((entries) => {
+    // ── CONFIGURATION ──
+    const CONFIG = {
+      ntfyTopic: 'ivc-michael-private', 
+      formspreeId: 'xdaydyan' 
+    };
+
+    // ── FORM SUBMISSION ──
+    async function handleSubmission(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const originalText = btn.innerText;
+      btn.innerText = "SENDING...";
+      btn.disabled = true;
+
+      const payload = {
+        name: document.getElementById('userName').value,
+        email: document.getElementById('userEmail').value,
+        message: document.getElementById('userMsg').value
+      };
+
+      try {
+        // 1. Phone Alert (ntfy)
+        await fetch(`https://ntfy.sh/${CONFIG.ntfyTopic}`, {
+          method: 'POST',
+          body: `New Lead: ${payload.name}\nEmail: ${payload.email}\nMessage: ${payload.message}`,
+          headers: { 'Title': 'IVC Seoul' }
+        });
+
+        // 2. Email Backup (Formspree)
+        await fetch(`https://formspree.io/f/${CONFIG.formspreeId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        document.getElementById('form-wrap').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        btn.innerText = originalText;
+        btn.disabled = false;
+        alert("There was a small error, but your message may have sent. Please try again or DM us on Instagram.");
+      }
+    }
+
+    // ── REVEAL OBSERVER ──
+    const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Form logic
-    function submitForm(e) {
-      e.preventDefault();
-      document.getElementById('form-container').style.display = 'none';
-      document.getElementById('success').style.display = 'block';
-    }
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 </body>
 </html>
