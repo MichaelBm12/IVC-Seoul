@@ -22,128 +22,113 @@
     body { font-family: 'Jost', sans-serif; background-color: var(--navy); color: var(--white); overflow-x: hidden; }
 
     /* ── ANIMATIONS ── */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .reveal { opacity: 0; transition: all 1s cubic-bezier(0.17, 0.67, 0.83, 0.67); }
-    .reveal.visible { opacity: 1; animation: fadeInUp 1s ease-out forwards; }
-
-    /* ── HERO & NAV ── */
+    /* ── NAVIGATION ── */
     nav {
-      position: fixed; top: 0; width: 100%; padding: 1.5rem 5%;
+      position: fixed; top: 0; width: 100%; padding: 1.2rem 5%;
       display: flex; justify-content: space-between; align-items: center;
-      z-index: 1000; background: rgba(22, 32, 56, 0.4); backdrop-filter: var(--blur);
+      z-index: 1000; background: rgba(22, 32, 56, 0.6); backdrop-filter: var(--blur);
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
+    .logo { font-family: 'Cormorant+Garamond', serif; font-size: 1.6rem; font-weight: 700; color: var(--gold); text-decoration: none; }
 
-    .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); text-decoration: none; }
-    
+    /* ── HERO SECTION ── */
     #hero {
-      height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; position: relative;
-      background: linear-gradient(rgba(22, 32, 56, 0.6), rgba(22, 32, 56, 0.7)), 
-                  url('https://images.unsplash.com/photo-1548625361-073740e69882?auto=format&fit=crop&q=80&w=2000') center/cover fixed;
+      height: 100vh; width: 100%;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center;
+      /* PHOTO 1: Gothic Cathedral */
+      background: linear-gradient(rgba(22, 32, 56, 0.5), rgba(22, 32, 56, 0.7)), 
+                  url('https://images.unsplash.com/photo-1471039497385-b6d6ba609f9c?auto=format&fit=crop&q=80&w=1920') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
     }
 
-    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 10vw, 6rem); font-weight: 300; animation: float 5s ease-in-out infinite; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 5.5rem); font-weight: 300; letter-spacing: -1px; }
 
-    /* ── CONTENT SECTIONS ── */
+    /* ── CONTENT ── */
     .container { max-width: 1100px; margin: 0 auto; padding: 100px 5%; }
     
     .glass-card {
-      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: var(--blur); border-radius: 24px; padding: 3.5rem; margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.07); 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      border-radius: 24px; padding: 3rem; margin-bottom: 3rem;
     }
 
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; color: var(--gold); margin-bottom: 1rem; }
-    
-    /* ── PILLARS GRID ── */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-    .pillar-box { padding: 2rem; border-radius: 15px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-    .pillar-box:hover { transform: translateY(-10px); border-color: var(--gold); }
+    /* ── JOIN SECTION ── */
+    #join-bg { 
+      width: 100%;
+      /* PHOTO 2: Serene Textural Background */
+      background: linear-gradient(rgba(22, 32, 56, 0.85), rgba(22, 32, 56, 0.9)), 
+                  url('https://images.unsplash.com/photo-1515606349312-d9616e017e65?auto=format&fit=crop&q=80&w=1920') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      padding: 100px 0;
+    }
 
-    /* ── FORM ── */
-    #join { background: linear-gradient(rgba(22,32,56,0.9), rgba(22,32,56,0.9)), url('https://images.unsplash.com/photo-1515606349312-d9616e017e65?auto=format&fit=crop&q=80&w=2000') center/cover fixed; padding: 100px 0; }
-    .input-group { margin-bottom: 1.5rem; text-align: left; }
-    input, textarea { width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; }
-    .btn { background: var(--gold); color: var(--navy); padding: 1rem 3rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; }
-    .btn:hover { background: var(--gold-light); transform: scale(1.02); }
+    .btn { background: var(--gold); color: var(--navy); padding: 1rem 3rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; font-size: 1rem; }
+    .btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    input, textarea { width: 100%; padding: 1rem; margin-bottom: 1.2rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; }
   </style>
 </head>
 <body>
 
   <nav>
     <a href="#" class="logo">IVC SEOUL</a>
-    <div style="display:flex; gap: 20px; align-items:center;">
-      <a href="#about" style="color:white; text-decoration:none; font-size:0.9rem;">ABOUT</a>
-      <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:var(--gold); text-decoration:none; font-size:0.9rem; font-weight:700;">INSTAGRAM</a>
-    </div>
+    <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:var(--gold); text-decoration:none; font-weight:600; font-size: 0.9rem;">FOLLOW @IVCSEOUL</a>
   </nav>
 
-  <header id="hero">
+  <section id="hero">
     <div class="reveal">
-      <p style="letter-spacing: 5px; color: var(--gold-light);">SEOUL, KOREA</p>
-      <h1>IVC Seoul</h1>
-      <p style="font-size: 1.2rem; font-weight: 300;">International Volunteers Community</p>
+      <p style="letter-spacing: 4px; color: var(--gold-light); margin-bottom: 10px;">SEOUL, SOUTH KOREA</p>
+      <h1>International Volunteers</h1>
+      <p style="font-size: 1.3rem; font-weight: 300;">A Community of Faith & Service</p>
     </div>
-  </header>
+  </section>
 
   <section class="container" id="about">
     <div class="glass-card reveal">
-      <h2 class="section-title">Our Pillars</h2>
-      <div class="grid">
-        <div class="pillar-box">
-          <h3 style="color:var(--gold)">Faith</h3>
-          <p>Rooted in Catholic tradition, providing a spiritual home for internationals.</p>
-        </div>
-        <div class="pillar-box">
-          <h3 style="color:var(--gold)">Community</h3>
-          <p>Building meaningful friendships and support networks in the heart of Seoul.</p>
-        </div>
-        <div class="pillar-box">
-          <h3 style="color:var(--gold)">Service</h3>
-          <p>Impactful volunteer opportunities across the city to serve those in need.</p>
-        </div>
-      </div>
+      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem;">Our Mission</h2>
+      <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.9;">
+        IVC Seoul is dedicated to providing a spiritual and social home for international residents. 
+        We believe in the power of community to transform lives through prayer, friendship, and 
+        active volunteerism across the city.
+      </p>
     </div>
   </section>
 
-  <section id="join">
+  <div id="join-bg">
     <div class="container">
-      <div class="glass-card reveal" style="max-width: 600px; margin: 0 auto;">
-        <h2 class="section-title">Join Us</h2>
+      <div class="glass-card reveal" style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h2 style="font-family:'Cormorant Garamond'; font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem;">Join Us</h2>
         <div id="form-container">
           <form onsubmit="submitForm(event)">
-            <div class="input-group"><input type="text" placeholder="Name" required></div>
-            <div class="input-group"><input type="email" placeholder="Email" required></div>
-            <div class="input-group"><textarea rows="4" placeholder="Message"></textarea></div>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="4" placeholder="How would you like to get involved?"></textarea>
             <button type="submit" class="btn">Send Request</button>
           </form>
         </div>
-        <div id="success" style="display:none; padding-top: 20px;">
-          <h3 style="color:var(--gold)">Thank you!</h3>
-          <p>Your message has been sent. DM us on Instagram <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:var(--gold-light)">@ivcseoul</a> for a faster response.</p>
+        <div id="success" style="display:none; padding: 20px 0;">
+          <h3 style="color:var(--gold)">Message Sent!</h3>
+          <p>We'll reach out to you soon. In the meantime, join us on Instagram!</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <script>
-    // Reveal Observer
+    // Animation Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Form Handling
+    // Form logic
     function submitForm(e) {
       e.preventDefault();
       document.getElementById('form-container').style.display = 'none';
