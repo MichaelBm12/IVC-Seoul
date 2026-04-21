@@ -11,6 +11,7 @@
       --primary-blue: #00479d;
       --white: #ffffff;
       --dark-text: #1a1a1a;
+      --light-gray: #f8f9fa;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Jost', 'Noto Sans KR', sans-serif; background-color: var(--white); color: var(--dark-text); overflow-x: hidden; }
@@ -22,45 +23,58 @@
       z-index: 1000; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
       box-shadow: 0 2px 15px rgba(0,0,0,0.05);
     }
-    .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.4rem; }
-    .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 8px 20px; border-radius: 50px; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
+    .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.3rem; }
+    .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 6px 15px; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: 600; }
 
-    /* ── HERO SLIDER ── */
+    /* ── HERO SLIDER (MOBILE OPTIMIZED) ── */
     #hero {
-      height: 90vh; width: 100%; position: relative; overflow: hidden;
+      height: 85vh; /* Reduced height for better mobile feel */
+      width: 100%; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center; text-align: center; color: white;
-      background-color: #0a0e1a; /* Fallback color */
+      background-color: #0a0e1a;
     }
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-size: cover; background-position: center;
+      background-size: cover; 
+      background-position: center 20%; /* Keeps faces/top of photos visible on mobile */
       opacity: 0; transition: opacity 1.5s ease-in-out;
       z-index: 1;
     }
     .slide.active { opacity: 1; }
     .slide::after {
       content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5));
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
     }
 
-    .hero-content { position: relative; z-index: 10; padding: 0 5%; }
-    h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 700; text-shadow: 0 2px 15px rgba(0,0,0,0.4); }
-    .duc-in-altum { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; margin-top: 10px; }
+    .hero-content { position: relative; z-index: 10; padding: 0 10%; }
+    h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); font-weight: 700; text-shadow: 0 2px 15px rgba(0,0,0,0.5); line-height: 1.1; }
+    .duc-in-altum { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 4vw, 1.6rem); margin-top: 10px; }
 
     /* ── CONTENT ── */
-    .container { max-width: 1100px; margin: 0 auto; padding: 80px 5%; }
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .card { background: var(--white); border-radius: 24px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border-top: 6px solid var(--primary-blue); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 60px 7%; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .card { background: var(--white); border-radius: 20px; padding: 35px; box-shadow: 0 8px 30px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-blue); }
     .card.red-border { border-top-color: var(--primary-red); }
 
-    .map-block { margin-top: 40px; padding: 40px; background: #f8f9fa; border-radius: 24px; text-align: center; border: 1px solid #eee; }
-    .map-btn { display: inline-block; margin-top: 20px; padding: 12px 35px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; }
+    .map-block { margin-top: 30px; padding: 30px; background: var(--light-gray); border-radius: 20px; text-align: center; }
+    .map-btn { display: inline-block; margin-top: 15px; padding: 12px 30px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.9rem; }
 
-    #join-section { background-color: #f8f9fa; padding: 100px 0; }
-    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; border-radius: 12px; border: 1px solid #ddd; }
-    .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; }
+    /* ── JOIN SECTION ── */
+    #join-section { background-color: var(--light-gray); padding: 80px 0; }
+    input, textarea { width: 100%; padding: 1rem; margin-bottom: 0.8rem; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; /* Prevents iOS zoom-in on focus */ }
+    .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+    /* ── FOOTER ── */
+    footer {
+      background: var(--white);
+      padding: 40px 5%;
+      text-align: center;
+      border-top: 1px solid #eee;
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
@@ -68,12 +82,11 @@
 
   <nav>
     <a href="#" class="logo">IVC SEOUL</a>
-    <a href="https://www.instagram.com/ivcseoul" target="_blank" class="insta-btn">FOLLOW @IVCSEOUL</a>
+    <a href="https://www.instagram.com/ivcseoul" target="_blank" class="insta-btn">@IVCSEOUL</a>
   </nav>
 
   <header id="hero">
     <div id="slider-container"></div>
-
     <div class="hero-content reveal">
       <h1>IVC Seoul</h1>
       <p class="duc-in-altum">Duc in Altum — "Put out into the deep"</p>
@@ -83,32 +96,32 @@
   <main class="container">
     <div class="card-grid">
       <div class="card reveal">
-        <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem; font-size: 1.8rem;">A Community for Everyone</h2>
-        <p>IVC — the International Volunteers Community — is a youth Catholic family under the Archdiocese of Seoul. We are 100+ young people from all over the world building friendships in Christ.</p>
+        <h2 style="color: var(--primary-blue); margin-bottom: 1rem; font-size: 1.5rem;">Who We Are</h2>
+        <p>A youth Catholic family under the Archdiocese of Seoul. 100+ young people from all over the globe building friendships in Christ.</p>
       </div>
       <div class="card red-border reveal">
-        <h2 style="color: var(--primary-red); margin-bottom: 1.5rem; font-size: 1.8rem;">Warmly Invited</h2>
-        <p>🌟 You don't have to be Catholic to join. Whether you're curious or have been Catholic all your life, IVC welcomes all youth who want to grow, serve, and belong.</p>
+        <h2 style="color: var(--primary-red); margin-bottom: 1rem; font-size: 1.5rem;">Open to All</h2>
+        <p>You don't have to be Catholic to join. We welcome everyone who wants to grow, serve, and belong in Seoul.</p>
       </div>
     </div>
 
     <div class="map-block reveal">
-      <h3>Location & Visit</h3>
-      <p>청년문화공간JU 동교동 · 49 World Cup buk-ro 2-gil, Mapo-gu, Seoul</p>
-      <a href="https://naver.me/5vcHHs7A" target="_blank" class="map-btn">📍 Open in Naver Map</a>
+      <h3>Visit Us</h3>
+      <p style="font-size: 0.95rem;">청년문화공간JU 동교동 · Mapo-gu, Seoul</p>
+      <a href="https://naver.me/5vcHHs7A" target="_blank" class="map-btn">📍 Open Naver Map</a>
     </div>
   </main>
 
   <section id="join-section">
     <div class="container">
-      <div class="card reveal" style="max-width: 600px; margin: 0 auto; border-top: 6px solid var(--primary-red);">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Join the Community</h2>
+      <div class="card reveal" style="max-width: 500px; margin: 0 auto; border-top: 5px solid var(--primary-red); padding: 30px;">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Join Us</h2>
         <div id="form-wrap">
           <form onsubmit="handleSubmission(event)">
             <input type="text" id="userName" placeholder="Full Name" required>
             <input type="email" id="userEmail" placeholder="Email Address" required>
-            <textarea id="userMsg" rows="4" placeholder="How would you like to grow with us?"></textarea>
-            <button type="submit" class="btn-submit">Submit Inquiry</button>
+            <textarea id="userMsg" rows="3" placeholder="Message"></textarea>
+            <button type="submit" class="btn-submit">SUBMIT</button>
           </form>
         </div>
         <div id="success" style="display:none; text-align: center; color: var(--primary-blue);">
@@ -119,17 +132,21 @@
     </div>
   </section>
 
+  <footer>
+    <p>© 2026 IVC Seoul — International Volunteers Community ✝</p>
+    <p style="margin-top: 5px;">Under the Archdiocese of Seoul · 천주교 서울대교구</p>
+  </footer >
+
   <script>
     const CONFIG = { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan' };
 
-    // ── DYNAMIC SLIDER INJECTION ──
+    // Mobile-optimized Slider
     const imageList = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
     const sliderContainer = document.getElementById('slider-container');
     
     imageList.forEach((img, index) => {
       const div = document.createElement('div');
       div.className = `slide ${index === 0 ? 'active' : ''}`;
-      // Encode URI handles the spaces automatically
       div.style.backgroundImage = `url('${encodeURI(img)}')`;
       sliderContainer.appendChild(div);
     });
@@ -144,7 +161,6 @@
     }
     setInterval(nextSlide, 5000); 
 
-    // ── FORM & REVEAL ──
     async function handleSubmission(e) {
       e.preventDefault();
       const btn = e.target.querySelector('button');
