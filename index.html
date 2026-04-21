@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IVC Seoul</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
+  <title>IVC Seoul — International Volunteers Community</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&family=Noto+Sans+KR:wght@400;700&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary-red: #e60012;
       --primary-blue: #00479d;
-      --light-gray: #f8f9fa;
       --white: #ffffff;
       --dark-text: #1a1a1a;
+      --blur: blur(15px);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Jost', 'Noto Sans KR', sans-serif; background-color: var(--white); color: var(--dark-text); overflow-x: hidden; }
 
@@ -25,15 +24,14 @@
       box-shadow: 0 2px 15px rgba(0,0,0,0.05);
     }
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.4rem; }
-    .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 8px 20px; border-radius: 50px; text-decoration: none; font-size: 0.8rem; font-weight: 600; transition: 0.3s; }
-    .insta-btn:hover { background: var(--primary-red); color: white; }
+    .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 8px 20px; border-radius: 50px; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
 
-    /* ── HERO SLIDER ── */
+    /* ── HERO SLIDER (CUSTOM IMAGES) ── */
     #hero {
       height: 90vh; width: 100%; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+      background-color: var(--navy);
     }
-
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background-size: cover; background-position: center;
@@ -53,21 +51,16 @@
     /* ── CONTENT ── */
     .container { max-width: 1100px; margin: 0 auto; padding: 80px 5%; }
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    
-    .card {
-      background: var(--white); border-radius: 24px; padding: 40px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.05); border-top: 6px solid var(--primary-blue);
-    }
+    .card { background: var(--white); border-radius: 24px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); border-top: 6px solid var(--primary-blue); }
     .card.red-border { border-top-color: var(--primary-red); }
 
-    .map-block { margin-top: 40px; padding: 40px; background: var(--light-gray); border-radius: 24px; text-align: center; border: 1px solid #eee; }
-    .map-btn { display: inline-block; margin-top: 20px; padding: 12px 35px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; transition: 0.3s; }
-    .map-btn:hover { background: var(--primary-red); }
+    .map-block { margin-top: 40px; padding: 40px; background: #f8f9fa; border-radius: 24px; text-align: center; border: 1px solid #eee; }
+    .map-btn { display: inline-block; margin-top: 20px; padding: 12px 35px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; }
 
     /* ── JOIN SECTION ── */
-    #join-section { background-color: var(--light-gray); padding: 100px 0; }
-    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; border-radius: 12px; border: 1px solid #ddd; font-family: inherit; }
-    .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+    #join-section { background-color: #f8f9fa; padding: 100px 0; }
+    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; border-radius: 12px; border: 1px solid #ddd; }
+    .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; }
 
     .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -81,11 +74,11 @@
   </nav>
 
   <header id="hero">
-    <div class="slide active" style="background-image: url('IVC 1.jpeg');"></div>
-    <div class="slide" style="background-image: url('IVC 2.jpeg');"></div>
-    <div class="slide" style="background-image: url('IVC 3.jpeg');"></div>
-    <div class="slide" style="background-image: url('IVC 4.jpeg');"></div>
-    <div class="slide" style="background-image: url('IVC 6.jpeg');"></div>
+    <div class="slide active" style="background-image: url('IVC%201.jpeg');"></div>
+    <div class="slide" style="background-image: url('IVC%202.jpeg');"></div>
+    <div class="slide" style="background-image: url('IVC%203.jpeg');"></div>
+    <div class="slide" style="background-image: url('IVC%204.jpeg');"></div>
+    <div class="slide" style="background-image: url('IVC%206.jpeg');"></div>
 
     <div class="hero-content reveal">
       <h1>IVC Seoul</h1>
@@ -101,12 +94,12 @@
       </div>
       <div class="card red-border reveal">
         <h2 style="color: var(--primary-red); margin-bottom: 1.5rem; font-size: 1.8rem;">Warmly Invited</h2>
-        <p>🌟 <strong>You don't have to be Catholic to join.</strong> Whether you're curious or have been Catholic all your life, IVC welcomes all youth who want to grow, serve, and belong.</p>
+        <p>🌟 You don't have to be Catholic to join. Whether you're curious or have been Catholic all your life, IVC welcomes all youth who want to grow, serve, and belong.</p>
       </div>
     </div>
 
     <div class="map-block reveal">
-      <h3>Visit Us</h3>
+      <h3>Location & Visit</h3>
       <p>청년문화공간JU 동교동 · 49 World Cup buk-ro 2-gil, Mapo-gu, Seoul</p>
       <a href="https://naver.me/5vcHHs7A" target="_blank" class="map-btn">📍 Open in Naver Map</a>
     </div>
@@ -125,7 +118,7 @@
           </form>
         </div>
         <div id="success" style="display:none; text-align: center; color: var(--primary-blue);">
-          <h3 style="font-size: 2rem; margin-bottom: 0.5rem;">God Bless You!</h3>
+          <h3>God Bless You!</h3>
           <p>We'll contact you soon.</p>
         </div>
       </div>
@@ -143,34 +136,24 @@
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
     }
-    setInterval(nextSlide, 5000); 
+    if(slides.length > 0) setInterval(nextSlide, 5000); 
 
     async function handleSubmission(e) {
       e.preventDefault();
       const btn = e.target.querySelector('button');
       btn.innerText = "SENDING...";
-
       const payload = {
         name: document.getElementById('userName').value,
         email: document.getElementById('userEmail').value,
         message: document.getElementById('userMsg').value
       };
-
       try {
-        await fetch(`https://ntfy.sh/${CONFIG.ntfyTopic}`, {
-          method: 'POST',
-          body: `New Lead: ${payload.name}\nEmail: ${payload.email}\nMsg: ${payload.message}`,
-          headers: { 'Title': 'IVC Seoul' }
-        });
-        await fetch(`https://formspree.io/f/${CONFIG.formspreeId}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
+        await fetch(`https://ntfy.sh/${CONFIG.ntfyTopic}`, { method: 'POST', body: `New Lead: ${payload.name}\nEmail: ${payload.email}\nMsg: ${payload.message}`, headers: { 'Title': 'IVC Seoul' } });
+        await fetch(`https://formspree.io/f/${CONFIG.formspreeId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
         document.getElementById('form-wrap').style.display = 'none';
         document.getElementById('success').style.display = 'block';
       } catch (err) {
-        alert("Success! Your message was sent.");
+        alert("Sent! Thank you.");
       }
     }
 
