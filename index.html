@@ -3,132 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IVC Seoul — International Volunteers Community</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Jost:wght@300;500&display=swap" rel="stylesheet" />
+  <title>IVC Seoul — Inspired by WYD 2027</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy: #0a0e1a;
-      --gold: #b8943f;
-      --gold-light: #d4ad5c;
+      --primary-red: #e60012;
+      --primary-blue: #00479d;
+      --light-gray: #f8f9fa;
       --white: #ffffff;
-      --blur: blur(15px);
+      --dark-text: #1a1a1a;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', sans-serif; background-color: var(--navy); color: var(--white); line-height: 1.6; }
+    body { font-family: 'Jost', 'Noto Sans KR', sans-serif; background-color: var(--white); color: var(--dark-text); overflow-x: hidden; }
 
-    /* ── REVERENT ANIMATIONS ── */
-    .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1000; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    }
+    .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.4rem; }
+    .insta-btn { background: var(--primary-red); color: white; padding: 8px 20px; border-radius: 50px; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
 
-    /* ── HERO: GOTHIC ALTAR ── */
+    /* ── HERO SLIDER ── */
     #hero {
-      height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-      background: linear-gradient(rgba(10, 14, 26, 0.5), rgba(10, 14, 26, 0.8)), 
-                  url('https://images.unsplash.com/photo-1548625361-073740e69882?q=80&w=2000&auto=format&fit=crop') center center / cover no-repeat;
-    }
-    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; }
-    .latin-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; color: var(--gold-light); margin-top: 10px; }
-
-    /* ── CONTENT ── */
-    .container { max-width: 900px; margin: 0 auto; padding: 80px 5%; }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-      border-radius: 30px; padding: 3.5rem; text-align: center; margin-bottom: 2rem;
+      height: 90vh; width: 100%; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; text-align: center; color: white;
     }
 
-    .check-list { list-style: none; text-align: left; max-width: 500px; margin: 2rem auto 0; }
-    .check-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 15px; }
-    .check-icon { color: var(--gold); font-weight: bold; }
-
-    /* ── MAP LINK ── */
-    .map-btn { 
-      display: inline-block; margin-top: 15px; padding: 12px 30px; 
-      background: var(--gold); color: var(--navy); text-decoration: none; 
-      border-radius: 50px; font-weight: 700; transition: 0.3s;
+    .slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.5s ease-in-out;
+      z-index: 1;
     }
-    .map-btn:hover { background: var(--gold-light); transform: scale(1.05); }
-
-    /* ── JOIN SECTION: PRAYER CANDLES ── */
-    #join-bg { 
-      width: 100%; padding: 120px 0;
-      background: linear-gradient(rgba(10, 14, 26, 0.85), rgba(10, 14, 26, 0.95)), 
-                  url('https://images.unsplash.com/photo-1515606349312-d9616e017e65?q=80&w=2000&auto=format&fit=crop') center center / cover no-repeat;
+    .slide.active { opacity: 1; }
+    .slide::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
     }
 
-    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white; outline: none; }
-    input:focus { border-color: var(--gold); }
-    .btn { background: var(--gold); color: var(--navy); padding: 1.2rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.4s; text-transform: uppercase; }
+    .hero-content { position: relative; z-index: 10; padding: 0 5%; }
+    h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 700; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+    .duc-in-altum { font-style: italic; color: var(--white); font-size: 1.5rem; opacity: 0.9; margin-bottom: 20px; }
 
-    nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; z-index: 1000; background: rgba(10,14,26,0.6); backdrop-filter: blur(10px); }
+    /* ── SECTIONS ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 80px 5%; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+    
+    .card {
+      background: var(--white); border-radius: 20px; padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05); border-top: 6px solid var(--primary-blue);
+    }
+    .card.red-border { border-top-color: var(--primary-red); }
+
+    .map-block { margin-top: 40px; padding: 40px; background: var(--light-gray); border-radius: 20px; text-align: center; }
+    .map-btn { display: inline-block; margin-top: 20px; padding: 12px 35px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; }
+
+    /* ── JOIN SECTION ── */
+    #join-section { background-color: var(--light-gray); padding: 100px 0; }
+    input, textarea { width: 100%; padding: 1rem; margin-bottom: 1rem; border-radius: 10px; border: 1px solid #ddd; }
+    .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1.2rem; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="#" style="font-family:'Cormorant Garamond'; color:var(--gold); text-decoration:none; font-weight:700; font-size:1.5rem;">IVC SEOUL</a>
-    <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:white; text-decoration:none; font-size:0.8rem; border:1px solid var(--gold); padding:5px 15px; border-radius:20px;">@IVCSEOUL</a>
+    <a href="#" class="logo">IVC SEOUL</a>
+    <a href="https://www.instagram.com/ivcseoul" target="_blank" class="insta-btn">INSTAGRAM @IVCSEOUL</a>
   </nav>
 
   <header id="hero">
-    <div class="reveal">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1548625361-073740e69882?q=80&w=2000&auto=format');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1515706886582-54c73c5eaf41?q=80&w=2000&auto=format');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1515606349312-d9616e017e65?q=80&w=2000&auto=format');"></div>
+
+    <div class="hero-content reveal">
       <h1>IVC Seoul</h1>
-      <p class="latin-sub">Duc in Altum — "Put out into the deep" · Luke 5:4</p>
+      <p class="duc-in-altum">Duc in Altum — "Put out into the deep"</p>
+      <p style="font-weight: 500; letter-spacing: 1px;">International Volunteers Community</p>
     </div>
   </header>
 
-  <section class="container">
-    <div class="glass-card reveal">
-      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.2rem; color: var(--gold); margin-bottom: 1.2rem;">A Community Open to Everyone</h2>
-      <p>IVC — the International Volunteers Community — is a youth Catholic community under the Archdiocese of Seoul. We are a family of 100+ young people from different cultures and nationalities building friendships in Christ.</p>
-    </div>
-
-    <div class="glass-card reveal">
-      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.2rem; color: var(--gold); margin-bottom: 1.2rem;">You Are Warmly Invited</h2>
-      <p style="font-weight: 500; color: var(--gold-light); margin-bottom: 1rem;">🌟 You don't have to be Catholic to join.</p>
-      <p>Whether you're Catholic or just curious, there is a place for you. We welcome all youth who want to grow, serve, and belong.</p>
-      
-      <ul class="check-list">
-        <li><span class="check-icon">✓</span> All nationalities and backgrounds welcome</li>
-        <li><span class="check-icon">✓</span> Based in or visiting Seoul</li>
-        <li><span class="check-icon">✓</span> Open heart for community and service</li>
-      </ul>
-
-      <div style="margin-top: 2rem; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px dashed rgba(184, 148, 63, 0.3);">
-        <p style="font-weight: 600;">청년문화공간JU 동교동</p>
-        <p style="font-size: 0.9rem; opacity: 0.8;">49 World Cup buk-ro 2-gil, Mapo-gu, Seoul</p>
-        <a href="https://naver.me/5vcHHs7A" target="_blank" class="map-btn">📍 Open in Naver Map</a>
+  <main class="container">
+    <div class="card-grid">
+      <div class="card reveal">
+        <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;">Duc in Altum</h2>
+        <p>IVC Seoul is a youth Catholic community under the Archdiocese of Seoul. We are a family of 100+ young people from different cultures, backgrounds, and nationalities who come together to build friendships and serve in the name of Jesus Christ.</p>
+      </div>
+      <div class="card red-border reveal">
+        <h2 style="color: var(--primary-red); margin-bottom: 1.5rem;">Open to Everyone</h2>
+        <p>Whether you've been Catholic all your life or you're simply curious — there is a place for you here. IVC welcomes everyone who wants to grow, serve, and belong.</p>
       </div>
     </div>
-  </section>
 
-  <div id="join-bg">
+    <div class="map-block reveal">
+      <h3>Location & Invitation</h3>
+      <p>청년문화공간JU 동교동 · 49 World Cup buk-ro 2-gil, Mapo-gu, Seoul</p>
+      <a href="https://naver.me/5vcHHs7A" target="_blank" class="map-btn">📍 Open Naver Map</a>
+    </div>
+  </main>
+
+  <section id="join-section">
     <div class="container">
-      <div class="glass-card reveal" style="max-width: 600px; margin: 0 auto;">
-        <h2 style="font-family:'Cormorant Garamond'; color: var(--gold); margin-bottom: 2rem;">Join the Family</h2>
+      <div class="card reveal" style="max-width: 600px; margin: 0 auto; border-top: 6px solid var(--primary-red);">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Join the Family</h2>
         <div id="form-wrap">
           <form onsubmit="handleSubmission(event)">
             <input type="text" id="userName" placeholder="Full Name" required>
             <input type="email" id="userEmail" placeholder="Email Address" required>
             <textarea id="userMsg" rows="4" placeholder="How would you like to grow with us?"></textarea>
-            <button type="submit" class="btn">Submit to IVC Team</button>
+            <button type="submit" class="btn-submit">Submit Inquiry</button>
           </form>
         </div>
-        <div id="success-msg" style="display:none; color: var(--gold);">
+        <div id="success" style="display:none; text-align: center; color: var(--primary-blue);">
           <h3>God Bless You!</h3>
           <p>We'll contact you soon.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <script>
-    const CONFIG = {
-      ntfyTopic: 'ivc-michael-private',
-      formspreeId: 'xdaydyan'
-    };
+    // ── CONFIGURATION ──
+    const CONFIG = { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan' };
 
+    // ── IMAGE SLIDER LOGIC ──
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    function nextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+    setInterval(nextSlide, 5000); // Change image every 5 seconds
+
+    // ── FORM LOGIC ──
     async function handleSubmission(e) {
       e.preventDefault();
       const btn = e.target.querySelector('button');
@@ -152,12 +167,13 @@
           body: JSON.stringify(payload)
         });
         document.getElementById('form-wrap').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
+        document.getElementById('success').style.display = 'block';
       } catch (err) {
-        alert("Sent! Thank you.");
+        alert("Success! Your message was sent.");
       }
     }
 
+    // ── REVEAL OBSERVER ──
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
