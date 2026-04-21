@@ -17,46 +17,49 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Jost', sans-serif; background-color: var(--navy); color: var(--white); line-height: 1.6; }
 
-    /* ── CATHOLIC ANIMATIONS ── */
-    .reveal { opacity: 0; transform: translateY(40px); transition: all 1.5s cubic-bezier(0.2, 1, 0.3, 1); }
+    /* ── REVERENT ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── HERO: Gothic Cathedral ── */
+    /* ── HERO: GOTHIC ALTAR ── */
     #hero {
-      height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+      height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
       background: linear-gradient(rgba(10, 14, 26, 0.5), rgba(10, 14, 26, 0.8)), 
-                  url('https://images.unsplash.com/photo-1548625361-073740e69882?q=80&w=2000&auto=format') center/cover fixed;
+                  url('https://images.unsplash.com/photo-1548625361-073740e69882?q=80&w=2000&auto=format&fit=crop') center center / cover no-repeat;
     }
+    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; }
+    .latin-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; color: var(--gold-light); margin-top: 10px; }
 
-    h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 6rem); font-weight: 300; letter-spacing: 2px; }
-    .latin-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; color: var(--gold-light); margin-top: 10px; opacity: 0.9; }
-
-    /* ── GLASS CONTENT ── */
+    /* ── CONTENT ── */
     .container { max-width: 900px; margin: 0 auto; padding: 80px 5%; }
     .glass-card {
       background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
       backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
-      border-radius: 30px; padding: 4rem; text-align: center; margin-bottom: 2rem;
+      border-radius: 30px; padding: 3.5rem; text-align: center; margin-bottom: 2rem;
     }
 
     .check-list { list-style: none; text-align: left; max-width: 500px; margin: 2rem auto 0; }
-    .check-list li { margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 15px; }
-    .check-icon { color: var(--gold); font-weight: bold; font-size: 1.2rem; }
+    .check-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 15px; }
+    .check-icon { color: var(--gold); font-weight: bold; }
 
-    /* ── MAP & BUTTONS ── */
-    .map-btn { display: inline-block; margin-top: 2rem; padding: 12px 25px; border: 1px solid var(--gold); border-radius: 50px; color: var(--gold); text-decoration: none; transition: 0.3s; font-weight: 500; }
-    .map-btn:hover { background: var(--gold); color: var(--navy); }
+    /* ── MAP LINK ── */
+    .map-btn { 
+      display: inline-block; margin-top: 15px; padding: 12px 30px; 
+      background: var(--gold); color: var(--navy); text-decoration: none; 
+      border-radius: 50px; font-weight: 700; transition: 0.3s;
+    }
+    .map-btn:hover { background: var(--gold-light); transform: scale(1.05); }
 
-    /* ── FORM SECTION ── */
+    /* ── JOIN SECTION: PRAYER CANDLES ── */
     #join-bg { 
-      background: linear-gradient(rgba(10, 14, 26, 0.8), rgba(10, 14, 26, 0.9)), 
-                  url('https://images.unsplash.com/photo-1515606349312-d9616e017e65?q=80&w=2000&auto=format') center/cover fixed;
-      padding: 100px 0;
+      width: 100%; padding: 120px 0;
+      background: linear-gradient(rgba(10, 14, 26, 0.85), rgba(10, 14, 26, 0.95)), 
+                  url('https://images.unsplash.com/photo-1515606349312-d9616e017e65?q=80&w=2000&auto=format&fit=crop') center center / cover no-repeat;
     }
 
-    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white; }
+    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; color: white; outline: none; }
+    input:focus { border-color: var(--gold); }
     .btn { background: var(--gold); color: var(--navy); padding: 1.2rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.4s; text-transform: uppercase; }
-    .btn:hover { background: var(--gold-light); transform: translateY(-2px); }
 
     nav { position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; z-index: 1000; background: rgba(10,14,26,0.6); backdrop-filter: blur(10px); }
   </style>
@@ -65,7 +68,7 @@
 
   <nav>
     <a href="#" style="font-family:'Cormorant Garamond'; color:var(--gold); text-decoration:none; font-weight:700; font-size:1.5rem;">IVC SEOUL</a>
-    <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:white; text-decoration:none; font-size:0.8rem; letter-spacing:1px; border:1px solid var(--gold); padding:5px 15px; border-radius:20px;">@IVCSEOUL</a>
+    <a href="https://www.instagram.com/ivcseoul" target="_blank" style="color:white; text-decoration:none; font-size:0.8rem; border:1px solid var(--gold); padding:5px 15px; border-radius:20px;">@IVCSEOUL</a>
   </nav>
 
   <header id="hero">
@@ -77,17 +80,14 @@
 
   <section class="container">
     <div class="glass-card reveal">
-      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem;">A Community Open to Everyone</h2>
-      <p style="font-size: 1.1rem; opacity: 0.9;">
-        IVC — the International Volunteers Community — is a youth Catholic community in Seoul, under the Archdiocese of Seoul. We are a family of 100+ young people from different cultures, backgrounds, and nationalities who come together to build friendships and serve in the name of Jesus Christ.
-      </p>
+      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.2rem; color: var(--gold); margin-bottom: 1.2rem;">A Community Open to Everyone</h2>
+      <p>IVC — the International Volunteers Community — is a youth Catholic community under the Archdiocese of Seoul. We are a family of 100+ young people from different cultures and nationalities building friendships in Christ.</p>
     </div>
 
     <div class="glass-card reveal">
-      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.5rem; color: var(--gold); margin-bottom: 1.5rem;">You Are Warmly Invited</h2>
-      <p style="margin-bottom: 1.5rem;">Whether you've been Catholic all your life or you're simply curious — there is a place for you here. IVC is open to all youth who want to grow, serve, and belong.</p>
-      <div style="font-size: 2rem;">🌟</div>
-      <p style="font-weight: 500; color: var(--gold-light);">You don't have to be Catholic to join. IVC welcomes everyone who wants to build friendships and serve in the name of Christ.</p>
+      <h2 style="font-family:'Cormorant Garamond'; font-size: 2.2rem; color: var(--gold); margin-bottom: 1.2rem;">You Are Warmly Invited</h2>
+      <p style="font-weight: 500; color: var(--gold-light); margin-bottom: 1rem;">🌟 You don't have to be Catholic to join.</p>
+      <p>Whether you're Catholic or just curious, there is a place for you. We welcome all youth who want to grow, serve, and belong.</p>
       
       <ul class="check-list">
         <li><span class="check-icon">✓</span> All nationalities and backgrounds welcome</li>
@@ -95,9 +95,11 @@
         <li><span class="check-icon">✓</span> Open heart for community and service</li>
       </ul>
 
-      <a href="https://map.naver.com/p/search/%EC%B2%AD%EB%85%84%EB%AC%B8%ED%99%94%EA%B3%B5%EA%B0%84JU/address/14125867.7554988,4516393.3967812,%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%9\2%94%EB%93%9C%EC% cup%202%EA%B8%B8%2049,new" target="_blank" class="map-btn">
-        📍 Find Us: 청년문화공간JU · Mapo-gu
-      </a>
+      <div style="margin-top: 2rem; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px dashed rgba(184, 148, 63, 0.3);">
+        <p style="font-weight: 600;">청년문화공간JU 동교동</p>
+        <p style="font-size: 0.9rem; opacity: 0.8;">49 World Cup buk-ro 2-gil, Mapo-gu, Seoul</p>
+        <a href="https://naver.me/5vcHHs7A" target="_blank" class="map-btn">📍 Open in Naver Map</a>
+      </div>
     </div>
   </section>
 
@@ -115,7 +117,7 @@
         </div>
         <div id="success-msg" style="display:none; color: var(--gold);">
           <h3>God Bless You!</h3>
-          <p>We've received your inquiry. We will contact you soon.</p>
+          <p>We'll contact you soon.</p>
         </div>
       </div>
     </div>
@@ -152,7 +154,7 @@
         document.getElementById('form-wrap').style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
       } catch (err) {
-        alert("Success! Your message was sent.");
+        alert("Sent! Thank you.");
       }
     }
 
