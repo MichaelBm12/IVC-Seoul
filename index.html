@@ -11,7 +11,6 @@
       --primary-blue: #00479d;
       --white: #ffffff;
       --dark-text: #1a1a1a;
-      --blur: blur(15px);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Jost', 'Noto Sans KR', sans-serif; background-color: var(--white); color: var(--dark-text); overflow-x: hidden; }
@@ -26,11 +25,11 @@
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.4rem; }
     .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 8px 20px; border-radius: 50px; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
 
-    /* ── HERO SLIDER (CUSTOM IMAGES) ── */
+    /* ── HERO SLIDER ── */
     #hero {
       height: 90vh; width: 100%; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center; text-align: center; color: white;
-      background-color: var(--navy);
+      background-color: #0a0e1a; /* Fallback color */
     }
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -57,7 +56,6 @@
     .map-block { margin-top: 40px; padding: 40px; background: #f8f9fa; border-radius: 24px; text-align: center; border: 1px solid #eee; }
     .map-btn { display: inline-block; margin-top: 20px; padding: 12px 35px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; }
 
-    /* ── JOIN SECTION ── */
     #join-section { background-color: #f8f9fa; padding: 100px 0; }
     input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1rem; border-radius: 12px; border: 1px solid #ddd; }
     .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; }
@@ -74,11 +72,7 @@
   </nav>
 
   <header id="hero">
-    <div class="slide active" style="background-image: url('IVC%201.jpeg');"></div>
-    <div class="slide" style="background-image: url('IVC%202.jpeg');"></div>
-    <div class="slide" style="background-image: url('IVC%203.jpeg');"></div>
-    <div class="slide" style="background-image: url('IVC%204.jpeg');"></div>
-    <div class="slide" style="background-image: url('IVC%206.jpeg');"></div>
+    <div id="slider-container"></div>
 
     <div class="hero-content reveal">
       <h1>IVC Seoul</h1>
@@ -128,16 +122,29 @@
   <script>
     const CONFIG = { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan' };
 
-    // Slider Logic
+    // ── DYNAMIC SLIDER INJECTION ──
+    const imageList = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
+    const sliderContainer = document.getElementById('slider-container');
+    
+    imageList.forEach((img, index) => {
+      const div = document.createElement('div');
+      div.className = `slide ${index === 0 ? 'active' : ''}`;
+      // Encode URI handles the spaces automatically
+      div.style.backgroundImage = `url('${encodeURI(img)}')`;
+      sliderContainer.appendChild(div);
+    });
+
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     function nextSlide() {
+      if(slides.length === 0) return;
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
     }
-    if(slides.length > 0) setInterval(nextSlide, 5000); 
+    setInterval(nextSlide, 5000); 
 
+    // ── FORM & REVEAL ──
     async function handleSubmission(e) {
       e.preventDefault();
       const btn = e.target.querySelector('button');
@@ -152,9 +159,7 @@
         await fetch(`https://formspree.io/f/${CONFIG.formspreeId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
         document.getElementById('form-wrap').style.display = 'none';
         document.getElementById('success').style.display = 'block';
-      } catch (err) {
-        alert("Sent! Thank you.");
-      }
+      } catch (err) { alert("Sent! Thank you."); }
     }
 
     const obs = new IntersectionObserver((entries) => {
