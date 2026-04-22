@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&family=Noto+Sans+KR:wght@400;700&family=Cormorant+Garamond:ital,wght@0,600;1,300&display=swap" rel="stylesheet" />
   
   <style>
-    /* ── DESIGN TOKENS (Pro Structure) ── */
+    /* ── DESIGN TOKENS ── */
     :root {
       --primary-red: #e60012;
       --primary-blue: #00479d;
@@ -30,11 +30,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Jost', 'Noto Sans KR', sans-serif; background-color: var(--white); color: var(--dark-text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-
-    /* Accessibility Focus Rings */
     *:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 4px; }
 
-    /* ── NAVIGATION ── */
+    /* ── NAVIGATION & LANGUAGE TOGGLE ── */
     nav {
       position: fixed; top: 0; width: 100%; padding: 0.8rem 5%;
       display: flex; justify-content: space-between; align-items: center;
@@ -42,14 +40,22 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: var(--transition-smooth);
     }
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.2rem; letter-spacing: 0.5px; }
-    .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 6px 16px; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: 600; transition: var(--transition-smooth); }
-    .insta-btn:hover { background: var(--primary-red); color: var(--white); transform: translateY(-1px); }
+    
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .lang-btn {
+      background: transparent; border: 1.5px solid var(--primary-blue); color: var(--primary-blue);
+      padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; font-family: 'Jost', sans-serif;
+      cursor: pointer; transition: var(--transition-smooth);
+    }
+    .lang-btn:hover { background: var(--primary-blue); color: var(--white); }
+    .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 5px 12px; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: 700; transition: var(--transition-smooth); }
+    .insta-btn:hover { background: var(--primary-red); color: var(--white); }
 
     /* ── HERO SECTION ── */
     #hero {
       height: 75vh; width: 100%; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white);
-      background-color: #050811; /* Dark fallback */
+      background-color: #050811;
     }
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -81,7 +87,7 @@
     .activity-info { padding: 25px; flex-grow: 1; }
     .activity-tag { font-size: 0.7rem; font-weight: 700; color: var(--primary-red); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: block; }
     .activity-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--primary-blue); margin-bottom: 10px; line-height: 1.2; }
-    .activity-info p { font-size: 0.9rem; color: #555; line-height: 1.6; }
+    .activity-info p { font-size: 0.9rem; color: #555; line-height: 1.6; word-break: keep-all; }
 
     /* ── CONTACT & MAP ── */
     .map-block { margin-top: 50px; padding: 45px; background: var(--light-gray); border-radius: 20px; text-align: center; border: 1px solid rgba(0,0,0,0.03); }
@@ -91,17 +97,15 @@
     #join-section { background-color: var(--light-gray); padding: 100px 0; }
     .form-card { max-width: 550px; margin: 0 auto; background: var(--white); border-radius: 24px; padding: 45px; box-shadow: var(--shadow-md); border-top: 6px solid var(--primary-red); }
     
-    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1.2rem; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem; font-family: inherit; transition: border-color var(--transition-smooth); background: #fafafa; }
+    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1.2rem; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem; font-family: inherit; background: #fafafa; transition: var(--transition-smooth); }
     input:focus, textarea:focus { border-color: var(--primary-blue); background: var(--white); outline: none; }
     
     .btn-submit { background: var(--primary-red); color: var(--white); border: none; padding: 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: var(--transition-smooth); text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
     .btn-submit:hover:not(:disabled) { background: #c2000f; }
     .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    /* ── FOOTER ── */
+    /* ── FOOTER & ANIMATIONS ── */
     footer { padding: 40px 5%; text-align: center; border-top: 1px solid #eaeaea; font-size: 0.9rem; color: #666; background: var(--white); }
-
-    /* ── ANIMATIONS ── */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
@@ -110,14 +114,17 @@
 
   <nav aria-label="Main Navigation">
     <a href="#" class="logo" aria-label="IVC Seoul Home">IVC SEOUL</a>
-    <a href="https://www.instagram.com/ivcseoul" target="_blank" rel="noopener noreferrer" class="insta-btn">@IVCSEOUL</a>
+    <div class="nav-actions">
+      <button id="langToggle" class="lang-btn" aria-label="Toggle Language">한국어</button>
+      <a href="https://www.instagram.com/ivcseoul" target="_blank" rel="noopener noreferrer" class="insta-btn">@IVCSEOUL</a>
+    </div>
   </nav>
 
   <header id="hero" aria-label="Introduction">
     <div id="slider-container" aria-hidden="true"></div>
     <div class="hero-content reveal">
       <h1>IVC Seoul</h1>
-      <p class="duc-in-altum">Duc in Altum — "Put out into the deep"</p>
+      <p class="duc-in-altum" data-en="Duc in Altum — &quot;Put out into the deep&quot;" data-ko="Duc in Altum — &quot;깊은 데로 가서 그물을 쳐라&quot;">Duc in Altum — "Put out into the deep"</p>
     </div>
   </header>
 
@@ -125,97 +132,100 @@
     <section class="container" aria-label="About Us">
       <div class="card-grid">
         <article class="card reveal">
-          <h2 style="color: var(--primary-blue); font-size: 1.4rem; margin-bottom: 10px;">Who We Are</h2>
-          <p style="font-size: 1rem; color: #444;">A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ.</p>
+          <h2 style="color: var(--primary-blue); font-size: 1.4rem; margin-bottom: 10px;" data-en="Who We Are" data-ko="우리는 누구인가">Who We Are</h2>
+          <p style="font-size: 1rem; color: #444;" data-en="A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ." data-ko="천주교 서울대교구 소속 청년 공동체. 100여 명의 다국적 청년들이 그리스도 안에서 우정을 나눕니다.">A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ.</p>
         </article>
         <article class="card reveal" style="border-top-color: var(--primary-red);">
-          <h2 style="color: var(--primary-red); font-size: 1.4rem; margin-bottom: 10px;">Open to All</h2>
-          <p style="font-size: 1rem; color: #444;">You don't have to be Catholic. We welcome all youth who want to grow, belong, and serve in Seoul.</p>
+          <h2 style="color: var(--primary-red); font-size: 1.4rem; margin-bottom: 10px;" data-en="Open to All" data-ko="모두에게 열려있습니다">Open to All</h2>
+          <p style="font-size: 1rem; color: #444;" data-en="You don't have to be Catholic. We welcome all youth who want to grow, belong, and serve in Seoul." data-ko="가톨릭 신자가 아니어도 괜찮습니다. 서울에서 함께 성장하고 봉사할 모든 청년을 환영합니다.">You don't have to be Catholic. We welcome all youth who want to grow, belong, and serve in Seoul.</p>
         </article>
       </div>
     </section>
 
     <section class="container reveal" style="padding-top: 20px;" aria-label="Our Activities">
-      <h2 style="font-family:'Cormorant Garamond', serif; font-size: 3rem; color: var(--primary-blue); text-align: center; margin-bottom: 10px;">What We Do</h2>
-      <p style="text-align: center; color: #666; margin-bottom: 40px;">Growing together in faith, service, and community.</p>
+      <h2 style="font-family:'Cormorant Garamond', serif; font-size: 3rem; color: var(--primary-blue); text-align: center; margin-bottom: 10px;" data-en="What We Do" data-ko="주요 활동">What We Do</h2>
+      <p style="text-align: center; color: #666; margin-bottom: 40px;" data-en="Growing together in faith, service, and community." data-ko="신앙, 봉사, 그리고 공동체 안에서 함께 성장합니다.">Growing together in faith, service, and community.</p>
       
       <div class="activities-grid">
         
         <article class="activity-card">
           <div class="slideshow-container" data-imgs="rosary1.jpg,rosary2.jpg,rosary3.jpg,rosary4.jpg,rosary5.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag">One Friday / Month</span>
-            <h3>Holy Rosary</h3>
-            <p>Meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary, offering intentions for peace.</p>
+            <span class="activity-tag" data-en="One Friday / Month" data-ko="매월 첫째 주 금요일">One Friday / Month</span>
+            <h3 data-en="Holy Rosary" data-ko="묵주기도">Holy Rosary</h3>
+            <p data-en="Meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary, offering intentions for peace." data-ko="성모님의 전구를 통하여 그리스도의 신비를 묵상하며, 한반도와 세계 평화를 위해 기도하는 시간입니다.">Meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary, offering intentions for peace.</p>
           </div>
         </article>
 
         <article class="activity-card" style="border-top-color: var(--primary-red);">
           <div class="slideshow-container" data-imgs="sharing1.jpg,sharing2.jpg,sharing3.jpg,sharing4.jpg,sharing5.jpg,sharing6.jpg,sharing7.jpg,sharing8.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag">Every Saturday</span>
-            <h3>Gospel Sharing</h3>
-            <p>Weekly reflections on the Sunday Gospel, sharing faith insights as international pilgrims living in the heart of Seoul.</p>
+            <span class="activity-tag" data-en="Every Saturday" data-ko="매주 토요일">Every Saturday</span>
+            <h3 data-en="Gospel Sharing" data-ko="복음 나누기">Gospel Sharing</h3>
+            <p data-en="Weekly reflections on the Sunday Gospel, sharing faith insights as international pilgrims living in the heart of Seoul." data-ko="주일 복음을 묵상하고, 다국적 청년으로서 서울에서의 삶과 신앙을 진솔하게 나눕니다.">Weekly reflections on the Sunday Gospel, sharing faith insights as international pilgrims living in the heart of Seoul.</p>
           </div>
         </article>
 
         <article class="activity-card">
           <div class="slideshow-container" data-imgs="volunteering1776785327139.jpg,volunteering1776777396091.jpg,volunteering1776777399615.jpg,volunteering1776777402873.jpg,volunteering1776777406867.jpg,volunteering1776777423854.jpg,volunteering1776784989601.jpg,volunteering1776785002199.jpg,volunteering1776785125391.jpg,volunteering1776785131152.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag">Twice a Month</span>
-            <h3>Volunteering</h3>
-            <p>Serving the marginalized as the hands and feet of Jesus, spreading love through local service projects.</p>
+            <span class="activity-tag" data-en="Twice a Month" data-ko="월 2회">Twice a Month</span>
+            <h3 data-en="Volunteering" data-ko="지역 사회 봉사">Volunteering</h3>
+            <p data-en="Serving the marginalized as the hands and feet of Jesus, spreading love through local service projects." data-ko="소외된 이웃을 위해 예수님의 손과 발이 되어, 지역 사회 곳곳에서 실질적인 사랑을 실천합니다.">Serving the marginalized as the hands and feet of Jesus, spreading love through local service projects.</p>
           </div>
         </article>
 
         <article class="activity-card" style="border-top-color: var(--primary-red);">
-          <div class="slideshow-container" data-imgs="image_5542fe.png,wyd%20activities1776777102930.jpg,wyd%20activities1776785337963.jpg,wyd%20activities1776785379501.jpg,wyd%20activities1776785386685.jpg,wyd%20activities1776785638587.jpg,wyd%20activities1776785650115.jpg,wyd%20activities1776785656265.jpg,wyd%20activities1776785664499.jpg,wyd%20activities1776785675419.jpg" aria-hidden="true"></div>
+          <div class="slideshow-container" data-imgs="wyd%20activities1776777102930.jpg,wyd%20activities1776785337963.jpg,wyd%20activities1776785379501.jpg,wyd%20activities1776785386685.jpg,wyd%20activities1776785638587.jpg,wyd%20activities1776785650115.jpg,wyd%20activities1776785656265.jpg,wyd%20activities1776785664499.jpg,wyd%20activities1776785675419.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag">Journey to 2027</span>
-            <h3>WYD Events</h3>
-            <p>Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027.</p>
+            <span class="activity-tag" data-en="Journey to 2027" data-ko="2027년을 향한 여정">Journey to 2027</span>
+            <h3 data-en="WYD Events" data-ko="WYD 준비 활동">WYD Events</h3>
+            <p data-en="Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027." data-ko="2027년 서울 세계청년대회(WYD)를 준비하며 교구 내 다양한 피정, 축제, 리더십 교육에 동참합니다.">Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027.</p>
           </div>
         </article>
 
         <article class="activity-card">
           <div class="slideshow-container" data-imgs="adoration1.jpg,adoration2.jpg,adoration3.jpg,adoration4.jpg,adoration5.jpg,adoration6.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag">First Thursday</span>
-            <h3>Eucharistic Adoration</h3>
-            <p>Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth.</p>
+            <span class="activity-tag" data-en="First Thursday" data-ko="매월 첫째 주 목요일">First Thursday</span>
+            <h3 data-en="Eucharistic Adoration" data-ko="성체조배">Eucharistic Adoration</h3>
+            <p data-en="Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth." data-ko="침묵 속에서 성체 안의 예수님을 흠숭하며, 종종 교구장님과 함께 영적 평화를 찾는 시간입니다.">Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth.</p>
           </div>
         </article>
 
       </div>
       
       <div class="map-block reveal">
-        <h3 style="font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 5px;">Visit Us</h3>
-        <p style="font-size: 1rem; color: #555;">청년문화공간JU 동교동 · Mapo-gu, Seoul</p>
-        <a href="https://naver.me/5vcHHs7A" target="_blank" rel="noopener noreferrer" class="map-btn">📍 Open in Naver Map</a>
+        <h3 style="font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 5px;" data-en="Visit Us" data-ko="오시는 길">Visit Us</h3>
+        <p style="font-size: 1rem; color: #555;" data-en="청년문화공간JU 동교동 · Mapo-gu, Seoul" data-ko="청년문화공간JU 동교동 · 서울특별시 마포구">청년문화공간JU 동교동 · Mapo-gu, Seoul</p>
+        <a href="https://naver.me/5vcHHs7A" target="_blank" rel="noopener noreferrer" class="map-btn" data-en="📍 Open in Naver Map" data-ko="📍 네이버 지도에서 열기">📍 Open in Naver Map</a>
       </div>
     </section>
 
     <section id="join-section" aria-label="Contact and Join Form">
       <div class="container" style="padding-top: 0;">
         <div class="form-card reveal">
-          <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-blue); font-size: 2rem;">Join the Family</h2>
+          <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-blue); font-size: 2rem;" data-en="Join the Family" data-ko="함께하기">Join the Family</h2>
           <div id="form-wrap">
             <form id="ivc-form">
               <label for="userName" class="visually-hidden" style="display:none;">Full Name</label>
-              <input type="text" id="userName" name="name" placeholder="Full Name" required>
+              <input type="text" id="userName" name="name" data-ph-en="Full Name" data-ph-ko="이름 (성함)" placeholder="Full Name" required>
               
-              <label for="userEmail" class="visually-hidden" style="display:none;">Email Address</label>
-              <input type="email" id="userEmail" name="email" placeholder="Email Address" required>
+              <label for="userKakao" class="visually-hidden" style="display:none;">Kakao ID</label>
+              <input type="text" id="userKakao" name="kakao" data-ph-en="Kakao ID" data-ph-ko="카카오톡 아이디" placeholder="Kakao ID" required>
+              
+              <label for="userPhone" class="visually-hidden" style="display:none;">Phone Number</label>
+              <input type="tel" id="userPhone" name="phone" data-ph-en="Phone Number" data-ph-ko="전화번호" placeholder="Phone Number" required>
               
               <label for="userMsg" class="visually-hidden" style="display:none;">Message</label>
-              <textarea id="userMsg" name="message" rows="4" placeholder="How would you like to grow with us?" required></textarea>
+              <textarea id="userMsg" name="message" rows="4" data-ph-en="How would you like to grow with us?" data-ph-ko="우리와 함께 어떻게 성장하고 싶으신가요?" placeholder="How would you like to grow with us?" required></textarea>
               
-              <button type="submit" id="submitBtn" class="btn-submit">Submit Inquiry</button>
+              <button type="submit" id="submitBtn" class="btn-submit" data-en="Submit Inquiry" data-ko="문의하기">Submit Inquiry</button>
             </form>
           </div>
           <div id="success" style="display:none; text-align: center; padding: 20px;">
-            <h3 style="color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 10px;">God Bless You!</h3>
-            <p style="color: #555;">We have received your message and will contact you soon.</p>
+            <h3 style="color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 10px;" data-en="God Bless You!" data-ko="감사합니다!">God Bless You!</h3>
+            <p style="color: #555;" data-en="We have received your message and will contact you soon." data-ko="메시지가 성공적으로 전달되었습니다. 곧 연락드리겠습니다.">We have received your message and will contact you soon.</p>
           </div>
         </div>
       </div>
@@ -228,28 +238,53 @@
   </footer>
 
   <script>
-    /**
-     * PRO ARCHITECTURE: Modular App Controller
-     * Handles UI generation, smart intersection observers, and robust form submission.
-     */
     const AppController = {
       config: {
         ntfyTopic: 'ivc-michael-private',
-        formspreeId: 'xdaydyan'
+        formspreeId: 'xdaydyan',
+        currentLang: 'en'
       },
 
       init() {
+        this.initLanguage();
         this.loadHero();
         this.loadMiniSliders();
         this.initScrollReveal();
         this.initFormHandler();
       },
 
-      // 1. DYNAMIC HERO LOADER
+      initLanguage() {
+        const toggleBtn = document.getElementById('langToggle');
+        const savedLang = localStorage.getItem('ivc-lang');
+        if (savedLang === 'ko') {
+          this.setLanguage('ko');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+          const newLang = this.config.currentLang === 'en' ? 'ko' : 'en';
+          this.setLanguage(newLang);
+        });
+      },
+
+      setLanguage(lang) {
+        this.config.currentLang = lang;
+        localStorage.setItem('ivc-lang', lang);
+        document.documentElement.lang = lang;
+
+        document.getElementById('langToggle').innerText = lang === 'en' ? '한국어' : 'EN';
+
+        document.querySelectorAll('[data-en]').forEach(el => {
+          el.innerText = el.getAttribute(`data-${lang}`);
+        });
+
+        document.querySelectorAll('[data-ph-en]').forEach(el => {
+          el.placeholder = el.getAttribute(`data-ph-${lang}`);
+        });
+      },
+
       loadHero() {
         const images = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
         const container = document.getElementById('slider-container');
-        
         images.forEach((img, i) => {
           const div = document.createElement('div');
           div.className = `slide ${i === 0 ? 'active' : ''}`;
@@ -268,28 +303,19 @@
         }
       },
 
-      // 2. SMART SLIDESHOW ENGINE (Saves CPU by pausing when off-screen)
       loadMiniSliders() {
         const containers = document.querySelectorAll('.slideshow-container');
-        
-        // Setup observer to play/pause based on visibility
         const sliderObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             const timerId = entry.target.dataset.timerId;
             if (entry.isIntersecting) {
-              // Resume slideshow
               if(!timerId) this.startSlideshow(entry.target);
             } else {
-              // Pause slideshow
-              if(timerId) {
-                clearInterval(timerId);
-                entry.target.dataset.timerId = '';
-              }
+              if(timerId) { clearInterval(timerId); entry.target.dataset.timerId = ''; }
             }
           });
-        }, { rootMargin: '100px' }); // Start loading slightly before scrolling into view
+        }, { rootMargin: '100px' });
 
-        // Initialize images inside containers
         containers.forEach(cont => {
           const imgList = cont.dataset.imgs.split(',');
           imgList.forEach((src, idx) => {
@@ -298,42 +324,31 @@
             s.style.backgroundImage = `url('${encodeURI(src.trim())}')`;
             cont.appendChild(s);
           });
-          
-          if(imgList.length > 1) {
-            sliderObserver.observe(cont);
-          }
+          if(imgList.length > 1) sliderObserver.observe(cont);
         });
       },
 
       startSlideshow(container) {
         const slides = container.querySelectorAll('.mini-slide');
         let cur = Array.from(slides).findIndex(s => s.classList.contains('active')) || 0;
-        
-        const interval = 4000 + (Math.random() * 1500); // Stagger animations
+        const interval = 4000 + (Math.random() * 1500); 
         const timerId = setInterval(() => {
           slides[cur].classList.remove('active');
           cur = (cur + 1) % slides.length;
           slides[cur].classList.add('active');
         }, interval);
-        
         container.dataset.timerId = timerId;
       },
 
-      // 3. SCROLL ANIMATIONS
       initScrollReveal() {
         const obs = new IntersectionObserver(entries => {
           entries.forEach(e => {
-            if(e.isIntersecting) {
-              e.target.classList.add('visible');
-              obs.unobserve(e.target); // Only animate once for better performance
-            }
+            if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
           });
         }, { threshold: 0.1 });
-        
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
       },
 
-      // 4. ROBUST FORM HANDLING
       initFormHandler() {
         const form = document.getElementById('ivc-form');
         const btn = document.getElementById('submitBtn');
@@ -341,39 +356,33 @@
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           
-          // UI Loading State
+          const isKorean = this.config.currentLang === 'ko';
           const originalText = btn.innerText;
-          btn.innerText = "SENDING...";
+          btn.innerText = isKorean ? "전송 중..." : "SENDING...";
           btn.disabled = true;
 
           const payload = {
             name: document.getElementById('userName').value.trim(),
-            email: document.getElementById('userEmail').value.trim(),
+            kakao: document.getElementById('userKakao').value.trim(),
+            phone: document.getElementById('userPhone').value.trim(),
             message: document.getElementById('userMsg').value.trim()
           };
 
           try {
-            // Concurrent requests for speed
             await Promise.all([
               fetch(`https://ntfy.sh/${this.config.ntfyTopic}`, { 
-                method: 'POST', 
-                body: `IVC Sign-up: ${payload.name}\nEmail: ${payload.email}\nMsg: ${payload.message}`, 
-                headers: { 'Title': 'New IVC Lead' } 
+                method: 'POST', body: `IVC Sign-up: ${payload.name}\nKakao: ${payload.kakao}\nPhone: ${payload.phone}\nMsg: ${payload.message}`, headers: { 'Title': 'New IVC Lead' } 
               }),
               fetch(`https://formspree.io/f/${this.config.formspreeId}`, { 
-                method: 'POST', 
-                headers: { 'Content-Type': 'application/json' }, 
-                body: JSON.stringify(payload) 
+                method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) 
               })
             ]);
 
-            // Success UI
             document.getElementById('form-wrap').style.display = 'none';
             document.getElementById('success').style.display = 'block';
             form.reset();
-
           } catch (err) {
-            alert("There was an issue sending your message. Please try again or reach out on Instagram.");
+            alert(isKorean ? "문제가 발생했습니다. 다시 시도해주세요." : "There was an issue sending your message. Please try again.");
             btn.innerText = originalText;
             btn.disabled = false;
           }
@@ -381,7 +390,6 @@
       }
     };
 
-    // Boot up the application when DOM is ready
     document.addEventListener('DOMContentLoaded', () => AppController.init());
   </script>
 </body>
