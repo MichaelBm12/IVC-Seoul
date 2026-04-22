@@ -19,8 +19,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    /* PREVENTS JUMPING DURING LOAD */
-    body { font-family: 'Jost', sans-serif; background-color: var(--white); color: var(--dark-text); overflow-x: hidden; min-height: 100vh; }
+    body { font-family: 'Jost', sans-serif; background-color: var(--white); color: var(--dark-text); overflow-x: hidden; }
 
     /* ── NAVIGATION ── */
     nav {
@@ -36,7 +35,7 @@
     #hero {
       height: 75vh; width: 100%; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center; text-align: center; color: white;
-      background-color: #0a0e1a; /* STOPS WHITE FLASH */
+      background-color: #0a0e1a;
     }
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -45,34 +44,40 @@
       z-index: 1; will-change: opacity;
     }
     .slide.active { opacity: 1; }
-    .slide::after {
-      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-    }
+    .slide::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
     .hero-content { position: relative; z-index: 10; padding: 0 10%; }
     h1 { font-size: clamp(2rem, 7vw, 4rem); font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .duc-in-altum { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1rem, 3vw, 1.4rem); margin-top: 10px; }
 
-    /* ── CONTENT ── */
+    /* ── CONTAINERS & CARDS ── */
     .container { max-width: 1100px; margin: 0 auto; padding: 40px 5%; }
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .card { background: var(--white); border-radius: 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-blue); }
 
     /* ── ACTIVITIES ── */
-    .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+    .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 30px; }
     .activity-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-blue); display: flex; flex-direction: column; }
-    .slideshow-container { position: relative; width: 100%; height: 220px; background-color: #111; overflow: hidden; }
+    .slideshow-container { position: relative; width: 100%; height: 240px; background-color: #111; overflow: hidden; }
     .mini-slide { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
     .mini-slide.active { opacity: 1; }
+    
     .activity-info { padding: 20px; flex-grow: 1; }
     .activity-tag { font-size: 0.65rem; font-weight: 700; color: var(--primary-red); text-transform: uppercase; margin-bottom: 5px; display: block; }
-    .activity-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-blue); }
-    .activity-info p { font-size: 0.85rem; color: #555; line-height: 1.4; }
+    .activity-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 10px; }
+    .activity-info p { font-size: 0.85rem; color: #555; line-height: 1.5; }
 
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(15px); transition: 0.6s ease-out; }
+    /* ── FORMS & MAP ── */
+    .map-block { margin-top: 40px; padding: 40px; background: var(--light-gray); border-radius: 20px; text-align: center; }
+    .map-btn { display: inline-block; margin-top: 15px; padding: 12px 30px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; }
+    
+    #join-section { background-color: var(--light-gray); padding: 80px 0; }
+    .form-card { max-width: 500px; margin: 0 auto; background: var(--white); border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-red); }
+    input, textarea { width: 100%; padding: 1rem; margin-bottom: 1rem; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; font-family: inherit; }
+    .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+
+    footer { padding: 40px; text-align: center; border-top: 1px solid #eee; font-size: 0.85rem; color: #666; }
+    .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    footer { padding: 30px; text-align: center; border-top: 1px solid #eee; font-size: 0.8rem; color: #777; }
   </style>
 </head>
 <body>
@@ -93,55 +98,103 @@
   <main class="container">
     <div class="card-grid">
       <div class="card reveal">
-        <h2 style="color: var(--primary-blue); font-size: 1.3rem;">Who We Are</h2>
-        <p style="font-size: 0.9rem;">Youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ.</p>
+        <h2 style="color: var(--primary-blue); font-size: 1.4rem;">Who We Are</h2>
+        <p style="font-size: 0.95rem;">A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ.</p>
       </div>
       <div class="card reveal" style="border-top-color: var(--primary-red);">
-        <h2 style="color: var(--primary-red); font-size: 1.3rem;">Open to All</h2>
-        <p style="font-size: 0.9rem;">You don't have to be Catholic. We welcome all youth who want to grow and serve in Seoul.</p>
+        <h2 style="color: var(--primary-red); font-size: 1.4rem;">Open to All</h2>
+        <p style="font-size: 0.95rem;">You don't have to be Catholic. We welcome all youth who want to grow and serve in Seoul.</p>
       </div>
     </div>
 
-    <section class="reveal" style="margin-top: 60px;">
-      <h2 style="font-family:'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--primary-blue); text-align: center; margin-bottom: 30px;">What We Do</h2>
+    <section class="reveal" style="margin-top: 80px;">
+      <h2 style="font-family:'Cormorant Garamond', serif; font-size: 2.8rem; color: var(--primary-blue); text-align: center; margin-bottom: 40px;">What We Do</h2>
       <div class="activities-grid">
         
-        <div id="rosary-card" class="activity-card">
+        <div class="activity-card">
           <div class="slideshow-container" data-imgs="rosary1.jpg,rosary2.jpg,rosary3.jpg,rosary4.jpg,rosary5.jpg"></div>
           <div class="activity-info">
-            <span class="activity-tag">Prayer</span>
+            <span class="activity-tag">One Friday / Month</span>
             <h3>Holy Rosary</h3>
-            <p>Meditative prayerContemplating Christ through Mother Mary.</p>
+            <p>Contemplating the mysteries of Christ through Mother Mary, offering intentions for peace in Korea.</p>
           </div>
         </div>
 
-        <div id="sharing-card" class="activity-card" style="border-top-color: var(--primary-red);">
+        <div class="activity-card" style="border-top-color: var(--primary-red);">
           <div class="slideshow-container" data-imgs="sharing1.jpg,sharing2.jpg,sharing3.jpg,sharing4.jpg,sharing5.jpg,sharing6.jpg,sharing7.jpg,sharing8.jpg"></div>
           <div class="activity-info">
-            <span class="activity-tag">Word</span>
+            <span class="activity-tag">Every Saturday</span>
             <h3>Gospel Sharing</h3>
-            <p>Weekly reflections on faith and life in Seoul.</p>
+            <p>Weekly reflections on the Sunday Word and our lives as international pilgrims in Seoul.</p>
           </div>
         </div>
 
-        <div id="volunteer-card" class="activity-card">
-          <div class="slideshow-container" data-imgs="volunteering1776785327139.jpg,volunteering1776777396091.jpg,volunteering1776777399615.jpg,volunteering1776777402873.jpg,volunteering1776777406867.jpg"></div>
+        <div class="activity-card">
+          <div class="slideshow-container" data-imgs="volunteering1776785327139.jpg,volunteering1776777396091.jpg,volunteering1776777399615.jpg,volunteering1776777402873.jpg,volunteering1776777406867.jpg,volunteering1776777423854.jpg,volunteering1776784989601.jpg,volunteering1776785002199.jpg,volunteering1776785125391.jpg,volunteering1776785131152.jpg"></div>
           <div class="activity-info">
-            <span class="activity-tag">Service</span>
+            <span class="activity-tag">Twice a Month</span>
             <h3>Volunteering</h3>
-            <p>Hands and feet of Jesus in our local neighborhood.</p>
+            <p>Serving the marginalized as the hands and feet of Jesus within our local neighborhood.</p>
           </div>
         </div>
+
+        <div class="activity-card" style="border-top-color: var(--primary-red);">
+          <div class="slideshow-container" data-imgs="wyd%20activities1776777102930.jpg,wyd%20activities1776785337963.jpg,wyd%20activities1776785379501.jpg,wyd%20activities1776785386685.jpg,wyd%20activities1776785638587.jpg,wyd%20activities1776785650115.jpg,wyd%20activities1776785656265.jpg,wyd%20activities1776785664499.jpg,wyd%20activities1776785675419.jpg"></div>
+          <div class="activity-info">
+            <span class="activity-tag">Journey to 2027</span>
+            <h3>WYD Events</h3>
+            <p>Spiritual retreats and festivals as we prepare for World Youth Day Seoul 2027.</p>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="slideshow-container" data-imgs="adoration1.jpg,adoration2.jpg,adoration3.jpg,adoration4.jpg,adoration5.jpg,adoration6.jpg"></div>
+          <div class="activity-info">
+            <span class="activity-tag">First Thursday</span>
+            <h3>Eucharistic Adoration</h3>
+            <p>Silent worship with the Blessed Sacrament, often joined by the Archbishop of Seoul.</p>
+          </div>
+        </div>
+
       </div>
     </section>
+
+    <div class="map-block reveal">
+      <h3>Visit Us</h3>
+      <p style="font-size: 0.95rem;">청년문화공간JU 동교동 · Mapo-gu, Seoul</p>
+      <a href="https://naver.me/5vcHHs7A" target="_blank" class="map-btn">📍 Open Naver Map</a>
+    </div>
   </main>
 
+  <section id="join-section">
+    <div class="container">
+      <div class="form-card reveal">
+        <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-blue);">Join the Family</h2>
+        <div id="form-wrap">
+          <form onsubmit="handleSubmission(event)">
+            <input type="text" id="userName" name="name" placeholder="Full Name" required>
+            <input type="email" id="userEmail" name="email" placeholder="Email Address" required>
+            <textarea id="userMsg" name="message" rows="4" placeholder="How would you like to grow with us?" required></textarea>
+            <button type="submit" class="btn-submit">Submit Inquiry</button>
+          </form>
+        </div>
+        <div id="success" style="display:none; text-align: center; color: var(--primary-blue);">
+          <h3>God Bless You!</h3>
+          <p>We've received your inquiry and will contact you soon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <p>© 2026 IVC Seoul✝ Archdiocese of Seoul</p>
+    <p>© 2026 IVC Seoul — International Volunteers Community ✝</p>
+    <p style="margin-top: 5px;">Under the Archdiocese of Seoul · 천주교 서울대교구</p>
   </footer>
 
   <script>
-    // 1. FAST HERO LOADER
+    const CONFIG = { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan' };
+
+    // Hero Loader
     const heroImgNames = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
     const hContainer = document.getElementById('slider-container');
     heroImgNames.forEach((img, i) => {
@@ -151,7 +204,7 @@
       hContainer.appendChild(d);
     });
 
-    // 2. MINI SLIDESHOW LOADER (LAZY)
+    // Lazy Slideshow Engine
     document.querySelectorAll('.slideshow-container').forEach(cont => {
       const imgList = cont.dataset.imgs.split(',');
       imgList.forEach((src, idx) => {
@@ -160,7 +213,6 @@
         s.style.backgroundImage = `url('${encodeURI(src.trim())}')`;
         cont.appendChild(s);
       });
-
       let cur = 0;
       const slds = cont.querySelectorAll('.mini-slide');
       if(slds.length > 1) {
@@ -168,19 +220,40 @@
           slds[cur].classList.remove('active');
           cur = (cur + 1) % slds.length;
           slds[cur].classList.add('active');
-        }, 4000 + (Math.random() * 1000)); // RANDOMIZED START TO PREVENT LAG
+        }, 4000 + (Math.random() * 1500));
       }
     });
 
-    // 3. REVEAL & HERO CYCLE
+    // Hero Cycle
     let hCur = 0;
     const hSlds = document.querySelectorAll('#hero .slide');
     setInterval(() => {
-      hSlds[hCur].classList.remove('active');
-      hCur = (hCur + 1) % hSlds.length;
-      hSlds[hCur].classList.add('active');
+      if(hSlds.length) {
+        hSlds[hCur].classList.remove('active');
+        hCur = (hCur + 1) % hSlds.length;
+        hSlds[hCur].classList.add('active');
+      }
     }, 5000);
 
+    // Form Submission
+    async function handleSubmission(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.innerText = "SENDING...";
+      const payload = {
+        name: document.getElementById('userName').value,
+        email: document.getElementById('userEmail').value,
+        message: document.getElementById('userMsg').value
+      };
+      try {
+        await fetch(`https://ntfy.sh/${CONFIG.ntfyTopic}`, { method: 'POST', body: `IVC Lead: ${payload.name}\nEmail: ${payload.email}\nMsg: ${payload.message}`, headers: { 'Title': 'New IVC Sign-up' } });
+        await fetch(`https://formspree.io/f/${CONFIG.formspreeId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        document.getElementById('form-wrap').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+      } catch (err) { alert("Sent! God Bless."); }
+    }
+
+    // Intersection Observer for Reveal
     const obs = new IntersectionObserver(ents => {
       ents.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
