@@ -102,3 +102,245 @@
 
     /* ── INTERACTIVE ACTIVITIES GRID ── */
     .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+    
+    a.activity-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); border-top: 5px solid var(--primary-blue); transition: all var(--transition-smooth); cursor: pointer; }
+    a.activity-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+    a.activity-card:hover .mini-slide { transform: scale(1.08); }
+    
+    .slideshow-container { position: relative; width: 100%; height: 260px; background-color: #111; overflow: hidden; }
+    .slideshow-container::after { content: attr(data-hover-text); position: absolute; inset: 0; background: rgba(0, 71, 157, 0.4); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; letter-spacing: 1px; opacity: 0; transition: all var(--transition-smooth); z-index: 5; }
+    a.activity-card:hover .slideshow-container::after { opacity: 1; }
+
+    .mini-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s ease, transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: opacity, transform; }
+    .mini-slide.active { opacity: 1; }
+    
+    .activity-info { padding: 30px; flex-grow: 1; position: relative; z-index: 6; background: var(--white); display: flex; flex-direction: column; }
+    .activity-tag { font-size: 0.7rem; font-weight: 700; color: var(--primary-red); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+    .activity-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 12px; line-height: 1.2; }
+    .activity-info p { font-size: 0.95rem; color: #555; line-height: 1.6; word-break: keep-all; flex-grow: 1; }
+    .view-more { margin-top: 20px; font-weight: 700; color: var(--primary-red); font-size: 0.85rem; display: flex; align-items: center; gap: 5px; transition: gap 0.3s; }
+    a.activity-card:hover .view-more { gap: 10px; }
+
+    /* ── MAP & FORMS ── */
+    .map-block { margin-top: 50px; padding: 45px; background: linear-gradient(135deg, #f8f9fa 0%, #eef2f9 100%); border-radius: 24px; text-align: center; border: 1px solid rgba(0,71,157,0.05); }
+    .map-btn { display: inline-block; margin-top: 18px; padding: 14px 35px; background: var(--primary-blue); color: var(--white); text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.9rem; transition: var(--transition-smooth); box-shadow: 0 4px 15px rgba(0,71,157,0.3); }
+    .map-btn:hover { background: var(--primary-red); box-shadow: 0 4px 15px rgba(230,0,18,0.3); transform: translateY(-2px); }
+    
+    #join-section { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); padding: 100px 0; }
+    .form-card { max-width: 550px; margin: 0 auto; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 28px; padding: 50px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); border: 1px solid rgba(255,255,255,0.6); border-top: 6px solid var(--primary-red); }
+    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1.2rem; border-radius: 12px; border: 1px solid rgba(0,0,0,0.08); font-size: 1rem; font-family: inherit; background: rgba(255,255,255,0.9); transition: var(--transition-smooth); }
+    input:focus, textarea:focus { border-color: var(--primary-blue); background: var(--white); outline: none; box-shadow: 0 0 0 4px rgba(0,71,157,0.1); }
+    .btn-submit { background: var(--primary-red); color: var(--white); border: none; padding: 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: var(--transition-smooth); text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; box-shadow: 0 4px 15px rgba(230,0,18,0.2); }
+    .btn-submit:hover:not(:disabled) { background: #c2000f; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,0,18,0.3); }
+    
+    footer { padding: 40px 5%; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem; color: #666; background: var(--white); }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <nav aria-label="Main Navigation">
+    <a href="#" class="logo" aria-label="IVC Seoul Home">IVC SEOUL</a>
+    <div class="nav-actions">
+      <button id="langToggle" class="lang-btn" aria-label="Toggle Language">한국어</button>
+    </div>
+  </nav>
+
+  <div class="floating-socials">
+    <a href="https://www.instagram.com/ivcseoul" target="_blank" rel="noopener noreferrer" class="social-btn insta" aria-label="Instagram">
+      <svg viewBox="0 0 448 512" fill="currentColor">
+        <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-148-.1-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+      </svg>
+    </a>
+    <a href="https://www.tiktok.com/@ivc_seoul" target="_blank" rel="noopener noreferrer" class="social-btn tiktok" aria-label="TikTok">
+      <svg viewBox="0 0 448 512" fill="currentColor">
+        <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/>
+      </svg>
+    </a>
+  </div>
+
+  <header id="hero" aria-label="Introduction">
+    <div id="slider-container" aria-hidden="true"></div>
+    <div class="hero-content reveal">
+      <h1>IVC Seoul</h1>
+      <p class="duc-in-altum" data-en="Duc in Altum — &quot;Put out into the deep&quot;" data-ko="Duc in Altum — &quot;깊은 데로 가서 그물을 쳐라&quot;">Duc in Altum — "Put out into the deep"</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="container" aria-label="About Us">
+      <div class="card-grid">
+        <div class="card reveal">
+          <h2 style="color: var(--primary-blue); font-size: 1.5rem; margin-bottom: 12px;" data-en="Who We Are" data-ko="우리는 누구인가">Who We Are</h2>
+          <p style="font-size: 1.05rem; color: #444; line-height: 1.6;" data-en="A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ." data-ko="천주교 서울대교구 소속 청년 공동체. 100여 명의 다국적 청년들이 그리스도 안에서 우정을 나눕니다.">A youth Catholic family under the Archdiocese of Seoul.</p>
+        </div>
+        <div class="card reveal" style="border-top-color: var(--primary-red);">
+          <h2 style="color: var(--primary-red); font-size: 1.5rem; margin-bottom: 12px;" data-en="Open to All" data-ko="모두에게 열려있습니다">Open to All</h2>
+          <p style="font-size: 1.05rem; color: #444; line-height: 1.6;" data-en="You don't have to be Catholic. We welcome all youth who want to grow, belong, and serve in Seoul." data-ko="가톨릭 신자가 아니어도 괜찮습니다. 서울에서 함께 성장하고 봉사할 모든 청년을 환영합니다.">We welcome all youth who want to grow, belong, and serve in Seoul.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container reveal" style="padding-top: 20px;" aria-label="Our Activities">
+      <h2 class="gradient-title" style="font-family:'Cormorant Garamond', serif; font-size: 3.5rem; text-align: center; margin-bottom: 10px; width: 100%;" data-en="What We Do" data-ko="주요 활동">What We Do</h2>
+      <p style="text-align: center; color: #666; margin-bottom: 50px; font-size: 1.1rem;" data-en="Growing together in faith, service, and community." data-ko="신앙, 봉사, 그리고 공동체 안에서 함께 성장합니다.">Growing together in faith, service, and community.</p>
+      
+      <div class="activities-grid">
+        
+        <a href="rosary.html" class="activity-card">
+          <div class="slideshow-container" data-hover-text="View Full Gallery" data-imgs="rosary1.jpg,rosary2.jpg,rosary3.jpg,rosary4.jpg,rosary5.jpg" aria-hidden="true"></div>
+          <div class="activity-info">
+            <span class="activity-tag" data-en="One Friday / Month" data-ko="매월 첫째 주 금요일">One Friday / Month</span>
+            <h3 data-en="Holy Rosary" data-ko="묵주기도">Holy Rosary</h3>
+            <p data-en="Meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary." data-ko="성모님의 전구를 통하여 그리스도의 신비를 묵상하며 기도하는 시간입니다.">Meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary.</p>
+            <span class="view-more" data-en="View Gallery & Details &rarr;" data-ko="사진 및 자세히 보기 &rarr;">View Gallery & Details &rarr;</span>
+          </div>
+        </a>
+
+        <a href="sharing.html" class="activity-card" style="border-top-color: var(--primary-red);">
+          <div class="slideshow-container" data-hover-text="View Full Gallery" data-imgs="sharing1.jpg,sharing2.jpg,sharing3.jpg,sharing4.jpg,sharing5.jpg,sharing6.jpg,sharing7.jpg,sharing8.jpg" aria-hidden="true"></div>
+          <div class="activity-info">
+            <span class="activity-tag" data-en="Every Saturday" data-ko="매주 토요일">Every Saturday</span>
+            <h3 data-en="Gospel Sharing" data-ko="복음 나누기">Gospel Sharing</h3>
+            <p data-en="Weekly reflections on the Sunday Gospel as international pilgrims living in the heart of Seoul." data-ko="주일 복음을 묵상하고 다국적 청년으로서 서울에서의 삶과 신앙을 나눕니다.">Weekly reflections on the Sunday Gospel.</p>
+            <span class="view-more" data-en="View Gallery & Details &rarr;" data-ko="사진 및 자세히 보기 &rarr;">View Gallery & Details &rarr;</span>
+          </div>
+        </a>
+
+        <a href="volunteering.html" class="activity-card">
+          <div class="slideshow-container" data-hover-text="View Full Gallery" data-imgs="volunteering1776785327139.jpg,volunteering1776777396091.jpg,volunteering1776777399615.jpg,volunteering1776777402873.jpg,volunteering1776777406867.jpg" aria-hidden="true"></div>
+          <div class="activity-info">
+            <span class="activity-tag" data-en="Twice a Month" data-ko="월 2회">Twice a Month</span>
+            <h3 data-en="Volunteering" data-ko="지역 사회 봉사">Volunteering</h3>
+            <p data-en="Serving the marginalized as the hands and feet of Jesus through local service projects." data-ko="소외된 이웃을 위해 예수님의 손과 발이 되어 실질적인 사랑을 실천합니다.">Serving the marginalized as the hands and feet of Jesus.</p>
+            <span class="view-more" data-en="View Gallery & Details &rarr;" data-ko="사진 및 자세히 보기 &rarr;">View Gallery & Details &rarr;</span>
+          </div>
+        </a>
+
+        <a href="wyd.html" class="activity-card" style="border-top-color: var(--primary-red);">
+          <div class="slideshow-container" data-hover-text="View Full Gallery" data-imgs="wyd activities1776777102930.jpg,wyd activities1776785337963.jpg,wyd activities1776785379501.jpg,wyd activities1776785386685.jpg,wyd activities1776785638587.jpg" aria-hidden="true"></div>
+          <div class="activity-info">
+            <span class="activity-tag" data-en="Journey to 2027" data-ko="2027년을 향한 여정">Journey to 2027</span>
+            <h3 data-en="WYD Events" data-ko="WYD 준비 활동">WYD Events</h3>
+            <p data-en="Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027." data-ko="2027년 서울 세계청년대회(WYD)를 준비하며 다양한 축제와 교육에 동참합니다.">Preparations, retreats, and festivals for WYD 2027.</p>
+            <span class="view-more" data-en="View Gallery & Details &rarr;" data-ko="사진 및 자세히 보기 &rarr;">View Gallery & Details &rarr;</span>
+          </div>
+        </a>
+
+        <a href="adoration.html" class="activity-card">
+          <div class="slideshow-container" data-hover-text="View Full Gallery" data-imgs="adoration1.jpg,adoration2.jpg,adoration3.jpg,adoration4.jpg,adoration5.jpg" aria-hidden="true"></div>
+          <div class="activity-info">
+            <span class="activity-tag" data-en="First Thursday" data-ko="매월 첫째 주 목요일">First Thursday</span>
+            <h3 data-en="Eucharistic Adoration" data-ko="성체조배">Eucharistic Adoration</h3>
+            <p data-en="Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth." data-ko="성체 안의 예수님을 흠숭하며 종종 교구장님과 함께 영적 평화를 찾는 시간입니다.">Silent worship with the Blessed Sacrament.</p>
+            <span class="view-more" data-en="View Gallery & Details &rarr;" data-ko="사진 및 자세히 보기 &rarr;">View Gallery & Details &rarr;</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <section id="join-section">
+      <div class="container" style="padding-top: 0;">
+        <div class="form-card reveal">
+          <h2 class="gradient-title" style="text-align: center; margin-bottom: 2.5rem; font-size: 2.2rem; width: 100%;" data-en="Join the Family" data-ko="함께하기">Join the Family</h2>
+          <div id="form-wrap">
+            <form id="ivc-form">
+              <input type="text" id="userName" name="name" data-ph-en="Full Name" data-ph-ko="이름 (성함)" placeholder="Full Name" required>
+              <input type="text" id="userKakao" name="kakao" data-ph-en="Kakao ID" data-ph-ko="카카오톡 아이디" placeholder="Kakao ID" required>
+              <input type="tel" id="userPhone" name="phone" data-ph-en="Phone Number" data-ph-ko="전화번호" placeholder="Phone Number" required>
+              <textarea id="userMsg" name="message" rows="4" data-ph-en="How would you like to grow with us?" data-ph-ko="우리와 함께 어떻게 성장하고 싶으신가요?" placeholder="How would you like to grow with us?" required></textarea>
+              <button type="submit" id="submitBtn" class="btn-submit" data-en="Submit Inquiry" data-ko="문의하기">Submit Inquiry</button>
+            </form>
+          </div>
+          <div id="success" style="display:none; text-align: center; padding: 20px;">
+            <h3 style="color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 10px;" data-en="God Bless You!" data-ko="감사합니다!">God Bless You!</h3>
+            <p style="color: #555;" data-en="We have received your message." data-ko="메시지가 성공적으로 전달되었습니다.">We have received your message.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>© 2026 IVC Seoul</strong> — International Volunteers Community ✝</p>
+    <p style="margin-top: 6px; font-size: 0.85rem;">Under the Archdiocese of Seoul · 천주교 서울대교구</p>
+  </footer>
+
+  <script>
+    const AppController = {
+      config: { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan', currentLang: 'en' },
+      init() { this.initLanguage(); this.loadHero(); this.loadMiniSliders(); this.initScrollReveal(); this.initFormHandler(); },
+      
+      initLanguage() {
+        const toggleBtn = document.getElementById('langToggle');
+        if (localStorage.getItem('ivc-lang') === 'ko') this.setLanguage('ko');
+        toggleBtn.addEventListener('click', () => this.setLanguage(this.config.currentLang === 'en' ? 'ko' : 'en'));
+      },
+      
+      setLanguage(lang) {
+        this.config.currentLang = lang; localStorage.setItem('ivc-lang', lang); document.documentElement.lang = lang;
+        document.getElementById('langToggle').innerText = lang === 'en' ? '한국어' : 'EN';
+        
+        document.querySelectorAll('[data-en]').forEach(el => el.innerText = el.getAttribute(`data-${lang}`));
+        document.querySelectorAll('[data-ph-en]').forEach(el => el.placeholder = el.getAttribute(`data-ph-${lang}`));
+        document.querySelectorAll('.slideshow-container').forEach(el => {
+          el.setAttribute('data-hover-text', lang === 'en' ? 'View Full Gallery' : '전체 갤러리 보기');
+        });
+      },
+
+      loadHero() {
+        const images = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
+        const container = document.getElementById('slider-container');
+        images.forEach((img, i) => { const div = document.createElement('div'); div.className = `slide ${i === 0 ? 'active' : ''}`; div.style.backgroundImage = `url('${encodeURI(img)}')`; container.appendChild(div); });
+        let cur = 0; const slides = document.querySelectorAll('#hero .slide');
+        if(slides.length) setInterval(() => { slides[cur].classList.remove('active'); cur = (cur + 1) % slides.length; slides[cur].classList.add('active'); }, 5000);
+      },
+
+      loadMiniSliders() {
+        const containers = document.querySelectorAll('.slideshow-container');
+        const sliderObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const timerId = entry.target.dataset.timerId;
+            if (entry.isIntersecting) { if(!timerId) this.startSlideshow(entry.target); } 
+            else { if(timerId) { clearInterval(timerId); entry.target.dataset.timerId = ''; } }
+          });
+        }, { rootMargin: '100px' });
+        
+        containers.forEach(cont => {
+          const imgList = cont.dataset.imgs.split(',');
+          imgList.forEach((src, idx) => { const s = document.createElement('div'); s.className = `mini-slide ${idx === 0 ? 'active' : ''}`; s.style.backgroundImage = `url('${encodeURI(src.trim())}')`; cont.appendChild(s); });
+          if(imgList.length > 1) sliderObserver.observe(cont);
+        });
+      },
+
+      startSlideshow(container) {
+        const slides = container.querySelectorAll('.mini-slide');
+        let cur = Array.from(slides).findIndex(s => s.classList.contains('active')) || 0;
+        const timerId = setInterval(() => { slides[cur].classList.remove('active'); cur = (cur + 1) % slides.length; slides[cur].classList.add('active'); }, 4000 + (Math.random() * 1500));
+        container.dataset.timerId = timerId;
+      },
+
+      initScrollReveal() {
+        const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+      },
+
+      initFormHandler() {
+        const form = document.getElementById('ivc-form'); const btn = document.getElementById('submitBtn');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault(); const isKo = this.config.currentLang === 'ko'; const ogTxt = btn.innerText;
+          btn.innerText = isKo ? "전송 중..." : "SENDING..."; btn.disabled = true;
+          const payload = { name: document.getElementById('userName').value.trim(), kakao: document.getElementById('userKakao').value.trim(), phone: document.getElementById('userPhone').value.trim(), message: document.getElementById('userMsg').value.trim() };
+          try {
+            await Promise.all([ fetch(`https://ntfy.sh/${this.config.ntfyTopic}`, { method: 'POST', body: `Sign-up: ${payload.name}\nKakao: ${payload.kakao}\nPhone: ${payload.phone}\nMsg: ${payload.message}`, headers: { 'Title': 'New IVC Lead' } }), fetch(`https://formspree.io/f/${this.config.formspreeId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }) ]);
+            document.getElementById('form-wrap').style.display = 'none'; document.getElementById('success').style.display = 'block'; form.reset();
+          } catch (err) { alert(isKo ? "오류가 발생했습니다." : "Error sending message."); btn.innerText = ogTxt; btn.disabled = false; }
+        });
+      }
+    };
+    document.addEventListener('DOMContentLoaded', () => AppController.init());
+  </script>
+</body>
+</html>
