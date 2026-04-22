@@ -13,13 +13,14 @@
   <style>
     /* ── SACRED DESIGN TOKENS ── */
     :root {
-      --primary-red: #cc0000; /* Deepened the red, less neon/corporate */
-      --primary-blue: #003380; /* Deepened the blue to a rich Marian/Navy */
+      --primary-red: #cc0000;
+      --primary-blue: #003380;
       --easter-gold: #d4af37;
-      --parchment: #FDFBF7; /* Warm, ivory background */
+      --naver-green: #03C75A;
+      --parchment: #FDFBF7;
       --parchment-dark: #F4EFE6;
       --dark-text: #2C2A29;
-      --glow-light: 0 10px 40px rgba(212, 175, 55, 0.08); /* Candlelight glow */
+      --glow-light: 0 10px 40px rgba(212, 175, 55, 0.08);
       --glow-heavy: 0 15px 50px rgba(212, 175, 55, 0.15);
       --transition-smooth: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
@@ -32,7 +33,6 @@
       color: var(--dark-text); 
       overflow-x: hidden; 
       -webkit-font-smoothing: antialiased; 
-      /* Subtle Sacred Cross Watermark over the whole body */
       background-image: radial-gradient(var(--parchment-dark) 1px, transparent 1px);
       background-size: 40px 40px;
     }
@@ -58,11 +58,14 @@
     .floating-socials { position: fixed; top: 50%; right: 20px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
     .social-btn { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(253, 251, 247, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--glow-light); color: var(--primary-blue); text-decoration: none; transition: var(--transition-smooth); border: 1px solid rgba(212, 175, 55, 0.3); }
     .social-btn svg { width: 20px; height: 20px; transition: var(--transition-smooth); }
+    
+    .social-btn.map:hover { background: var(--naver-green); color: white; border-color: transparent; transform: scale(1.1) translateX(-5px); box-shadow: 0 5px 15px rgba(3, 199, 90, 0.4); }
     .social-btn.insta:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border-color: transparent; transform: scale(1.1) translateX(-5px); }
     .social-btn.tiktok:hover { background: #000000; color: white; border-color: transparent; box-shadow: -2px 2px 0px #00f2fe, 2px -2px 0px #fe0979; transform: scale(1.1) translateX(-5px); }
+    
     @media (max-width: 768px) { .floating-socials { right: 10px; gap: 10px; } .social-btn { width: 42px; height: 42px; } .social-btn svg { width: 18px; height: 18px; } }
 
-    /* ── HERO (100vh, Immersive, Story-Driven) ── */
+    /* ── HERO ── */
     #hero { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); background-color: #050811; }
     .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center 20%; opacity: 0; transition: opacity 1.5s ease-in-out; z-index: 1; will-change: opacity; }
     .slide.active { opacity: 1; }
@@ -76,10 +79,9 @@
     .hero-cta { display: inline-block; padding: 16px 40px; background: var(--easter-gold); color: var(--primary-blue); font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.1rem; text-decoration: none; border-radius: 50px; transition: var(--transition-smooth); box-shadow: 0 10px 30px rgba(212,175,55,0.4); text-transform: uppercase; letter-spacing: 1px; }
     .hero-cta:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,255,255,0.4); }
 
-    /* ── GLOBAL LAYOUT & STAINED GLASS EFFECTS ── */
+    /* ── GLOBAL LAYOUT & STAINED GLASS ── */
     .container { max-width: 1200px; margin: 0 auto; padding: 80px 5%; }
     
-    /* Elegant Catholic Heading */
     .section-title { font-size: 3.8rem; text-align: center; margin-bottom: 15px; color: var(--primary-blue); font-weight: 600; }
     .section-subtitle { text-align: center; color: #666; margin-bottom: 60px; font-size: 1.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
     
@@ -100,7 +102,6 @@
     a.activity-card:hover { transform: translateY(-8px); box-shadow: var(--glow-heavy); border-top-color: var(--easter-gold); }
     a.activity-card:hover .mini-slide { transform: scale(1.08); }
     
-    /* The fallback image is now applied inline in the HTML. */
     .slideshow-container { position: relative; width: 100%; height: 280px; background-color: var(--parchment-dark); background-size: cover; background-position: center; overflow: hidden; }
     .slideshow-container::after { content: attr(data-hover-text); position: absolute; inset: 0; background: rgba(0, 51, 128, 0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: 1px; opacity: 0; transition: all var(--transition-smooth); z-index: 5; }
     a.activity-card:hover .slideshow-container::after { opacity: 1; }
@@ -130,13 +131,18 @@
 <body>
 
   <nav aria-label="Main Navigation">
-    <a href="#" class="logo" aria-label="IVC Seoul Home">IVC SEOUL</a>
+    <a href="#" class="logo" aria-label="IVC Seoul Home">IVC <span style="color: var(--easter-gold);">SEOUL</span></a>
     <div class="nav-actions">
       <button id="langToggle" class="lang-btn" aria-label="Toggle Language">한국어</button>
     </div>
   </nav>
 
   <div class="floating-socials">
+    <a href="https://naver.me/5vcHHs7A" target="_blank" rel="noopener noreferrer" class="social-btn map" aria-label="Location Map" title="청년문화공간JU 동교동">
+      <svg viewBox="0 0 384 512" fill="currentColor">
+        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+      </svg>
+    </a>
     <a href="https://www.instagram.com/ivcseoul" target="_blank" rel="noopener noreferrer" class="social-btn insta" aria-label="Instagram">
       <svg viewBox="0 0 448 512" fill="currentColor">
         <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-148-.1-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
@@ -153,7 +159,7 @@
     <div id="slider-container" aria-hidden="true"></div>
     <div class="hero-content reveal">
       <span class="hero-meta" data-en="100+ International Youth • Archdiocese of Seoul" data-ko="100여 명의 다국적 청년 • 천주교 서울대교구">100+ International Youth • Archdiocese of Seoul</span>
-      <h1>IVC Seoul</h1>
+      <h1>IVC <span style="color: var(--easter-gold);">Seoul</span></h1>
       <p class="duc-in-altum" data-en="&quot;Duc in altum&quot; — Put out into the deep." data-ko="&quot;Duc in altum&quot; — 깊은 데로 가서 그물을 쳐라.">"Duc in altum" — Put out into the deep.</p>
       <a href="#join-section" class="hero-cta" data-en="Find Your Spiritual Home" data-ko="영적 안식처 찾기">Find Your Spiritual Home</a>
     </div>
@@ -263,7 +269,7 @@
   </main>
 
   <footer>
-    <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 10px;">IVC Seoul ✝</p>
+    <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 10px;">IVC <span style="color: var(--easter-gold);">Seoul</span> ✝</p>
     <p>International Volunteers Community</p>
     <p style="margin-top: 6px; font-size: 0.85rem; opacity: 0.7;">Under the Archdiocese of Seoul · 천주교 서울대교구</p>
   </footer>
