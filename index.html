@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IVC Seoul — International Volunteers Community</title>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&family=Noto+Sans+KR:wght@400;700&family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&family=Noto+Sans+KR:wght@400;700&family=Cormorant+Garamond:ital,wght@0,600;1,300&display=swap" rel="stylesheet" />
+  
   <style>
     :root {
       --primary-red: #e60012;
@@ -13,7 +14,9 @@
       --dark-text: #1a1a1a;
       --light-gray: #f8f9fa;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body { font-family: 'Jost', 'Noto Sans KR', sans-serif; background-color: var(--white); color: var(--dark-text); overflow-x: hidden; }
 
     /* ── NAVIGATION ── */
@@ -24,19 +27,18 @@
       box-shadow: 0 2px 15px rgba(0,0,0,0.05);
     }
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.3rem; }
-    .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 6px 15px; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: 600; }
+    .insta-btn { border: 1.5px solid var(--primary-red); color: var(--primary-red); padding: 6px 15px; border-radius: 50px; text-decoration: none; font-size: 0.75rem; font-weight: 600; transition: 0.3s; }
+    .insta-btn:hover { background: var(--primary-red); color: white; }
 
     /* ── HERO SLIDER (MOBILE OPTIMIZED) ── */
     #hero {
-      height: 85vh; /* Reduced height for better mobile feel */
-      width: 100%; position: relative; overflow: hidden;
+      height: 85vh; width: 100%; position: relative; overflow: hidden;
       display: flex; align-items: center; justify-content: center; text-align: center; color: white;
       background-color: #0a0e1a;
     }
     .slide {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background-size: cover; 
-      background-position: center 20%; /* Keeps faces/top of photos visible on mobile */
+      background-size: cover; background-position: center 20%;
       opacity: 0; transition: opacity 1.5s ease-in-out;
       z-index: 1;
     }
@@ -45,35 +47,40 @@
       content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
     }
-
     .hero-content { position: relative; z-index: 10; padding: 0 10%; }
-    h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); font-weight: 700; text-shadow: 0 2px 15px rgba(0,0,0,0.5); line-height: 1.1; }
+    h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); font-weight: 700; text-shadow: 0 2px 15px rgba(0,0,0,0.5); }
     .duc-in-altum { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 4vw, 1.6rem); margin-top: 10px; }
 
-    /* ── CONTENT ── */
+    /* ── CONTAINERS & CARDS ── */
     .container { max-width: 1100px; margin: 0 auto; padding: 60px 7%; }
+    
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
     .card { background: var(--white); border-radius: 20px; padding: 35px; box-shadow: 0 8px 30px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-blue); }
     .card.red-border { border-top-color: var(--primary-red); }
 
-    .map-block { margin-top: 30px; padding: 30px; background: var(--light-gray); border-radius: 20px; text-align: center; }
-    .map-btn { display: inline-block; margin-top: 15px; padding: 12px 30px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.9rem; }
+    /* ── ACTIVITIES GRID ── */
+    .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+    .activity-card { background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 6px solid var(--primary-blue); display: flex; flex-direction: column; }
+    .slideshow-container { position: relative; width: 100%; height: 240px; background-color: #000; overflow: hidden; }
+    .mini-slide { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease-in-out; }
+    .mini-slide.active { opacity: 1; }
+    .activity-info { padding: 25px; flex-grow: 1; }
+    .activity-tag { font-size: 0.7rem; font-weight: 700; color: var(--primary-red); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+    .activity-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin-bottom: 12px; color: var(--primary-blue); }
+    .activity-info p { font-size: 0.9rem; color: #555; line-height: 1.5; }
 
-    /* ── JOIN SECTION ── */
+    /* ── MAP & FORM ── */
+    .map-block { margin-top: 40px; padding: 40px; background: var(--light-gray); border-radius: 20px; text-align: center; }
+    .map-btn { display: inline-block; margin-top: 15px; padding: 12px 30px; background: var(--primary-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; }
+    
     #join-section { background-color: var(--light-gray); padding: 80px 0; }
-    input, textarea { width: 100%; padding: 1rem; margin-bottom: 0.8rem; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; /* Prevents iOS zoom-in on focus */ }
-    .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; }
+    input, textarea { width: 100%; padding: 1rem; margin-bottom: 0.8rem; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; }
+    .btn-submit { background: var(--primary-red); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; }
 
     /* ── FOOTER ── */
-    footer {
-      background: var(--white);
-      padding: 40px 5%;
-      text-align: center;
-      border-top: 1px solid #eee;
-      color: #666;
-      font-size: 0.85rem;
-    }
+    footer { background: var(--white); padding: 40px 5%; text-align: center; border-top: 1px solid #eee; color: #666; font-size: 0.85rem; }
 
+    /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
@@ -105,6 +112,88 @@
       </div>
     </div>
 
+    <section class="reveal" style="margin-top: 80px;">
+      <h2 style="font-family:'Cormorant Garamond', serif; font-size: 3rem; color: var(--primary-blue); text-align: center; margin-bottom: 50px;">What We Do</h2>
+      
+      <div class="activities-grid">
+        <div class="activity-card">
+          <div class="slideshow-container" data-interval="4000">
+            <div class="mini-slide active" style="background-image: url('rosary1.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('rosary2.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('rosary3.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('rosary4.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('rosary5.jpg');"></div>
+          </div>
+          <div class="activity-info">
+            <span class="activity-tag">One Friday / Month</span>
+            <h3>The Holy Rosary</h3>
+            <p>A serene evening of meditative prayer and Marian devotion. We contemplate the mysteries of Christ through Mother Mary, offering intentions for the world and peace in Korea.</p>
+          </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--primary-red);">
+          <div class="slideshow-container" data-interval="4500">
+            <div class="mini-slide active" style="background-image: url('sharing1.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('sharing2.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('sharing3.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('sharing4.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('sharing5.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('sharing6.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('sharing7.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('sharing8.jpg');"></div>
+          </div>
+          <div class="activity-info">
+            <span class="activity-tag">Every Saturday</span>
+            <h3>Gospel Sharing</h3>
+            <p>Our weekly tradition where we break open the Word. We reflect on the Sunday Gospel, sharing testimonies on living faith as young pilgrims in Seoul.</p>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="slideshow-container" data-interval="3800">
+            <div class="mini-slide active" style="background-image: url('wyd%20activities1776785638587.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('wyd%20activities1776785650115.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('wyd%20activities1776785656265.jpg');"></div>
+          </div>
+          <div class="activity-info">
+            <span class="activity-tag">Twice a Month</span>
+            <h3>Community Volunteering</h3>
+            <p>Faith in action. We serve the marginalized and elderly, acting as the "hands and feet of Jesus" within our local neighborhood through diverse service projects.</p>
+          </div>
+        </div>
+
+        <div class="activity-card" style="border-top-color: var(--primary-red);">
+          <div class="slideshow-container" data-interval="5000">
+            <div class="mini-slide active" style="background-image: url('wyd%20activities1776777102930.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('wyd%20activities1776785337963.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('wyd%20activities1776785379501.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('wyd%20activities1776785386685.jpg');"></div>
+          </div>
+          <div class="activity-info">
+            <span class="activity-tag">Journey to 2027</span>
+            <h3>WYD Seoul 2027</h3>
+            <p>Preparing for World Youth Day! We participate in archdiocesan festivals, retreats, and leadership training to welcome the global Church to Korea.</p>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="slideshow-container" data-interval="4200">
+            <div class="mini-slide active" style="background-image: url('adoration1.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('adoration2.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('adoration3.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('adoration4.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('adoration5.jpg');"></div>
+            <div class="mini-slide" style="background-image: url('adoration6.jpg');"></div>
+          </div>
+          <div class="activity-info">
+            <span class="activity-tag">First Thursday / Month</span>
+            <h3>Eucharistic Adoration</h3>
+            <p>A sacred hour of silence with the Blessed Sacrament. Often led by the Archbishop, this is our time to find peace in Christ and pray for our community.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="map-block reveal">
       <h3>Visit Us</h3>
       <p style="font-size: 0.95rem;">청년문화공간JU 동교동 · Mapo-gu, Seoul</p>
@@ -115,7 +204,7 @@
   <section id="join-section">
     <div class="container">
       <div class="card reveal" style="max-width: 500px; margin: 0 auto; border-top: 5px solid var(--primary-red); padding: 30px;">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;">Join Us</h2>
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Join the Community</h2>
         <div id="form-wrap">
           <form onsubmit="handleSubmission(event)">
             <input type="text" id="userName" placeholder="Full Name" required>
@@ -135,32 +224,44 @@
   <footer>
     <p>© 2026 IVC Seoul — International Volunteers Community ✝</p>
     <p style="margin-top: 5px;">Under the Archdiocese of Seoul · 천주교 서울대교구</p>
-  </footer >
+  </footer>
 
   <script>
     const CONFIG = { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan' };
 
-    // Mobile-optimized Slider
-    const imageList = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
+    // ── MAIN HERO SLIDER ──
+    const heroImages = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
     const sliderContainer = document.getElementById('slider-container');
-    
-    imageList.forEach((img, index) => {
+    heroImages.forEach((img, idx) => {
       const div = document.createElement('div');
-      div.className = `slide ${index === 0 ? 'active' : ''}`;
+      div.className = `slide ${idx === 0 ? 'active' : ''}`;
       div.style.backgroundImage = `url('${encodeURI(img)}')`;
       sliderContainer.appendChild(div);
     });
 
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    function nextSlide() {
-      if(slides.length === 0) return;
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
-    }
-    setInterval(nextSlide, 5000); 
+    let currentHero = 0;
+    const heroSlides = document.querySelectorAll('#hero .slide');
+    setInterval(() => {
+      if(heroSlides.length === 0) return;
+      heroSlides[currentHero].classList.remove('active');
+      currentHero = (currentHero + 1) % heroSlides.length;
+      heroSlides[currentHero].classList.add('active');
+    }, 5000);
 
+    // ── MINI SLIDESHOW ENGINE ──
+    document.querySelectorAll('.slideshow-container').forEach(container => {
+      const slides = container.querySelectorAll('.mini-slide');
+      if (slides.length <= 1) return;
+      let current = 0;
+      const timer = container.getAttribute('data-interval') || 5000;
+      setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+      }, timer);
+    });
+
+    // ── FORM & REVEAL ──
     async function handleSubmission(e) {
       e.preventDefault();
       const btn = e.target.querySelector('button');
