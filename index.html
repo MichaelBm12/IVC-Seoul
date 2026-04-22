@@ -22,9 +22,10 @@
       --white: #ffffff;
       --dark-text: #1a1a1a;
       --light-gray: #f8f9fa;
-      --shadow-sm: 0 5px 20px rgba(0,0,0,0.05);
-      --shadow-md: 0 8px 25px rgba(0,0,0,0.08);
-      --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 8px 24px rgba(0,0,0,0.04);
+      --shadow-md: 0 12px 32px rgba(0,0,0,0.08);
+      --shadow-hover: 0 20px 40px rgba(0,71,157,0.12); /* Brighter shadow for hovers */
+      --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,8 +37,8 @@
     nav {
       position: fixed; top: 0; width: 100%; padding: 0.8rem 5%;
       display: flex; justify-content: space-between; align-items: center;
-      z-index: 1000; background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(12px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: var(--transition-smooth);
+      z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03); transition: var(--transition-smooth);
     }
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.2rem; letter-spacing: 0.5px; }
     
@@ -63,50 +64,77 @@
       opacity: 0; transition: opacity 1.2s ease-in-out; z-index: 1; will-change: opacity;
     }
     .slide.active { opacity: 1; }
-    .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%); }
+    .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%); }
     
     .hero-content { position: relative; z-index: 10; padding: 0 10%; }
-    h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 700; text-shadow: 0 4px 15px rgba(0,0,0,0.4); line-height: 1.1; }
-    .duc-in-altum { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 3vw, 1.6rem); margin-top: 12px; opacity: 0.9; }
+    h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 700; text-shadow: 0 4px 20px rgba(0,0,0,0.5); line-height: 1.1; letter-spacing: -1px; }
+    .duc-in-altum { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 3vw, 1.6rem); margin-top: 12px; opacity: 0.95; }
 
-    /* ── LAYOUT & TYPOGRAPHY ── */
-    .container { max-width: 1150px; margin: 0 auto; padding: 60px 5%; }
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-    .card { background: var(--white); border-radius: 16px; padding: 35px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--primary-blue); transition: transform var(--transition-smooth); }
-    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-
-    /* ── ACTIVITIES GRID ── */
-    .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
-    .activity-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-md); border-top: 5px solid var(--primary-blue); display: flex; flex-direction: column; transition: transform var(--transition-smooth); }
-    .activity-card:hover { transform: translateY(-5px); }
+    /* ── LAYOUT, TYPOGRAPHY & GRADIENTS ── */
+    .container { max-width: 1150px; margin: 0 auto; padding: 70px 5%; }
     
-    .slideshow-container { position: relative; width: 100%; height: 250px; background-color: #111; overflow: hidden; }
-    .mini-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s ease; will-change: opacity; }
+    /* NEW: Gradient Text Utility */
+    .gradient-title {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, #3a7bd5 50%, var(--primary-red) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .card { background: var(--white); border-radius: 20px; padding: 40px; box-shadow: var(--shadow-sm); border-top: 5px solid var(--primary-blue); transition: transform var(--transition-smooth), box-shadow var(--transition-smooth); }
+    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+
+    /* ── ACTIVITIES GRID (CINEMATIC HOVER) ── */
+    .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+    .activity-card { background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-md); border-top: 5px solid var(--primary-blue); display: flex; flex-direction: column; transition: all var(--transition-smooth); }
+    
+    /* The Cinematic Lift and Glow */
+    .activity-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+    /* The Cinematic Zoom inside the container */
+    .activity-card:hover .mini-slide { transform: scale(1.08); }
+    
+    .slideshow-container { position: relative; width: 100%; height: 260px; background-color: #111; overflow: hidden; }
+    
+    /* Smooth transform added to mini-slide for the hover zoom */
+    .mini-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s ease, transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: opacity, transform; }
     .mini-slide.active { opacity: 1; }
     
-    .activity-info { padding: 25px; flex-grow: 1; }
-    .activity-tag { font-size: 0.7rem; font-weight: 700; color: var(--primary-red); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: block; }
-    .activity-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--primary-blue); margin-bottom: 10px; line-height: 1.2; }
-    .activity-info p { font-size: 0.9rem; color: #555; line-height: 1.6; word-break: keep-all; }
+    .activity-info { padding: 30px; flex-grow: 1; position: relative; z-index: 2; background: var(--white); }
+    .activity-tag { font-size: 0.7rem; font-weight: 700; color: var(--primary-red); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+    .activity-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 12px; line-height: 1.2; }
+    .activity-info p { font-size: 0.95rem; color: #555; line-height: 1.6; word-break: keep-all; }
 
-    /* ── CONTACT & MAP ── */
-    .map-block { margin-top: 50px; padding: 45px; background: var(--light-gray); border-radius: 20px; text-align: center; border: 1px solid rgba(0,0,0,0.03); }
+    /* ── CONTACT & MAP (GLASSMORPHISM) ── */
+    .map-block { margin-top: 50px; padding: 45px; background: linear-gradient(135deg, #f8f9fa 0%, #eef2f9 100%); border-radius: 24px; text-align: center; border: 1px solid rgba(0,71,157,0.05); }
     .map-btn { display: inline-block; margin-top: 18px; padding: 14px 35px; background: var(--primary-blue); color: var(--white); text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 0.9rem; transition: var(--transition-smooth); box-shadow: 0 4px 15px rgba(0,71,157,0.3); }
     .map-btn:hover { background: var(--primary-red); box-shadow: 0 4px 15px rgba(230,0,18,0.3); transform: translateY(-2px); }
     
-    #join-section { background-color: var(--light-gray); padding: 100px 0; }
-    .form-card { max-width: 550px; margin: 0 auto; background: var(--white); border-radius: 24px; padding: 45px; box-shadow: var(--shadow-md); border-top: 6px solid var(--primary-red); }
+    /* NEW: Soft gradient background behind the glass form */
+    #join-section { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); padding: 100px 0; }
     
-    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1.2rem; border-radius: 12px; border: 1px solid #ddd; font-size: 1rem; font-family: inherit; background: #fafafa; transition: var(--transition-smooth); }
-    input:focus, textarea:focus { border-color: var(--primary-blue); background: var(--white); outline: none; }
+    /* NEW: Glassmorphism effect on the card */
+    .form-card { 
+      max-width: 550px; margin: 0 auto; 
+      background: rgba(255, 255, 255, 0.75); 
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-radius: 28px; padding: 50px; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06); 
+      border: 1px solid rgba(255,255,255,0.6);
+      border-top: 6px solid var(--primary-red); 
+    }
     
-    .btn-submit { background: var(--primary-red); color: var(--white); border: none; padding: 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: var(--transition-smooth); text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
-    .btn-submit:hover:not(:disabled) { background: #c2000f; }
+    input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1.2rem; border-radius: 12px; border: 1px solid rgba(0,0,0,0.08); font-size: 1rem; font-family: inherit; background: rgba(255,255,255,0.9); transition: var(--transition-smooth); }
+    input:focus, textarea:focus { border-color: var(--primary-blue); background: var(--white); outline: none; box-shadow: 0 0 0 4px rgba(0,71,157,0.1); }
+    
+    .btn-submit { background: var(--primary-red); color: var(--white); border: none; padding: 1.2rem; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: var(--transition-smooth); text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; box-shadow: 0 4px 15px rgba(230,0,18,0.2); }
+    .btn-submit:hover:not(:disabled) { background: #c2000f; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,0,18,0.3); }
     .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
 
     /* ── FOOTER & ANIMATIONS ── */
-    footer { padding: 40px 5%; text-align: center; border-top: 1px solid #eaeaea; font-size: 0.9rem; color: #666; background: var(--white); }
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
+    footer { padding: 40px 5%; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem; color: #666; background: var(--white); }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
@@ -132,19 +160,19 @@
     <section class="container" aria-label="About Us">
       <div class="card-grid">
         <article class="card reveal">
-          <h2 style="color: var(--primary-blue); font-size: 1.4rem; margin-bottom: 10px;" data-en="Who We Are" data-ko="우리는 누구인가">Who We Are</h2>
-          <p style="font-size: 1rem; color: #444;" data-en="A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ." data-ko="천주교 서울대교구 소속 청년 공동체. 100여 명의 다국적 청년들이 그리스도 안에서 우정을 나눕니다.">A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ.</p>
+          <h2 style="color: var(--primary-blue); font-size: 1.5rem; margin-bottom: 12px;" data-en="Who We Are" data-ko="우리는 누구인가">Who We Are</h2>
+          <p style="font-size: 1.05rem; color: #444; line-height: 1.6;" data-en="A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ." data-ko="천주교 서울대교구 소속 청년 공동체. 100여 명의 다국적 청년들이 그리스도 안에서 우정을 나눕니다.">A youth Catholic family under the Archdiocese of Seoul. 100+ internationals building friendships in Christ.</p>
         </article>
         <article class="card reveal" style="border-top-color: var(--primary-red);">
-          <h2 style="color: var(--primary-red); font-size: 1.4rem; margin-bottom: 10px;" data-en="Open to All" data-ko="모두에게 열려있습니다">Open to All</h2>
-          <p style="font-size: 1rem; color: #444;" data-en="You don't have to be Catholic. We welcome all youth who want to grow, belong, and serve in Seoul." data-ko="가톨릭 신자가 아니어도 괜찮습니다. 서울에서 함께 성장하고 봉사할 모든 청년을 환영합니다.">You don't have to be Catholic. We welcome all youth who want to grow, belong, and serve in Seoul.</p>
+          <h2 style="color: var(--primary-red); font-size: 1.5rem; margin-bottom: 12px;" data-en="Open to All" data-ko="모두에게 열려있습니다">Open to All</h2>
+          <p style="font-size: 1.05rem; color: #444; line-height: 1.6;" data-en="You don't have to be Catholic. We welcome all youth who want to grow, belong, and serve in Seoul." data-ko="가톨릭 신자가 아니어도 괜찮습니다. 서울에서 함께 성장하고 봉사할 모든 청년을 환영합니다.">You don't have to be Catholic. We welcome all youth who want to grow, belong, and serve in Seoul.</p>
         </article>
       </div>
     </section>
 
     <section class="container reveal" style="padding-top: 20px;" aria-label="Our Activities">
-      <h2 style="font-family:'Cormorant Garamond', serif; font-size: 3rem; color: var(--primary-blue); text-align: center; margin-bottom: 10px;" data-en="What We Do" data-ko="주요 활동">What We Do</h2>
-      <p style="text-align: center; color: #666; margin-bottom: 40px;" data-en="Growing together in faith, service, and community." data-ko="신앙, 봉사, 그리고 공동체 안에서 함께 성장합니다.">Growing together in faith, service, and community.</p>
+      <h2 class="gradient-title" style="font-family:'Cormorant Garamond', serif; font-size: 3.5rem; text-align: center; margin-bottom: 10px; width: 100%;" data-en="What We Do" data-ko="주요 활동">What We Do</h2>
+      <p style="text-align: center; color: #666; margin-bottom: 50px; font-size: 1.1rem;" data-en="Growing together in faith, service, and community." data-ko="신앙, 봉사, 그리고 공동체 안에서 함께 성장합니다.">Growing together in faith, service, and community.</p>
       
       <div class="activities-grid">
         
@@ -196,8 +224,8 @@
       </div>
       
       <div class="map-block reveal">
-        <h3 style="font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 5px;" data-en="Visit Us" data-ko="오시는 길">Visit Us</h3>
-        <p style="font-size: 1rem; color: #555;" data-en="청년문화공간JU 동교동 · Mapo-gu, Seoul" data-ko="청년문화공간JU 동교동 · 서울특별시 마포구">청년문화공간JU 동교동 · Mapo-gu, Seoul</p>
+        <h3 style="font-size: 1.6rem; color: var(--primary-blue); margin-bottom: 8px;" data-en="Visit Us" data-ko="오시는 길">Visit Us</h3>
+        <p style="font-size: 1.05rem; color: #555;" data-en="청년문화공간JU 동교동 · Mapo-gu, Seoul" data-ko="청년문화공간JU 동교동 · 서울특별시 마포구">청년문화공간JU 동교동 · Mapo-gu, Seoul</p>
         <a href="https://naver.me/5vcHHs7A" target="_blank" rel="noopener noreferrer" class="map-btn" data-en="📍 Open in Naver Map" data-ko="📍 네이버 지도에서 열기">📍 Open in Naver Map</a>
       </div>
     </section>
@@ -205,7 +233,7 @@
     <section id="join-section" aria-label="Contact and Join Form">
       <div class="container" style="padding-top: 0;">
         <div class="form-card reveal">
-          <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-blue); font-size: 2rem;" data-en="Join the Family" data-ko="함께하기">Join the Family</h2>
+          <h2 class="gradient-title" style="text-align: center; margin-bottom: 2.5rem; font-size: 2.2rem; width: 100%;" data-en="Join the Family" data-ko="함께하기">Join the Family</h2>
           <div id="form-wrap">
             <form id="ivc-form">
               <label for="userName" class="visually-hidden" style="display:none;">Full Name</label>
@@ -234,7 +262,7 @@
 
   <footer>
     <p><strong>© 2026 IVC Seoul</strong> — International Volunteers Community ✝</p>
-    <p style="margin-top: 6px; font-size: 0.8rem;">Under the Archdiocese of Seoul · 천주교 서울대교구</p>
+    <p style="margin-top: 6px; font-size: 0.85rem;">Under the Archdiocese of Seoul · 천주교 서울대교구</p>
   </footer>
 
   <script>
