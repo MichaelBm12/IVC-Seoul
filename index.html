@@ -40,7 +40,7 @@
     h1, h2, h3, .logo { font-family: 'Cormorant Garamond', serif; }
     *:focus-visible { outline: 2px solid var(--easter-gold); outline-offset: 4px; }
 
-    /* ── NAVIGATION (Horizontal Languages on Left, Centered Logo) ── */
+    /* ── NAVIGATION (Natural Initials) ── */
     nav {
       position: fixed; top: 0; width: 100%; padding: 1rem 5%;
       display: flex; justify-content: space-between; align-items: center;
@@ -48,18 +48,19 @@
       box-shadow: 0 2px 20px rgba(0,0,0,0.04); transition: var(--transition-smooth);
       border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
-    .nav-left { display: flex; gap: 8px; flex: 1; justify-content: flex-start; align-items: center; }
+    .nav-left { display: flex; gap: 8px; flex: 1; justify-content: flex-start; align-items: center; flex-wrap: wrap; }
     .logo-container { flex: 1; text-align: center; }
-    .nav-right { flex: 1; } /* Empty spacer to ensure perfect centering */
+    .nav-right { flex: 1; }
     
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.6rem; letter-spacing: 1px; text-transform: uppercase; }
     
-    .lang-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.5); color: var(--primary-blue); padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; font-family: 'Jost', sans-serif; cursor: pointer; transition: var(--transition-smooth); }
-    .lang-btn:hover, .lang-btn.active { background: var(--easter-gold); color: var(--white); border-color: var(--easter-gold); }
+    /* Perfected Circular/Pill Buttons for Initials */
+    .lang-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.5); color: var(--primary-blue); width: 32px; height: 32px; border-radius: 50%; font-size: 0.85rem; font-weight: 600; font-family: 'Jost', 'Noto Sans KR', sans-serif; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; justify-content: center; padding: 0; }
+    .lang-btn:hover, .lang-btn.active { background: var(--easter-gold); color: var(--white); border-color: var(--easter-gold); box-shadow: 0 4px 10px rgba(212,175,55,0.3); }
 
     @media (max-width: 768px) {
-      .nav-left { gap: 4px; }
-      .lang-btn { padding: 4px 8px; font-size: 0.7rem; }
+      .nav-left { gap: 5px; max-width: 45%; }
+      .lang-btn { width: 28px; height: 28px; font-size: 0.75rem; }
       .logo { font-size: 1.3rem; }
     }
 
@@ -132,10 +133,12 @@
 
   <nav aria-label="Main Navigation">
     <div class="nav-left">
-      <button class="lang-btn active" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="ko">KO</button>
-      <button class="lang-btn" data-lang="es">ES</button>
-      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="ko" aria-label="Korean">한</button>
+      <button class="lang-btn" data-lang="es" aria-label="Spanish">ES</button>
+      <button class="lang-btn" data-lang="fr" aria-label="French">FR</button>
+      <button class="lang-btn" data-lang="it" aria-label="Italian">IT</button>
+      <button class="lang-btn" data-lang="zh" aria-label="Chinese">中</button>
     </div>
     <div class="logo-container">
       <a href="#" class="logo" aria-label="IVC Seoul Home">IVC <span style="color: var(--easter-gold);">SEOUL</span></a>
@@ -145,19 +148,13 @@
 
   <div class="floating-socials">
     <a href="https://naver.me/5vcHHs7A" target="_blank" rel="noopener noreferrer" class="social-btn map" aria-label="Location Map" title="청년문화공간JU 동교동">
-      <svg viewBox="0 0 384 512" fill="currentColor">
-        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
-      </svg>
+      <svg viewBox="0 0 384 512" fill="currentColor"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>
     </a>
     <a href="https://www.instagram.com/ivcseoul" target="_blank" rel="noopener noreferrer" class="social-btn insta" aria-label="Instagram">
-      <svg viewBox="0 0 448 512" fill="currentColor">
-        <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-148-.1-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
-      </svg>
+      <svg viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-148-.1-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
     </a>
     <a href="https://www.tiktok.com/@ivc_seoul" target="_blank" rel="noopener noreferrer" class="social-btn tiktok" aria-label="TikTok">
-      <svg viewBox="0 0 448 512" fill="currentColor">
-        <path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/>
-      </svg>
+      <svg viewBox="0 0 448 512" fill="currentColor"><path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/></svg>
     </a>
   </div>
 
@@ -168,18 +165,24 @@
             data-en="100+ International Youth • Archdiocese of Seoul" 
             data-ko="100여 명의 다국적 청년 • 천주교 서울대교구"
             data-es="Más de 100 Jóvenes Internacionales • Arquidiócesis de Seúl"
-            data-fr="Plus de 100 Jeunes Internationaux • Archidiocèse de Séoul">100+ International Youth • Archdiocese of Seoul</span>
-      <h1><span style="color: var(--easter-gold);">IVC Seoul</span></h1>
+            data-fr="Plus de 100 Jeunes Internationaux • Archidiocèse de Séoul"
+            data-it="Oltre 100 Giovani Internazionali • Arcidiocesi di Seul"
+            data-zh="100多名国际青年 • 天主教首尔总教区">100+ International Youth • Archdiocese of Seoul</span>
+      <h1>IVC <span style="color: var(--easter-gold);">Seoul</span></h1>
       <p class="duc-in-altum" 
          data-en="&quot;Duc in altum&quot; — Put out into the deep." 
          data-ko="&quot;Duc in altum&quot; — 깊은 데로 가서 그물을 쳐라."
          data-es="&quot;Duc in altum&quot; — Rema mar adentro."
-         data-fr="&quot;Duc in altum&quot; — Avance au large.">"Duc in altum" — Put out into the deep.</p>
+         data-fr="&quot;Duc in altum&quot; — Avance au large."
+         data-it="&quot;Duc in altum&quot; — Prendi il largo."
+         data-zh="&quot;Duc in altum&quot; — 划到深处去。">"Duc in altum" — Put out into the deep.</p>
       <a href="#join-section" class="hero-cta" 
          data-en="Find Your Spiritual Home" 
          data-ko="영적 안식처 찾기"
          data-es="Encuentra tu Hogar Espiritual"
-         data-fr="Trouvez votre Foyer Spirituel">Find Your Spiritual Home</a>
+         data-fr="Trouvez votre Foyer Spirituel"
+         data-it="Trova la tua Casa Spirituale"
+         data-zh="寻找你的心灵家园">Find Your Spiritual Home</a>
     </div>
   </header>
 
@@ -188,46 +191,54 @@
       <div class="card-grid">
         <div class="card reveal">
           <h2 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 12px;" 
-              data-en="Who We Are" data-ko="우리는 누구인가" data-es="Quiénes Somos" data-fr="Qui Nous Sommes">Who We Are</h2>
+              data-en="Who We Are" data-ko="우리는 누구인가" data-es="Quiénes Somos" data-fr="Qui Nous Sommes" data-it="Chi Siamo" data-zh="关于我们">Who We Are</h2>
           <p style="font-size: 1.1rem; color: #444; line-height: 1.6;" 
              data-en="We are a youth Catholic family under the Archdiocese of Seoul. A vibrant community of over 100 internationals building lasting friendships in Christ." 
              data-ko="우리는 천주교 서울대교구 소속 청년 공동체입니다. 100여 명의 다국적 청년들이 그리스도 안에서 영원한 우정을 나누고 있습니다."
              data-es="Somos una familia juvenil católica bajo la Arquidiócesis de Seúl. Una comunidad vibrante de más de 100 internacionales construyendo amistades duraderas en Cristo."
-             data-fr="Nous sommes une famille catholique de jeunes sous l'Archidiocèse de Séoul. Une communauté de plus de 100 internationaux bâtissant des amitiés durables dans le Christ.">We are a youth Catholic family under the Archdiocese of Seoul. A vibrant community of over 100 internationals building lasting friendships in Christ.</p>
+             data-fr="Nous sommes une famille catholique de jeunes sous l'Archidiocèse de Séoul. Une communauté de plus de 100 internationaux bâtissant des amitiés durables dans le Christ."
+             data-it="Siamo una famiglia giovanile cattolica sotto l'Arcidiocesi di Seul. Una vivace comunità di oltre 100 internazionali che costruiscono amicizie durature in Cristo."
+             data-zh="我们是隶属于天主教首尔总教区的青年天主教家庭。一个由100多名国际人士组成的充满活力的社区，在基督内建立持久的友谊。">We are a youth Catholic family under the Archdiocese of Seoul. A vibrant community of over 100 internationals building lasting friendships in Christ.</p>
         </div>
         <div class="card reveal" style="border-top-color: var(--primary-red);">
           <h2 style="color: var(--primary-red); font-size: 2rem; margin-bottom: 12px;" 
-              data-en="Open to All" data-ko="모두에게 열려있습니다" data-es="Abierto a Todos" data-fr="Ouvert à Tous">Open to All</h2>
+              data-en="Open to All" data-ko="모두에게 열려있습니다" data-es="Abierto a Todos" data-fr="Ouvert à Tous" data-it="Aperto a Tutti" data-zh="向所有人开放">Open to All</h2>
           <p style="font-size: 1.1rem; color: #444; line-height: 1.6;" 
              data-en="You do not have to be Catholic to belong here. We welcome all youth seeking truth, community, and an opportunity to serve in the heart of Seoul." 
              data-ko="가톨릭 신자가 아니어도 괜찮습니다. 진리와 공동체, 그리고 서울 중심에서 봉사할 기회를 찾는 모든 청년을 환영합니다."
              data-es="No tienes que ser católico para pertenecer aquí. Damos la bienvenida a todos los jóvenes que buscan la verdad, la comunidad y la oportunidad de servir en el corazón de Seúl."
-             data-fr="Vous n'avez pas besoin d'être catholique pour être à votre place ici. Nous accueillons tous les jeunes en quête de vérité, de communauté et d'opportunités de servir à Séoul.">You do not have to be Catholic to belong here. We welcome all youth seeking truth, community, and an opportunity to serve in the heart of Seoul.</p>
+             data-fr="Il n'est pas nécessaire d'être catholique pour nous rejoindre. Nous accueillons tous les jeunes en quête de vérité, de communauté et d'opportunités de servir à Séoul."
+             data-it="Non è necessario essere cattolici per farne parte. Accogliamo tutti i giovani che cercano la verità, la comunità e l'opportunità di servire nel cuore di Seul."
+             data-zh="你不需要是天主教徒也能加入我们。我们欢迎所有在首尔中心寻求真理、社区和奉献机会的青年。">You do not have to be Catholic to belong here. We welcome all youth seeking truth, community, and an opportunity to serve in the heart of Seoul.</p>
         </div>
       </div>
     </section>
 
     <section class="container reveal" style="padding-top: 20px;" aria-label="Our Activities">
       <h2 class="section-title" 
-          data-en="Journey With Us" data-ko="함께하는 여정" data-es="Viaja Con Nosotros" data-fr="Voyagez Avec Nous">Journey With Us</h2>
+          data-en="Journey With Us" data-ko="함께하는 여정" data-es="Camina con Nosotros" data-fr="Cheminez avec Nous" data-it="In Cammino con Noi" data-zh="与我们同行">Journey With Us</h2>
       <p class="section-subtitle" 
          data-en="Growing together in faith, service, and universal community." 
          data-ko="신앙, 봉사, 그리고 보편적 공동체 안에서 함께 성장합니다."
          data-es="Creciendo juntos en fe, servicio y comunidad universal."
-         data-fr="Grandir ensemble dans la foi, le service et la communauté universelle.">Growing together in faith, service, and universal community.</p>
+         data-fr="Grandir ensemble dans la foi, le service et la communauté universelle."
+         data-it="Crescere insieme nella fede, nel servizio e nella comunità universale."
+         data-zh="在信仰、服务和普世社区中共同成长。">Growing together in faith, service, and universal community.</p>
       
       <div class="activities-grid">
         <a href="rosary.html" class="activity-card">
           <div class="slideshow-container" style="background-image: url('rosary1.jpg')" data-imgs="rosary2.jpg,rosary3.jpg,rosary4.jpg,rosary5.jpg" aria-hidden="true"></div>
           <div class="activity-info">
             <span class="activity-tag" 
-                  data-en="One Friday / Month" data-ko="매월 첫째 주 금요일" data-es="Un Viernes / Mes" data-fr="Un Vendredi / Mois">One Friday / Month</span>
-            <h3 data-en="Holy Rosary" data-ko="묵주기도" data-es="Santo Rosario" data-fr="Saint Rosaire">Holy Rosary</h3>
+                  data-en="One Friday / Month" data-ko="매월 첫째 주 금요일" data-es="Un Viernes al Mes" data-fr="Un Vendredi par Mois" data-it="Un Venerdì al Mese" data-zh="每月一个星期五">One Friday / Month</span>
+            <h3 data-en="Holy Rosary" data-ko="묵주기도" data-es="Santo Rosario" data-fr="Saint Rosaire" data-it="Santo Rosario" data-zh="玫瑰经祈祷">Holy Rosary</h3>
             <p data-en="A meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary." 
                data-ko="성모님의 전구를 통하여 그리스도의 신비를 묵상하며 기도하는 시간입니다."
                data-es="Un encuentro de oración meditativa para contemplar los misterios de Cristo a través de la Madre María."
-               data-fr="Un rassemblement de prière méditative pour contempler les mystères du Christ par Marie.">A meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;">View Gallery &rarr;</span>
+               data-fr="Un rassemblement de prière méditative pour contempler les mystères du Christ par la Vierge Marie."
+               data-it="Un incontro di preghiera meditativa per contemplare i misteri di Cristo attraverso Maria Madre."
+               data-zh="一个默观祈祷的聚会，借着圣母玛利亚默想基督的奥迹。">A meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vedi Galleria &rarr;" data-zh="查看图库 &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
 
@@ -235,13 +246,15 @@
           <div class="slideshow-container" style="background-image: url('sharing1.jpg')" data-imgs="sharing2.jpg,sharing3.jpg,sharing4.jpg,sharing5.jpg,sharing6.jpg,sharing7.jpg,sharing8.jpg" aria-hidden="true"></div>
           <div class="activity-info">
             <span class="activity-tag" 
-                  data-en="Every Saturday" data-ko="매주 토요일" data-es="Cada Sábado" data-fr="Chaque Samedi">Every Saturday</span>
-            <h3 data-en="Gospel Sharing" data-ko="복음 나누기" data-es="Compartir el Evangelio" data-fr="Partage de l'Évangile">Gospel Sharing</h3>
+                  data-en="Every Saturday" data-ko="매주 토요일" data-es="Cada Sábado" data-fr="Chaque Samedi" data-it="Ogni Sabato" data-zh="每周六">Every Saturday</span>
+            <h3 data-en="Gospel Sharing" data-ko="복음 나누기" data-es="Reflexión del Evangelio" data-fr="Partage de l'Évangile" data-it="Condivisione del Vangelo" data-zh="福音分享">Gospel Sharing</h3>
             <p data-en="Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul." 
                data-ko="주일 복음을 묵상하고 다국적 청년으로서 서울에서의 삶과 신앙을 나눕니다."
                data-es="Reflexiones semanales sobre el Evangelio dominical como peregrinos internacionales en Seúl."
-               data-fr="Réflexions hebdomadaires sur l'Évangile du dimanche en tant que pèlerins internationaux à Séoul.">Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;">View Gallery &rarr;</span>
+               data-fr="Réflexions hebdomadaires sur l'Évangile du dimanche en tant que pèlerins internationaux à Séoul."
+               data-it="Riflessioni settimanali sul Vangelo della Domenica come pellegrini internazionali a Seul."
+               data-zh="作为生活在首尔的国际朝圣者，每周对主日福音进行反思。">Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vedi Galleria &rarr;" data-zh="查看图库 &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
 
@@ -249,13 +262,15 @@
           <div class="slideshow-container" style="background-image: url('volunteering1776785327139.jpg')" data-imgs="volunteering1776777396091.jpg,volunteering1776777399615.jpg,volunteering1776777402873.jpg,volunteering1776777406867.jpg" aria-hidden="true"></div>
           <div class="activity-info">
             <span class="activity-tag" 
-                  data-en="Twice a Month" data-ko="월 2회" data-es="Dos Veces al Mes" data-fr="Deux Fois par Mois">Twice a Month</span>
-            <h3 data-en="Volunteering" data-ko="지역 사회 봉사" data-es="Voluntariado" data-fr="Bénévolat">Volunteering</h3>
+                  data-en="Twice a Month" data-ko="월 2회" data-es="Dos Veces al Mes" data-fr="Deux Fois par Mois" data-it="Due Volte al Mese" data-zh="每月两次">Twice a Month</span>
+            <h3 data-en="Volunteering" data-ko="지역 사회 봉사" data-es="Voluntariado" data-fr="Action Caritative" data-it="Volontariato" data-zh="爱心服务">Volunteering</h3>
             <p data-en="Serving the marginalized as the hands and feet of Jesus through local service projects." 
                data-ko="소외된 이웃을 위해 예수님의 손과 발이 되어 실질적인 사랑을 실천합니다."
-               data-es="Sirviendo a los marginados como manos y pies de Jesús en proyectos locales."
-               data-fr="Servir les marginalisés comme les mains et les pieds de Jésus à travers des projets locaux.">Serving the marginalized as the hands and feet of Jesus through local service projects.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;">View Gallery &rarr;</span>
+               data-es="Sirviendo a los marginados como manos y pies de Jesús a través de proyectos locales."
+               data-fr="Servir les marginalisés comme les mains et les pieds de Jésus à travers des projets locaux."
+               data-it="Servire gli emarginati come mani e piedi di Gesù attraverso progetti di servizio locale."
+               data-zh="通过本地服务项目，作为耶稣的手和脚来服务边缘人群。">Serving the marginalized as the hands and feet of Jesus through local service projects.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vedi Galleria &rarr;" data-zh="查看图库 &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
 
@@ -263,13 +278,15 @@
           <div class="slideshow-container" style="background-image: url('wyd activities1776777102930.jpg')" data-imgs="wyd activities1776785337963.jpg,wyd activities1776785379501.jpg,wyd activities1776785386685.jpg,wyd activities1776785638587.jpg" aria-hidden="true"></div>
           <div class="activity-info">
             <span class="activity-tag" 
-                  data-en="Journey to 2027" data-ko="2027년을 향한 여정" data-es="Camino al 2027" data-fr="En route vers 2027">Journey to 2027</span>
-            <h3 data-en="WYD Events" data-ko="WYD 준비 활동" data-es="Eventos de la JMJ" data-fr="Événements des JMJ">WYD Events</h3>
+                  data-en="Journey to 2027" data-ko="2027년을 향한 여정" data-es="Camino a 2027" data-fr="En route vers 2027" data-it="Verso il 2027" data-zh="迈向2027">Journey to 2027</span>
+            <h3 data-en="WYD Events" data-ko="WYD 준비 활동" data-es="Eventos de la JMJ" data-fr="Événements des JMJ" data-it="Eventi GMG" data-zh="世青节活动">WYD Events</h3>
             <p data-en="Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027." 
                data-ko="2027년 서울 세계청년대회(WYD)를 준비하며 다양한 축제와 교육에 동참합니다."
                data-es="Preparativos, retiros y festivales mientras caminamos hacia la Jornada Mundial de la Juventud Seúl 2027."
-               data-fr="Préparations, retraites et festivals en route vers les Journées Mondiales de la Jeunesse Séoul 2027.">Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;">View Gallery &rarr;</span>
+               data-fr="Préparations, retraites et festivals en route vers les Journées Mondiales de la Jeunesse Séoul 2027."
+               data-it="Preparativi, ritiri e festival nel nostro cammino verso la Giornata Mondiale della Gioventù di Seul 2027."
+               data-zh="在迈向2027年首尔世界青年日的旅程中，我们举办准备活动、退省和节庆。">Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vedi Galleria &rarr;" data-zh="查看图库 &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
 
@@ -277,13 +294,15 @@
           <div class="slideshow-container" style="background-image: url('adoration1.jpg')" data-imgs="adoration2.jpg,adoration3.jpg,adoration4.jpg,adoration5.jpg" aria-hidden="true"></div>
           <div class="activity-info">
             <span class="activity-tag" 
-                  data-en="First Thursday" data-ko="매월 첫째 주 목요일" data-es="Primer Jueves" data-fr="Premier Jeudi">First Thursday</span>
-            <h3 data-en="Eucharistic Adoration" data-ko="성체조배" data-es="Adoración Eucarística" data-fr="Adoration Eucharistique">Eucharistic Adoration</h3>
+                  data-en="First Thursday" data-ko="매월 첫째 주 목요일" data-es="Primer Jueves" data-fr="Premier Jeudi" data-it="Primo Giovedì" data-zh="每月首个星期四">First Thursday</span>
+            <h3 data-en="Eucharistic Adoration" data-ko="성체조배" data-es="Adoración Eucarística" data-fr="Adoration Eucharistique" data-it="Adorazione Eucaristica" data-zh="朝拜圣体">Eucharistic Adoration</h3>
             <p data-en="Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth." 
                data-ko="성체 안의 예수님을 흠숭하며 종종 교구장님과 함께 영적 평화를 찾는 시간입니다."
-               data-es="Adoración silenciosa con el Santísimo Sacramento, a menudo acompañados por el Arzobispo."
-               data-fr="Adoration silencieuse avec le Saint-Sacrement, souvent rejoints par l'Archevêque.">Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;">View Gallery &rarr;</span>
+               data-es="Adoración silenciosa con el Santísimo Sacramento, a menudo con el Arzobispo para buscar profundidad espiritual."
+               data-fr="Adoration silencieuse avec le Saint-Sacrement, souvent rejoints par l'Archevêque pour chercher la profondeur spirituelle."
+               data-it="Adorazione silenziosa con il Santissimo Sacramento, spesso con la partecipazione dell'Arcivescovo per cercare profondità spirituale."
+               data-zh="在静默中朝拜圣体，总主教常与我们一同寻求灵修的深度。">Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vedi Galleria &rarr;" data-zh="查看图库 &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
       </div>
@@ -295,15 +314,19 @@
         <h3 style="font-size: 2.8rem; color: var(--primary-blue); margin-bottom: 20px; line-height: 1.2;" 
             data-en="&quot;We are the Easter people and hallelujah is our song.&quot;" 
             data-ko="&quot;우리는 부활의 백성들이며, 알렐루야는 우리의 노래입니다.&quot;"
-            data-es="&quot;Somos el pueblo de la Pascua y aleluya es nuestra canción.&quot;"
-            data-fr="&quot;Nous sommes le peuple de Pâques et alléluia est notre chant.&quot;">"We are the Easter people and hallelujah is our song."</h3>
+            data-es="&quot;Somos el pueblo de la Pascua y el aleluya es nuestro canto.&quot;"
+            data-fr="&quot;Nous sommes le peuple de Pâques et l'alléluia est notre chant.&quot;"
+            data-it="&quot;Siamo il popolo della Pasqua e l'alleluia è il nostro canto.&quot;"
+            data-zh="&quot;我们是复活的子民，阿肋路亚是我们的凯歌。&quot;">"We are the Easter people and hallelujah is our song."</h3>
         <p style="font-family: 'Jost', sans-serif; font-size: 1.2rem; color: #444; margin-bottom: 25px;" 
            data-en="Do not abandon yourselves to despair. He is risen!" 
            data-ko="절망에 빠지지 마십시오. 주님께서 부활하셨습니다!"
            data-es="¡No os entreguéis a la desesperación. Él ha resucitado!"
-           data-fr="Ne vous abandonnez pas au désespoir. Il est ressuscité!">Do not abandon yourselves to despair. He is risen!</p>
+           data-fr="Ne vous abandonnez pas au désespoir. Il est ressuscité !"
+           data-it="Non abbandonatevi alla disperazione. È risorto!"
+           data-zh="不要陷入绝望。祂已复活！">Do not abandon yourselves to despair. He is risen!</p>
         <p style="font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 700; color: #b8911c; text-transform: uppercase; letter-spacing: 2px;" 
-           data-en="— Pope St. John Paul II" data-ko="— 성 요한 바오로 2세 교황" data-es="— San Juan Pablo II" data-fr="— Saint Jean-Paul II">— Pope St. John Paul II</p>
+           data-en="— Pope St. John Paul II" data-ko="— 성 요한 바오로 2세 교황" data-es="— Papa San Juan Pablo II" data-fr="— Pape Saint Jean-Paul II" data-it="— Papa San Giovanni Paolo II" data-zh="— 教宗圣若望保禄二世">— Pope St. John Paul II</p>
       </div>
     </section>
 
@@ -312,26 +335,26 @@
         <div class="glass-panel" style="max-width: 600px; margin: 0 auto; padding: 60px 50px; border-top: 4px solid var(--primary-red);">
           <div class="stained-glass-bg"></div>
           <h2 style="font-size: 3rem; text-align: center; margin-bottom: 2.5rem; color: var(--primary-blue);" 
-              data-en="Join the Family" data-ko="함께하기" data-es="Únete a la Familia" data-fr="Rejoignez la Famille">Join the Family</h2>
+              data-en="Join the Family" data-ko="함께하기" data-es="Únete a la Familia" data-fr="Rejoignez la Famille" data-it="Unisciti alla Famiglia" data-zh="加入我们的大家庭">Join the Family</h2>
           <div id="form-wrap">
             <form id="ivc-form">
               <input type="text" id="userName" name="name" required
-                     data-ph-en="Full Name" data-ph-ko="이름 (성함)" data-ph-es="Nombre Completo" data-ph-fr="Nom Complet" placeholder="Full Name">
+                     data-ph-en="Full Name" data-ph-ko="이름 (성함)" data-ph-es="Nombre Completo" data-ph-fr="Nom Complet" data-ph-it="Nome Completo" data-ph-zh="姓名" placeholder="Full Name">
               <input type="text" id="userKakao" name="kakao" required
-                     data-ph-en="Kakao ID" data-ph-ko="카카오톡 아이디" data-ph-es="ID de Kakao" data-ph-fr="ID Kakao" placeholder="Kakao ID">
+                     data-ph-en="Kakao ID" data-ph-ko="카카오톡 아이디" data-ph-es="ID de Kakao" data-ph-fr="ID Kakao" data-ph-it="ID Kakao" data-ph-zh="Kakao ID" placeholder="Kakao ID">
               <input type="tel" id="userPhone" name="phone" required
-                     data-ph-en="Phone Number" data-ph-ko="전화번호" data-ph-es="Número de Teléfono" data-ph-fr="Numéro de Téléphone" placeholder="Phone Number">
+                     data-ph-en="Phone Number" data-ph-ko="전화번호" data-ph-es="Número de Teléfono" data-ph-fr="Numéro de Téléphone" data-ph-it="Numero di Telefono" data-ph-zh="电话号码" placeholder="Phone Number">
               <textarea id="userMsg" name="message" rows="4" required
-                        data-ph-en="How are you hoping to grow with us?" data-ph-ko="우리와 함께 어떻게 성장하고 싶으신가요?" data-ph-es="¿Cómo esperas crecer con nosotros?" data-ph-fr="Comment souhaitez-vous grandir avec nous ?" placeholder="How are you hoping to grow with us?"></textarea>
+                        data-ph-en="How are you hoping to grow with us?" data-ph-ko="우리와 함께 어떻게 성장하고 싶으신가요?" data-ph-es="¿Cómo esperas crecer con nosotros?" data-ph-fr="Comment souhaitez-vous grandir avec nous ?" data-ph-it="Come speri di crescere con noi?" data-ph-zh="您希望如何在基督内与我们一同成长？" placeholder="How are you hoping to grow with us?"></textarea>
               <button type="submit" id="submitBtn" class="btn-submit" 
-                      data-en="Send Message" data-ko="문의하기" data-es="Enviar Mensaje" data-fr="Envoyer le Message">Send Message</button>
+                      data-en="Send Message" data-ko="문의하기" data-es="Enviar Mensaje" data-fr="Envoyer le Message" data-it="Invia Messaggio" data-zh="发送信息">Send Message</button>
             </form>
           </div>
           <div id="success" style="display:none; text-align: center; padding: 20px;">
             <h3 style="font-size: 2.5rem; color: var(--easter-gold); margin-bottom: 10px;" 
-                data-en="God Bless You!" data-ko="감사합니다!" data-es="¡Dios te bendiga!" data-fr="Que Dieu vous bénisse!">God Bless You!</h3>
+                data-en="God Bless You!" data-ko="감사합니다!" data-es="¡Que Dios te bendiga!" data-fr="Que Dieu vous bénisse !" data-it="Dio ti benedica!" data-zh="天主保佑！">God Bless You!</h3>
             <p style="font-family: 'Jost', sans-serif; font-size: 1.1rem; color: #555;" 
-               data-en="We have received your message and will reach out shortly." data-ko="메시지가 성공적으로 전달되었습니다. 곧 연락드리겠습니다." data-es="Hemos recibido tu mensaje y te contactaremos pronto." data-fr="Nous avons bien reçu votre message et vous contacterons bientôt.">We have received your message and will reach out shortly.</p>
+               data-en="We have received your message and will reach out shortly." data-ko="메시지가 성공적으로 전달되었습니다. 곧 연락드리겠습니다." data-es="Hemos recibido tu mensaje y te contactaremos pronto." data-fr="Nous avons bien reçu votre message et vous contacterons bientôt." data-it="Abbiamo ricevuto il tuo messaggio e ti contatteremo a breve." data-zh="我们已收到您的信息，并将很快与您联系。">We have received your message and will reach out shortly.</p>
           </div>
         </div>
       </div>
@@ -349,8 +372,9 @@
       config: { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan', currentLang: 'en' },
       
       hoverTexts: {
-        en: 'View Full Gallery', ko: '전체 갤러리 보기',
-        es: 'Ver Galería Completa', fr: 'Voir la Galerie Complète'
+        en: 'View Gallery', ko: '갤러리 보기',
+        es: 'Ver Galería', fr: 'Voir la Galerie',
+        it: 'Vedi Galleria', zh: '查看图库'
       },
 
       init() { this.initLanguage(); this.loadHero(); this.loadMiniSliders(); this.initScrollReveal(); this.initFormHandler(); },
@@ -445,8 +469,8 @@
         form.addEventListener('submit', async (e) => {
           e.preventDefault(); const lang = this.config.currentLang; const ogTxt = btn.innerText;
           
-          const sendingText = { en: "SENDING...", ko: "전송 중...", es: "ENVIANDO...", fr: "ENVOI..." };
-          const errorText = { en: "Error sending message.", ko: "오류가 발생했습니다.", es: "Error al enviar.", fr: "Erreur d'envoi." };
+          const sendingText = { en: "SENDING...", ko: "전송 중...", es: "ENVIANDO...", fr: "ENVOI...", it: "INVIO...", zh: "发送中..." };
+          const errorText = { en: "Error sending message.", ko: "오류가 발생했습니다.", es: "Error al enviar.", fr: "Erreur d'envoi.", it: "Errore di invio.", zh: "发送错误。" };
 
           btn.innerText = sendingText[lang] || "SENDING..."; btn.disabled = true;
           const payload = { name: document.getElementById('userName').value.trim(), kakao: document.getElementById('userKakao').value.trim(), phone: document.getElementById('userPhone').value.trim(), message: document.getElementById('userMsg').value.trim() };
