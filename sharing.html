@@ -9,47 +9,59 @@
     :root { --primary-red: #cc0000; --primary-blue: #003380; --easter-gold: #d4af37; --parchment: #FDFBF7; --parchment-dark: #F4EFE6; --dark-text: #2C2A29; --transition-smooth: 0.4s ease; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Jost', 'Noto Sans KR', sans-serif; background-color: var(--parchment); color: var(--dark-text); background-image: radial-gradient(var(--parchment-dark) 1px, transparent 1px); background-size: 40px 40px; }
+
     nav { position: fixed; top: 0; width: 100%; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(253, 251, 247, 0.9); backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(0,0,0,0.04); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
-    .nav-left { display: flex; gap: 8px; flex: 1; justify-content: flex-start; align-items: center; } .logo-container { flex: 1; text-align: center; } .nav-right { flex: 1; text-align: right; }
+    .nav-left { display: flex; gap: 8px; flex: 1; justify-content: flex-start; align-items: center; flex-wrap: wrap; }
+    .logo-container { flex: 1; text-align: center; }
+    .nav-right { flex: 1; text-align: right; }
     .logo { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.6rem; letter-spacing: 1px; text-transform: uppercase; }
-    .lang-btn, .back-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.5); color: var(--primary-blue); padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: var(--transition-smooth); }
-    .lang-btn:hover, .lang-btn.active, .back-btn:hover { background: var(--easter-gold); color: #fff; border-color: var(--easter-gold); }
+    
+    .lang-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.5); color: var(--primary-blue); width: 32px; height: 32px; border-radius: 50%; font-size: 0.85rem; font-weight: 600; font-family: 'Jost', 'Noto Sans KR', sans-serif; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; justify-content: center; padding: 0; }
+    .lang-btn:hover, .lang-btn.active { background: var(--easter-gold); color: var(--white); border-color: var(--easter-gold); box-shadow: 0 4px 10px rgba(212,175,55,0.3); }
+    
+    .back-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.5); color: var(--primary-blue); padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; font-family: 'Jost', sans-serif; text-decoration: none; transition: var(--transition-smooth); display: inline-block; }
+    .back-btn:hover { background: var(--easter-gold); color: #fff; border-color: var(--easter-gold); box-shadow: 0 4px 10px rgba(212,175,55,0.3); }
+
     .page-header { padding: 150px 5% 60px; text-align: center; background: linear-gradient(180deg, rgba(204,0,0,0.04) 0%, transparent 100%); }
     .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--primary-red); margin-bottom: 15px; }
     .page-header p { font-size: 1.1rem; max-width: 700px; margin: 0 auto; color: #555; line-height: 1.6; }
+
     .gallery-container { max-width: 1200px; margin: 20px auto 80px; padding: 0 5%; }
     .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
     .photo-item { width: 100%; height: 280px; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); }
     .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
     .photo-item:hover img { transform: scale(1.08); }
+
     footer { padding: 40px 5%; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem; color: #666; }
-    @media (max-width: 768px) { .nav-left { gap: 4px; } .lang-btn, .back-btn { padding: 4px 8px; font-size: 0.7rem; } .logo { font-size: 1.3rem; } }
+    @media (max-width: 768px) { .nav-left { gap: 5px; } .lang-btn { width: 28px; height: 28px; font-size: 0.75rem; } .back-btn { padding: 4px 10px; font-size: 0.75rem; } .logo { font-size: 1.3rem; } }
   </style>
 </head>
 <body>
   <nav>
-<div class="nav-left">
-      <button class="lang-btn active" data-lang="en" aria-label="English">EN</button>
-      <button class="lang-btn" data-lang="ko" aria-label="Korean">한</button>
-      <button class="lang-btn" data-lang="es" aria-label="Spanish">ES</button>
-      <button class="lang-btn" data-lang="fr" aria-label="French">FR</button>
-      <button class="lang-btn" data-lang="it" aria-label="Italian">IT</button>
-      <button class="lang-btn" data-lang="zh" aria-label="Chinese">中</button>
+    <div class="nav-left">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="ko">한</button>
+      <button class="lang-btn" data-lang="es">ES</button>
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="it">IT</button>
+      <button class="lang-btn" data-lang="zh">中</button>
     </div>
     <div class="logo-container">
       <a href="index.html" class="logo">IVC <span style="color: var(--easter-gold);">SEOUL</span></a>
     </div>
     <div class="nav-right">
-      <a href="index.html" class="back-btn" data-en="&larr; Back" data-ko="&larr; 뒤로" data-es="&larr; Volver" data-fr="&larr; Retour">&larr; Back</a>
+      <a href="index.html" class="back-btn" data-en="&larr; Back" data-ko="&larr; 뒤로" data-es="&larr; Volver" data-fr="&larr; Retour" data-it="&larr; Indietro" data-zh="&larr; 返回">&larr; Back</a>
     </div>
   </nav>
 
   <header class="page-header">
-    <h1 data-en="Gospel Sharing" data-ko="복음 나누기" data-es="Compartir el Evangelio" data-fr="Partage de l'Évangile">Gospel Sharing</h1>
-    <p data-en="Weekly reflections on the Sunday Gospel, sharing faith insights as international pilgrims living in the heart of Seoul." 
-       data-ko="주일 복음을 묵상하고, 다국적 청년으로서 서울에서의 삶과 신앙을 진솔하게 나눕니다."
-       data-es="Reflexiones semanales sobre el Evangelio dominical, compartiendo nuestra fe como peregrinos internacionales en Seúl."
-       data-fr="Réflexions hebdomadaires sur l'Évangile du dimanche, partageant notre foi en tant que pèlerins internationaux à Séoul.">Weekly reflections on the Sunday Gospel, sharing faith insights as international pilgrims living in the heart of Seoul.</p>
+    <h1 data-en="Gospel Sharing" data-ko="복음 나누기" data-es="Reflexión del Evangelio" data-fr="Partage de l'Évangile" data-it="Condivisione del Vangelo" data-zh="福音分享">Gospel Sharing</h1>
+    <p data-en="Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul." 
+       data-ko="주일 복음을 묵상하고 다국적 청년으로서 서울에서의 삶과 신앙을 나눕니다."
+       data-es="Reflexiones semanales sobre el Evangelio dominical como peregrinos internacionales en Seúl."
+       data-fr="Réflexions hebdomadaires sur l'Évangile du dimanche en tant que pèlerins internationaux à Séoul."
+       data-it="Riflessioni settimanali sul Vangelo della Domenica come pellegrini internazionali a Seul."
+       data-zh="作为生活在首尔的国际朝圣者，每周对主日福音进行反思。">Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul.</p>
   </header>
 
   <main class="gallery-container">
