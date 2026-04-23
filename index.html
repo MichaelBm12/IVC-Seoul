@@ -38,10 +38,9 @@
     }
     
     h1, h2, h3, .logo { font-family: 'Cormorant Garamond', serif; }
-
     *:focus-visible { outline: 2px solid var(--easter-gold); outline-offset: 4px; }
 
-    /* ── NAVIGATION ── */
+    /* ── NAVIGATION & LANGUAGE DROPDOWN ── */
     nav {
       position: fixed; top: 0; width: 100%; padding: 1rem 5%;
       display: flex; justify-content: space-between; align-items: center;
@@ -51,18 +50,24 @@
     }
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.6rem; letter-spacing: 1px; text-transform: uppercase; }
     .nav-actions { display: flex; align-items: center; gap: 10px; }
-    .lang-btn { background: transparent; border: 1px solid var(--easter-gold); color: var(--primary-blue); padding: 6px 18px; border-radius: 50px; font-size: 0.8rem; font-weight: 500; font-family: 'Jost', sans-serif; cursor: pointer; transition: var(--transition-smooth); }
+    
+    /* New Multi-Language Dropdown */
+    .lang-selector { position: relative; display: inline-block; }
+    .lang-btn { background: transparent; border: 1px solid var(--easter-gold); color: var(--primary-blue); padding: 6px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; font-family: 'Jost', sans-serif; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 5px; }
     .lang-btn:hover { background: var(--easter-gold); color: var(--white); }
+    .lang-dropdown { position: absolute; top: 100%; right: 0; background: var(--parchment); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px; box-shadow: var(--glow-heavy); display: none; flex-direction: column; min-width: 140px; overflow: hidden; margin-top: 8px; z-index: 1001; }
+    .lang-selector:hover .lang-dropdown { display: flex; }
+    .lang-dropdown a { padding: 12px 18px; color: var(--primary-blue); text-decoration: none; font-size: 0.85rem; font-family: 'Jost', sans-serif; font-weight: 500; transition: background 0.2s; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.03); }
+    .lang-dropdown a:last-child { border-bottom: none; }
+    .lang-dropdown a:hover { background: var(--easter-gold); color: white; }
 
     /* ── FLOATING SOCIAL SIDEBAR ── */
     .floating-socials { position: fixed; top: 50%; right: 20px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
     .social-btn { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(253, 251, 247, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--glow-light); color: var(--primary-blue); text-decoration: none; transition: var(--transition-smooth); border: 1px solid rgba(212, 175, 55, 0.3); }
     .social-btn svg { width: 20px; height: 20px; transition: var(--transition-smooth); }
-    
     .social-btn.map:hover { background: var(--naver-green); color: white; border-color: transparent; transform: scale(1.1) translateX(-5px); box-shadow: 0 5px 15px rgba(3, 199, 90, 0.4); }
     .social-btn.insta:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border-color: transparent; transform: scale(1.1) translateX(-5px); }
     .social-btn.tiktok:hover { background: #000000; color: white; border-color: transparent; box-shadow: -2px 2px 0px #00f2fe, 2px -2px 0px #fe0979; transform: scale(1.1) translateX(-5px); }
-    
     @media (max-width: 768px) { .floating-socials { right: 10px; gap: 10px; } .social-btn { width: 42px; height: 42px; } .social-btn svg { width: 18px; height: 18px; } }
 
     /* ── HERO ── */
@@ -70,21 +75,17 @@
     .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center 20%; opacity: 0; transition: opacity 1.5s ease-in-out; z-index: 1; will-change: opacity; }
     .slide.active { opacity: 1; }
     .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,20,50,0.8) 100%); }
-    
     .hero-content { position: relative; z-index: 10; padding: 0 5%; max-width: 900px; }
     .hero-meta { font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--easter-gold); margin-bottom: 20px; display: block; }
     h1 { font-size: clamp(3.5rem, 8vw, 6rem); font-weight: 600; text-shadow: 0 4px 30px rgba(0,0,0,0.6); line-height: 1.05; letter-spacing: -1px; margin-bottom: 10px; }
     .duc-in-altum { font-style: italic; font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 40px; color: #EAEAEA; font-weight: 400; }
-    
     .hero-cta { display: inline-block; padding: 16px 40px; background: var(--easter-gold); color: var(--primary-blue); font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.1rem; text-decoration: none; border-radius: 50px; transition: var(--transition-smooth); box-shadow: 0 10px 30px rgba(212,175,55,0.4); text-transform: uppercase; letter-spacing: 1px; }
     .hero-cta:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,255,255,0.4); }
 
     /* ── GLOBAL LAYOUT & STAINED GLASS ── */
     .container { max-width: 1200px; margin: 0 auto; padding: 80px 5%; }
-    
     .section-title { font-size: 3.8rem; text-align: center; margin-bottom: 15px; color: var(--primary-blue); font-weight: 600; }
     .section-subtitle { text-align: center; color: #666; margin-bottom: 60px; font-size: 1.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
-    
     .glass-panel { position: relative; border-radius: 20px; overflow: hidden; background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: var(--glow-light); border: 1px solid rgba(255,255,255,0.8); z-index: 1; }
     .stained-glass-bg { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 20% 30%, rgba(0, 51, 128, 0.05) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 40%), radial-gradient(circle at 50% 10%, rgba(204, 0, 0, 0.03) 0%, transparent 40%); z-index: -1; animation: divineLight 20s ease-in-out infinite alternate; }
     @keyframes divineLight { 0% { transform: rotate(0deg); } 100% { transform: rotate(3deg); scale(1.05); } }
@@ -101,14 +102,11 @@
     a.activity-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: var(--glow-light); border-top: 4px solid var(--primary-blue); transition: all var(--transition-smooth); cursor: pointer; }
     a.activity-card:hover { transform: translateY(-8px); box-shadow: var(--glow-heavy); border-top-color: var(--easter-gold); }
     a.activity-card:hover .mini-slide { transform: scale(1.08); }
-    
     .slideshow-container { position: relative; width: 100%; height: 280px; background-color: var(--parchment-dark); background-size: cover; background-position: center; overflow: hidden; }
     .slideshow-container::after { content: attr(data-hover-text); position: absolute; inset: 0; background: rgba(0, 51, 128, 0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: 1px; opacity: 0; transition: all var(--transition-smooth); z-index: 5; }
     a.activity-card:hover .slideshow-container::after { opacity: 1; }
-
     .mini-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s ease, transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: opacity, transform; z-index: 2; }
     .mini-slide.active { opacity: 1; }
-    
     .activity-info { padding: 35px 30px; flex-grow: 1; position: relative; z-index: 6; background: var(--white); display: flex; flex-direction: column; }
     .activity-tag { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--easter-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; display: block; }
     .activity-info h3 { font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 12px; line-height: 1.1; }
@@ -133,7 +131,18 @@
   <nav aria-label="Main Navigation">
     <a href="#" class="logo" aria-label="IVC Seoul Home">IVC <span style="color: var(--easter-gold);">SEOUL</span></a>
     <div class="nav-actions">
-      <button id="langToggle" class="lang-btn" aria-label="Toggle Language">한국어</button>
+      <div class="lang-selector">
+        <button class="lang-btn" id="currentLangBtn">English ▼</button>
+        <div class="lang-dropdown">
+          <a href="#" data-lang="en">English</a>
+          <a href="#" data-lang="ko">한국어</a>
+          <a href="#" data-lang="es">Español</a>
+          <a href="#" data-lang="fr">Français</a>
+          <a href="#" data-lang="it">Italiano</a>
+          <a href="#" data-lang="pt">Português</a>
+          <a href="#" data-lang="vi">Tiếng Việt</a>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -158,10 +167,31 @@
   <header id="hero" aria-label="Introduction">
     <div id="slider-container" aria-hidden="true"></div>
     <div class="hero-content reveal">
-      <span class="hero-meta" data-en="100+ International Youth • Archdiocese of Seoul" data-ko="100여 명의 다국적 청년 • 천주교 서울대교구">100+ International Youth • Archdiocese of Seoul</span>
+      <span class="hero-meta" 
+            data-en="100+ International Youth • Archdiocese of Seoul" 
+            data-ko="100여 명의 다국적 청년 • 천주교 서울대교구"
+            data-es="Más de 100 Jóvenes Internacionales • Arquidiócesis de Seúl"
+            data-fr="Plus de 100 Jeunes Internationaux • Archidiocèse de Séoul"
+            data-it="Oltre 100 Giovani Internazionali • Arcidiocesi di Seul"
+            data-pt="Mais de 100 Jovens Internacionais • Arquidiocese de Seul"
+            data-vi="Hơn 100 Thanh niên Quốc tế • Tổng Giáo phận Seoul">100+ International Youth • Archdiocese of Seoul</span>
       <h1><span style="color: var(--easter-gold);">IVC Seoul</span></h1>
-      <p class="duc-in-altum" data-en="&quot;Duc in altum&quot; — Put out into the deep." data-ko="&quot;Duc in altum&quot; — 깊은 데로 가서 그물을 쳐라.">"Duc in altum" — Put out into the deep.</p>
-      <a href="#join-section" class="hero-cta" data-en="Find Your Spiritual Home" data-ko="영적 안식처 찾기">Find Your Spiritual Home</a>
+      <p class="duc-in-altum" 
+         data-en="&quot;Duc in altum&quot; — Put out into the deep." 
+         data-ko="&quot;Duc in altum&quot; — 깊은 데로 가서 그물을 쳐라."
+         data-es="&quot;Duc in altum&quot; — Rema mar adentro."
+         data-fr="&quot;Duc in altum&quot; — Avance au large."
+         data-it="&quot;Duc in altum&quot; — Prendi il largo."
+         data-pt="&quot;Duc in altum&quot; — Fazei-vos ao largo."
+         data-vi="&quot;Duc in altum&quot; — Hãy ra khơi.">"Duc in altum" — Put out into the deep.</p>
+      <a href="#join-section" class="hero-cta" 
+         data-en="Find Your Spiritual Home" 
+         data-ko="영적 안식처 찾기"
+         data-es="Encuentra tu Hogar Espiritual"
+         data-fr="Trouvez votre Foyer Spirituel"
+         data-it="Trova la tua Casa Spirituale"
+         data-pt="Encontre seu Lar Espiritual"
+         data-vi="Tìm Ngôi nhà Tâm linh">Find Your Spiritual Home</a>
     </div>
   </header>
 
@@ -169,68 +199,127 @@
     <section class="container" aria-label="About Us">
       <div class="card-grid">
         <div class="card reveal">
-          <h2 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 12px;" data-en="Who We Are" data-ko="우리는 누구인가">Who We Are</h2>
-          <p style="font-size: 1.1rem; color: #444; line-height: 1.6;" data-en="We are a youth Catholic family under the Archdiocese of Seoul. A vibrant community of over 100 internationals building lasting friendships in Christ." data-ko="우리는 천주교 서울대교구 소속 청년 공동체입니다. 100여 명의 다국적 청년들이 그리스도 안에서 영원한 우정을 나누고 있습니다.">We are a youth Catholic family under the Archdiocese of Seoul. A vibrant community of over 100 internationals building lasting friendships in Christ.</p>
+          <h2 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 12px;" 
+              data-en="Who We Are" data-ko="우리는 누구인가" data-es="Quiénes Somos" data-fr="Qui Nous Sommes" data-it="Chi Siamo" data-pt="Quem Somos" data-vi="Chúng Tôi Là Ai">Who We Are</h2>
+          <p style="font-size: 1.1rem; color: #444; line-height: 1.6;" 
+             data-en="We are a youth Catholic family under the Archdiocese of Seoul. A vibrant community of over 100 internationals building lasting friendships in Christ." 
+             data-ko="우리는 천주교 서울대교구 소속 청년 공동체입니다. 100여 명의 다국적 청년들이 그리스도 안에서 영원한 우정을 나누고 있습니다."
+             data-es="Somos una familia juvenil católica bajo la Arquidiócesis de Seúl. Una comunidad vibrante de más de 100 internacionales construyendo amistades duraderas en Cristo."
+             data-fr="Nous sommes une famille catholique de jeunes sous l'Archidiocèse de Séoul. Une communauté de plus de 100 internationaux bâtissant des amitiés durables dans le Christ."
+             data-it="Siamo una famiglia cattolica di giovani sotto l'Arcidiocesi di Seul. Una vivace comunità di oltre 100 internazionali che costruiscono amicizie durature in Cristo."
+             data-pt="Somos uma família jovem católica sob a Arquidiocese de Seul. Uma comunidade de mais de 100 internacionais construindo amizades duradouras em Cristo."
+             data-vi="Chúng tôi là một gia đình giới trẻ Công giáo thuộc Tổng Giáo phận Seoul. Một cộng đồng với hơn 100 bạn trẻ quốc tế xây dựng tình bạn bền vững trong Chúa Kitô.">We are a youth Catholic family under the Archdiocese of Seoul. A vibrant community of over 100 internationals building lasting friendships in Christ.</p>
         </div>
         <div class="card reveal" style="border-top-color: var(--primary-red);">
-          <h2 style="color: var(--primary-red); font-size: 2rem; margin-bottom: 12px;" data-en="Open to All" data-ko="모두에게 열려있습니다">Open to All</h2>
-          <p style="font-size: 1.1rem; color: #444; line-height: 1.6;" data-en="You do not have to be Catholic to belong here. We welcome all youth seeking truth, community, and an opportunity to serve in the heart of Seoul." data-ko="가톨릭 신자가 아니어도 괜찮습니다. 진리와 공동체, 그리고 서울 중심에서 봉사할 기회를 찾는 모든 청년을 환영합니다.">You do not have to be Catholic to belong here. We welcome all youth seeking truth, community, and an opportunity to serve in the heart of Seoul.</p>
+          <h2 style="color: var(--primary-red); font-size: 2rem; margin-bottom: 12px;" 
+              data-en="Open to All" data-ko="모두에게 열려있습니다" data-es="Abierto a Todos" data-fr="Ouvert à Tous" data-it="Aperto a Tutti" data-pt="Aberto a Todos" data-vi="Mở Cửa Cho Tất Cả">Open to All</h2>
+          <p style="font-size: 1.1rem; color: #444; line-height: 1.6;" 
+             data-en="You do not have to be Catholic to belong here. We welcome all youth seeking truth, community, and an opportunity to serve in the heart of Seoul." 
+             data-ko="가톨릭 신자가 아니어도 괜찮습니다. 진리와 공동체, 그리고 서울 중심에서 봉사할 기회를 찾는 모든 청년을 환영합니다."
+             data-es="No tienes que ser católico para pertenecer aquí. Damos la bienvenida a todos los jóvenes que buscan la verdad, la comunidad y la oportunidad de servir en el corazón de Seúl."
+             data-fr="Vous n'avez pas besoin d'être catholique pour être à votre place ici. Nous accueillons tous les jeunes en quête de vérité, de communauté et d'opportunités de servir à Séoul."
+             data-it="Non devi essere cattolico per unirti a noi. Accogliamo tutti i giovani che cercano la verità, la comunità e un'opportunità per servire nel cuore di Seul."
+             data-pt="Você não precisa ser católico para pertencer a este lugar. Acolhemos todos os jovens que buscam a verdade, a comunidade e a oportunidade de servir em Seul."
+             data-vi="Bạn không cần phải là người Công giáo để tham gia. Chúng tôi chào đón tất cả các bạn trẻ tìm kiếm chân lý, cộng đồng và cơ hội phục vụ tại trung tâm Seoul.">You do not have to be Catholic to belong here. We welcome all youth seeking truth, community, and an opportunity to serve in the heart of Seoul.</p>
         </div>
       </div>
     </section>
 
     <section class="container reveal" style="padding-top: 20px;" aria-label="Our Activities">
-      <h2 class="section-title" data-en="Journey With Us" data-ko="함께하는 여정">Journey With Us</h2>
-      <p class="section-subtitle" data-en="Growing together in faith, service, and universal community." data-ko="신앙, 봉사, 그리고 보편적 공동체 안에서 함께 성장합니다.">Growing together in faith, service, and universal community.</p>
+      <h2 class="section-title" 
+          data-en="Journey With Us" data-ko="함께하는 여정" data-es="Viaja Con Nosotros" data-fr="Voyagez Avec Nous" data-it="In Viaggio Con Noi" data-pt="Caminhe Conosco" data-vi="Đồng Hành Cùng Chúng Tôi">Journey With Us</h2>
+      <p class="section-subtitle" 
+         data-en="Growing together in faith, service, and universal community." 
+         data-ko="신앙, 봉사, 그리고 보편적 공동체 안에서 함께 성장합니다."
+         data-es="Creciendo juntos en fe, servicio y comunidad universal."
+         data-fr="Grandir ensemble dans la foi, le service et la communauté universelle."
+         data-it="Crescere insieme nella fede, nel servizio e nella comunità universale."
+         data-pt="Crescendo juntos na fé, no serviço e na comunidade universal."
+         data-vi="Cùng nhau phát triển trong đức tin, phục vụ và cộng đồng toàn cầu.">Growing together in faith, service, and universal community.</p>
       
       <div class="activities-grid">
         <a href="rosary.html" class="activity-card">
-          <div class="slideshow-container" style="background-image: url('rosary1.jpg')" data-hover-text="View Full Gallery" data-imgs="rosary2.jpg,rosary3.jpg,rosary4.jpg,rosary5.jpg" aria-hidden="true"></div>
+          <div class="slideshow-container" style="background-image: url('rosary1.jpg')" data-imgs="rosary2.jpg,rosary3.jpg,rosary4.jpg,rosary5.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag" data-en="One Friday / Month" data-ko="매월 첫째 주 금요일">One Friday / Month</span>
-            <h3 data-en="Holy Rosary" data-ko="묵주기도">Holy Rosary</h3>
-            <p data-en="A meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary." data-ko="성모님의 전구를 통하여 그리스도의 신비를 묵상하며 기도하는 시간입니다.">A meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;">View Gallery &rarr;</span>
+            <span class="activity-tag" 
+                  data-en="One Friday / Month" data-ko="매월 첫째 주 금요일" data-es="Un Viernes / Mes" data-fr="Un Vendredi / Mois" data-it="Un Venerdì / Mese" data-pt="Uma Sexta / Mês" data-vi="Một Thứ Sáu / Tháng">One Friday / Month</span>
+            <h3 data-en="Holy Rosary" data-ko="묵주기도" data-es="Santo Rosario" data-fr="Saint Rosaire" data-it="Santo Rosario" data-pt="Santo Rosário" data-vi="Kinh Mân Côi">Holy Rosary</h3>
+            <p data-en="A meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary." 
+               data-ko="성모님의 전구를 통하여 그리스도의 신비를 묵상하며 기도하는 시간입니다."
+               data-es="Un encuentro de oración meditativa para contemplar los misterios de Cristo a través de la Madre María."
+               data-fr="Un rassemblement de prière méditative pour contempler les mystères du Christ par Marie."
+               data-it="Un incontro di preghiera meditativa per contemplare i misteri di Cristo attraverso Maria."
+               data-pt="Um encontro de oração meditativa para contemplar os mistérios de Cristo através da Mãe Maria."
+               data-vi="Buổi cầu nguyện suy niệm về các mầu nhiệm của Chúa Kitô qua Đức Mẹ Maria.">A meditative prayer gathering to contemplate the mysteries of Christ through Mother Mary.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vai alla Galleria &rarr;" data-pt="Ver Galeria &rarr;" data-vi="Xem Thư viện &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
 
         <a href="sharing.html" class="activity-card" style="border-top-color: var(--primary-red);">
-          <div class="slideshow-container" style="background-image: url('sharing1.jpg')" data-hover-text="View Full Gallery" data-imgs="sharing2.jpg,sharing3.jpg,sharing4.jpg,sharing5.jpg,sharing6.jpg,sharing7.jpg,sharing8.jpg" aria-hidden="true"></div>
+          <div class="slideshow-container" style="background-image: url('sharing1.jpg')" data-imgs="sharing2.jpg,sharing3.jpg,sharing4.jpg,sharing5.jpg,sharing6.jpg,sharing7.jpg,sharing8.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag" data-en="Every Saturday" data-ko="매주 토요일">Every Saturday</span>
-            <h3 data-en="Gospel Sharing" data-ko="복음 나누기">Gospel Sharing</h3>
-            <p data-en="Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul." data-ko="주일 복음을 묵상하고 다국적 청년으로서 서울에서의 삶과 신앙을 나눕니다.">Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;">View Gallery &rarr;</span>
+            <span class="activity-tag" 
+                  data-en="Every Saturday" data-ko="매주 토요일" data-es="Cada Sábado" data-fr="Chaque Samedi" data-it="Ogni Sabato" data-pt="Todo Sábado" data-vi="Mỗi Thứ Bảy">Every Saturday</span>
+            <h3 data-en="Gospel Sharing" data-ko="복음 나누기" data-es="Compartir el Evangelio" data-fr="Partage de l'Évangile" data-it="Condivisione del Vangelo" data-pt="Partilha do Evangelho" data-vi="Chia sẻ Phúc Âm">Gospel Sharing</h3>
+            <p data-en="Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul." 
+               data-ko="주일 복음을 묵상하고 다국적 청년으로서 서울에서의 삶과 신앙을 나눕니다."
+               data-es="Reflexiones semanales sobre el Evangelio dominical como peregrinos internacionales en Seúl."
+               data-fr="Réflexions hebdomadaires sur l'Évangile du dimanche en tant que pèlerins internationaux à Séoul."
+               data-it="Riflessioni settimanali sul Vangelo della domenica come pellegrini internazionali a Seul."
+               data-pt="Reflexões semanais sobre o Evangelho dominical como peregrinos internacionais em Seul."
+               data-vi="Suy niệm Phúc Âm Chúa Nhật hàng tuần như những người hành hương sống tại Seoul.">Weekly reflections on the Sunday Gospel as international pilgrims living in Seoul.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vai alla Galleria &rarr;" data-pt="Ver Galeria &rarr;" data-vi="Xem Thư viện &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
 
         <a href="volunteering.html" class="activity-card" style="border-top-color: var(--easter-gold);">
-          <div class="slideshow-container" style="background-image: url('volunteering1776785327139.jpg')" data-hover-text="View Full Gallery" data-imgs="volunteering1776777396091.jpg,volunteering1776777399615.jpg,volunteering1776777402873.jpg,volunteering1776777406867.jpg" aria-hidden="true"></div>
+          <div class="slideshow-container" style="background-image: url('volunteering1776785327139.jpg')" data-imgs="volunteering1776777396091.jpg,volunteering1776777399615.jpg,volunteering1776777402873.jpg,volunteering1776777406867.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag" data-en="Twice a Month" data-ko="월 2회">Twice a Month</span>
-            <h3 data-en="Volunteering" data-ko="지역 사회 봉사">Volunteering</h3>
-            <p data-en="Serving the marginalized as the hands and feet of Jesus through local service projects." data-ko="소외된 이웃을 위해 예수님의 손과 발이 되어 실질적인 사랑을 실천합니다.">Serving the marginalized as the hands and feet of Jesus through local service projects.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;">View Gallery &rarr;</span>
+            <span class="activity-tag" 
+                  data-en="Twice a Month" data-ko="월 2회" data-es="Dos Veces al Mes" data-fr="Deux Fois par Mois" data-it="Due Volte al Mese" data-pt="Duas Vezes ao Mês" data-vi="Hai Lần Một Tháng">Twice a Month</span>
+            <h3 data-en="Volunteering" data-ko="지역 사회 봉사" data-es="Voluntariado" data-fr="Bénévolat" data-it="Volontariato" data-pt="Voluntariado" data-vi="Tình nguyện">Volunteering</h3>
+            <p data-en="Serving the marginalized as the hands and feet of Jesus through local service projects." 
+               data-ko="소외된 이웃을 위해 예수님의 손과 발이 되어 실질적인 사랑을 실천합니다."
+               data-es="Sirviendo a los marginados como manos y pies de Jesús en proyectos locales."
+               data-fr="Servir les marginalisés comme les mains et les pieds de Jésus à travers des projets locaux."
+               data-it="Servire gli emarginati come mani e piedi di Gesù attraverso progetti di servizio locale."
+               data-pt="Servindo aos marginalizados como as mãos e os pés de Jesus em projetos locais."
+               data-vi="Phục vụ những người yếu thế như đôi tay và đôi chân của Chúa Kitô qua các dự án địa phương.">Serving the marginalized as the hands and feet of Jesus through local service projects.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vai alla Galleria &rarr;" data-pt="Ver Galeria &rarr;" data-vi="Xem Thư viện &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
 
         <a href="wyd.html" class="activity-card" style="border-top-color: var(--primary-red);">
-          <div class="slideshow-container" style="background-image: url('wyd activities1776777102930.jpg')" data-hover-text="View Full Gallery" data-imgs="wyd activities1776785337963.jpg,wyd activities1776785379501.jpg,wyd activities1776785386685.jpg,wyd activities1776785638587.jpg" aria-hidden="true"></div>
+          <div class="slideshow-container" style="background-image: url('wyd activities1776777102930.jpg')" data-imgs="wyd activities1776785337963.jpg,wyd activities1776785379501.jpg,wyd activities1776785386685.jpg,wyd activities1776785638587.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag" data-en="Journey to 2027" data-ko="2027년을 향한 여정">Journey to 2027</span>
-            <h3 data-en="WYD Events" data-ko="WYD 준비 활동">WYD Events</h3>
-            <p data-en="Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027." data-ko="2027년 서울 세계청년대회(WYD)를 준비하며 다양한 축제와 교육에 동참합니다.">Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;">View Gallery &rarr;</span>
+            <span class="activity-tag" 
+                  data-en="Journey to 2027" data-ko="2027년을 향한 여정" data-es="Camino al 2027" data-fr="En route vers 2027" data-it="Verso il 2027" data-pt="Rumo a 2027" data-vi="Hành trình đến 2027">Journey to 2027</span>
+            <h3 data-en="WYD Events" data-ko="WYD 준비 활동" data-es="Eventos de la JMJ" data-fr="Événements des JMJ" data-it="Eventi GMG" data-pt="Eventos da JMJ" data-vi="Sự kiện WYD">WYD Events</h3>
+            <p data-en="Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027." 
+               data-ko="2027년 서울 세계청년대회(WYD)를 준비하며 다양한 축제와 교육에 동참합니다."
+               data-es="Preparativos, retiros y festivales mientras caminamos hacia la Jornada Mundial de la Juventud Seúl 2027."
+               data-fr="Préparations, retraites et festivals en route vers les Journées Mondiales de la Jeunesse Séoul 2027."
+               data-it="Preparativi, ritiri e festival in cammino verso la Giornata Mondiale della Gioventù Seul 2027."
+               data-pt="Preparações, retiros e festivais a caminho da Jornada Mundial da Juventude Seul 2027."
+               data-vi="Các khóa tĩnh tâm và lễ hội trên hành trình hướng tới Đại hội Giới trẻ Thế giới Seoul 2027.">Preparations, retreats, and festivals as we journey toward the World Youth Day Seoul 2027.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vai alla Galleria &rarr;" data-pt="Ver Galeria &rarr;" data-vi="Xem Thư viện &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
 
         <a href="adoration.html" class="activity-card">
-          <div class="slideshow-container" style="background-image: url('adoration1.jpg')" data-hover-text="View Full Gallery" data-imgs="adoration2.jpg,adoration3.jpg,adoration4.jpg,adoration5.jpg" aria-hidden="true"></div>
+          <div class="slideshow-container" style="background-image: url('adoration1.jpg')" data-imgs="adoration2.jpg,adoration3.jpg,adoration4.jpg,adoration5.jpg" aria-hidden="true"></div>
           <div class="activity-info">
-            <span class="activity-tag" data-en="First Thursday" data-ko="매월 첫째 주 목요일">First Thursday</span>
-            <h3 data-en="Eucharistic Adoration" data-ko="성체조배">Eucharistic Adoration</h3>
-            <p data-en="Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth." data-ko="성체 안의 예수님을 흠숭하며 종종 교구장님과 함께 영적 평화를 찾는 시간입니다.">Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth.</p>
-            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;">View Gallery &rarr;</span>
+            <span class="activity-tag" 
+                  data-en="First Thursday" data-ko="매월 첫째 주 목요일" data-es="Primer Jueves" data-fr="Premier Jeudi" data-it="Primo Giovedì" data-pt="Primeira Quinta" data-vi="Thứ Năm Đầu Tháng">First Thursday</span>
+            <h3 data-en="Eucharistic Adoration" data-ko="성체조배" data-es="Adoración Eucarística" data-fr="Adoration Eucharistique" data-it="Adorazione Eucaristica" data-pt="Adoração Eucarística" data-vi="Chầu Thánh Thể">Eucharistic Adoration</h3>
+            <p data-en="Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth." 
+               data-ko="성체 안의 예수님을 흠숭하며 종종 교구장님과 함께 영적 평화를 찾는 시간입니다."
+               data-es="Adoración silenciosa con el Santísimo Sacramento, a menudo acompañados por el Arzobispo."
+               data-fr="Adoration silencieuse avec le Saint-Sacrement, souvent rejoints par l'Archevêque."
+               data-it="Adorazione silenziosa con il Santissimo Sacramento, spesso con l'Arcivescovo per la profondità spirituale."
+               data-pt="Adoração silenciosa com o Santíssimo Sacramento, frequentemente com a presença do Arcebispo."
+               data-vi="Thờ lạy Chúa Giêsu Thánh Thể trong thinh lặng, thường có Đức Tổng Giám mục tham dự.">Silent worship with the Blessed Sacrament, often joined by the Archbishop to seek spiritual depth.</p>
+            <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vai alla Galleria &rarr;" data-pt="Ver Galeria &rarr;" data-vi="Xem Thư viện &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
       </div>
@@ -239,9 +328,24 @@
     <section class="container reveal" style="padding-top: 40px; padding-bottom: 0px;">
       <div class="glass-panel" style="padding: 70px 50px; text-align: center; border-top: 4px solid var(--easter-gold);">
         <div class="stained-glass-bg"></div>
-        <h3 style="font-size: 2.8rem; color: var(--primary-blue); margin-bottom: 20px; line-height: 1.2;" data-en="&quot;We are the Easter people and hallelujah is our song.&quot;" data-ko="&quot;우리는 부활의 백성들이며, 알렐루야는 우리의 노래입니다.&quot;">"We are the Easter people and hallelujah is our song."</h3>
-        <p style="font-family: 'Jost', sans-serif; font-size: 1.2rem; color: #444; margin-bottom: 25px;" data-en="Do not abandon yourselves to despair. He is risen!" data-ko="절망에 빠지지 마십시오. 주님께서 부활하셨습니다!">Do not abandon yourselves to despair. He is risen!</p>
-        <p style="font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 700; color: #b8911c; text-transform: uppercase; letter-spacing: 2px;" data-en="— Pope St. John Paul II" data-ko="— 성 요한 바오로 2세 교황">— Pope St. John Paul II</p>
+        <h3 style="font-size: 2.8rem; color: var(--primary-blue); margin-bottom: 20px; line-height: 1.2;" 
+            data-en="&quot;We are the Easter people and hallelujah is our song.&quot;" 
+            data-ko="&quot;우리는 부활의 백성들이며, 알렐루야는 우리의 노래입니다.&quot;"
+            data-es="&quot;Somos el pueblo de la Pascua y aleluya es nuestra canción.&quot;"
+            data-fr="&quot;Nous sommes le peuple de Pâques et alléluia est notre chant.&quot;"
+            data-it="&quot;Siamo il popolo della Pasqua e alleluia è il nostro canto.&quot;"
+            data-pt="&quot;Somos o povo da Páscoa e aleluia é a nossa canção.&quot;"
+            data-vi="&quot;Chúng ta là dân của Mùa Phục Sinh và Allêluia là bài ca của chúng ta.&quot;">"We are the Easter people and hallelujah is our song."</h3>
+        <p style="font-family: 'Jost', sans-serif; font-size: 1.2rem; color: #444; margin-bottom: 25px;" 
+           data-en="Do not abandon yourselves to despair. He is risen!" 
+           data-ko="절망에 빠지지 마십시오. 주님께서 부활하셨습니다!"
+           data-es="¡No os entreguéis a la desesperación. Él ha resucitado!"
+           data-fr="Ne vous abandonnez pas au désespoir. Il est ressuscité!"
+           data-it="Non abbandonatevi alla disperazione. È risorto!"
+           data-pt="Não vos abandoneis ao desespero. Ele ressuscitou!"
+           data-vi="Đừng để mình rơi vào tuyệt vọng. Người đã sống lại!">Do not abandon yourselves to despair. He is risen!</p>
+        <p style="font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 700; color: #b8911c; text-transform: uppercase; letter-spacing: 2px;" 
+           data-en="— Pope St. John Paul II" data-ko="— 성 요한 바오로 2세 교황" data-es="— San Juan Pablo II" data-fr="— Saint Jean-Paul II" data-it="— San Giovanni Paolo II" data-pt="— São João Paulo II" data-vi="— Thánh Giáo hoàng Gioan Phaolô II">— Pope St. John Paul II</p>
       </div>
     </section>
 
@@ -249,19 +353,27 @@
       <div class="container" style="padding-top: 40px;">
         <div class="glass-panel" style="max-width: 600px; margin: 0 auto; padding: 60px 50px; border-top: 4px solid var(--primary-red);">
           <div class="stained-glass-bg"></div>
-          <h2 style="font-size: 3rem; text-align: center; margin-bottom: 2.5rem; color: var(--primary-blue);" data-en="Join the Family" data-ko="함께하기">Join the Family</h2>
+          <h2 style="font-size: 3rem; text-align: center; margin-bottom: 2.5rem; color: var(--primary-blue);" 
+              data-en="Join the Family" data-ko="함께하기" data-es="Únete a la Familia" data-fr="Rejoignez la Famille" data-it="Unisciti alla Famiglia" data-pt="Junte-se à Família" data-vi="Gia nhập Gia đình">Join the Family</h2>
           <div id="form-wrap">
             <form id="ivc-form">
-              <input type="text" id="userName" name="name" data-ph-en="Full Name" data-ph-ko="이름 (성함)" placeholder="Full Name" required>
-              <input type="text" id="userKakao" name="kakao" data-ph-en="Kakao ID" data-ph-ko="카카오톡 아이디" placeholder="Kakao ID" required>
-              <input type="tel" id="userPhone" name="phone" data-ph-en="Phone Number" data-ph-ko="전화번호" placeholder="Phone Number" required>
-              <textarea id="userMsg" name="message" rows="4" data-ph-en="How are you hoping to grow with us?" data-ph-ko="우리와 함께 어떻게 성장하고 싶으신가요?" placeholder="How are you hoping to grow with us?" required></textarea>
-              <button type="submit" id="submitBtn" class="btn-submit" data-en="Send Message" data-ko="문의하기">Send Message</button>
+              <input type="text" id="userName" name="name" required
+                     data-ph-en="Full Name" data-ph-ko="이름 (성함)" data-ph-es="Nombre Completo" data-ph-fr="Nom Complet" data-ph-it="Nome Completo" data-ph-pt="Nome Completo" data-ph-vi="Họ và Tên" placeholder="Full Name">
+              <input type="text" id="userKakao" name="kakao" required
+                     data-ph-en="Kakao ID" data-ph-ko="카카오톡 아이디" data-ph-es="ID de Kakao" data-ph-fr="ID Kakao" data-ph-it="ID Kakao" data-ph-pt="ID do Kakao" data-ph-vi="ID Kakao" placeholder="Kakao ID">
+              <input type="tel" id="userPhone" name="phone" required
+                     data-ph-en="Phone Number" data-ph-ko="전화번호" data-ph-es="Número de Teléfono" data-ph-fr="Numéro de Téléphone" data-ph-it="Numero di Telefono" data-ph-pt="Número de Telefone" data-ph-vi="Số Điện thoại" placeholder="Phone Number">
+              <textarea id="userMsg" name="message" rows="4" required
+                        data-ph-en="How are you hoping to grow with us?" data-ph-ko="우리와 함께 어떻게 성장하고 싶으신가요?" data-ph-es="¿Cómo esperas crecer con nosotros?" data-ph-fr="Comment souhaitez-vous grandir avec nous ?" data-ph-it="Come speri di crescere con noi?" data-ph-pt="Como você espera crescer conosco?" data-ph-vi="Bạn hy vọng sẽ phát triển cùng chúng tôi như thế nào?" placeholder="How are you hoping to grow with us?"></textarea>
+              <button type="submit" id="submitBtn" class="btn-submit" 
+                      data-en="Send Message" data-ko="문의하기" data-es="Enviar Mensaje" data-fr="Envoyer le Message" data-it="Invia Messaggio" data-pt="Enviar Mensagem" data-vi="Gửi tin nhắn">Send Message</button>
             </form>
           </div>
           <div id="success" style="display:none; text-align: center; padding: 20px;">
-            <h3 style="font-size: 2.5rem; color: var(--easter-gold); margin-bottom: 10px;" data-en="God Bless You!" data-ko="감사합니다!">God Bless You!</h3>
-            <p style="font-family: 'Jost', sans-serif; font-size: 1.1rem; color: #555;" data-en="We have received your message and will reach out shortly." data-ko="메시지가 성공적으로 전달되었습니다. 곧 연락드리겠습니다.">We have received your message and will reach out shortly.</p>
+            <h3 style="font-size: 2.5rem; color: var(--easter-gold); margin-bottom: 10px;" 
+                data-en="God Bless You!" data-ko="감사합니다!" data-es="¡Dios te bendiga!" data-fr="Que Dieu vous bénisse!" data-it="Dio ti benedica!" data-pt="Deus te abençoe!" data-vi="Chúa ban phước cho bạn!">God Bless You!</h3>
+            <p style="font-family: 'Jost', sans-serif; font-size: 1.1rem; color: #555;" 
+               data-en="We have received your message and will reach out shortly." data-ko="메시지가 성공적으로 전달되었습니다. 곧 연락드리겠습니다." data-es="Hemos recibido tu mensaje y te contactaremos pronto." data-fr="Nous avons bien reçu votre message et vous contacterons bientôt." data-it="Abbiamo ricevuto il tuo messaggio e ti contatteremo a breve." data-pt="Recebemos sua mensagem e entraremos em contato em breve." data-vi="Chúng tôi đã nhận được tin nhắn và sẽ sớm liên hệ lại.">We have received your message and will reach out shortly.</p>
           </div>
         </div>
       </div>
@@ -277,21 +389,49 @@
   <script>
     const AppController = {
       config: { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan', currentLang: 'en' },
+      
+      // Dynamic Hover Text Dictionary for Slideshows
+      hoverTexts: {
+        en: 'View Full Gallery', ko: '전체 갤러리 보기',
+        es: 'Ver Galería Completa', fr: 'Voir la Galerie Complète',
+        it: 'Visualizza Galleria', pt: 'Ver Galeria Completa',
+        vi: 'Xem Toàn bộ Thư viện'
+      },
+
       init() { this.initLanguage(); this.loadHero(); this.loadMiniSliders(); this.initScrollReveal(); this.initFormHandler(); },
       
       initLanguage() {
-        const toggleBtn = document.getElementById('langToggle');
-        if (localStorage.getItem('ivc-lang') === 'ko') this.setLanguage('ko');
-        toggleBtn.addEventListener('click', () => this.setLanguage(this.config.currentLang === 'en' ? 'ko' : 'en'));
+        const savedLang = localStorage.getItem('ivc-lang') || 'en';
+        this.setLanguage(savedLang);
+
+        // Dropdown Event Listeners
+        document.querySelectorAll('.lang-dropdown a').forEach(item => {
+          item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const selectedLang = e.target.getAttribute('data-lang');
+            this.setLanguage(selectedLang);
+            // Hide dropdown by removing focus (smooth UI trick)
+            document.activeElement.blur();
+          });
+        });
       },
       
       setLanguage(lang) {
-        this.config.currentLang = lang; localStorage.setItem('ivc-lang', lang); document.documentElement.lang = lang;
-        document.getElementById('langToggle').innerText = lang === 'en' ? '한국어' : 'EN';
-        document.querySelectorAll('[data-en]').forEach(el => el.innerText = el.getAttribute(`data-${lang}`));
-        document.querySelectorAll('[data-ph-en]').forEach(el => el.placeholder = el.getAttribute(`data-ph-${lang}`));
+        this.config.currentLang = lang; 
+        localStorage.setItem('ivc-lang', lang); 
+        document.documentElement.lang = lang;
+        
+        // Update the Dropdown Main Button Text
+        const langNames = { en: 'English', ko: '한국어', es: 'Español', fr: 'Français', it: 'Italiano', pt: 'Português', vi: 'Tiếng Việt' };
+        document.getElementById('currentLangBtn').innerText = `${langNames[lang]} ▼`;
+        
+        // Update all translated strings
+        document.querySelectorAll(`[data-${lang}]`).forEach(el => el.innerText = el.getAttribute(`data-${lang}`));
+        // Update all input placeholders
+        document.querySelectorAll(`[data-ph-${lang}]`).forEach(el => el.placeholder = el.getAttribute(`data-ph-${lang}`));
+        // Update Image Hover Overlays
         document.querySelectorAll('.slideshow-container').forEach(el => {
-          el.setAttribute('data-hover-text', lang === 'en' ? 'View Full Gallery' : '전체 갤러리 보기');
+          el.setAttribute('data-hover-text', this.hoverTexts[lang]);
         });
       },
 
@@ -347,13 +487,17 @@
       initFormHandler() {
         const form = document.getElementById('ivc-form'); const btn = document.getElementById('submitBtn');
         form.addEventListener('submit', async (e) => {
-          e.preventDefault(); const isKo = this.config.currentLang === 'ko'; const ogTxt = btn.innerText;
-          btn.innerText = isKo ? "전송 중..." : "SENDING..."; btn.disabled = true;
+          e.preventDefault(); const lang = this.config.currentLang; const ogTxt = btn.innerText;
+          
+          const sendingText = { en: "SENDING...", ko: "전송 중...", es: "ENVIANDO...", fr: "ENVOI...", it: "INVIO...", pt: "ENVIANDO...", vi: "ĐANG GỬI..." };
+          const errorText = { en: "Error sending message.", ko: "오류가 발생했습니다.", es: "Error al enviar.", fr: "Erreur d'envoi.", it: "Errore di invio.", pt: "Erro ao enviar.", vi: "Lỗi gửi tin nhắn." };
+
+          btn.innerText = sendingText[lang] || "SENDING..."; btn.disabled = true;
           const payload = { name: document.getElementById('userName').value.trim(), kakao: document.getElementById('userKakao').value.trim(), phone: document.getElementById('userPhone').value.trim(), message: document.getElementById('userMsg').value.trim() };
           try {
             await Promise.all([ fetch(`https://ntfy.sh/${this.config.ntfyTopic}`, { method: 'POST', body: `Sign-up: ${payload.name}\nKakao: ${payload.kakao}\nPhone: ${payload.phone}\nMsg: ${payload.message}`, headers: { 'Title': 'New IVC Lead' } }), fetch(`https://formspree.io/f/${this.config.formspreeId}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }) ]);
             document.getElementById('form-wrap').style.display = 'none'; document.getElementById('success').style.display = 'block'; form.reset();
-          } catch (err) { alert(isKo ? "오류가 발생했습니다." : "Error sending message."); btn.innerText = ogTxt; btn.disabled = false; }
+          } catch (err) { alert(errorText[lang]); btn.innerText = ogTxt; btn.disabled = false; }
         });
       }
     };
