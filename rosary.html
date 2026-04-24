@@ -34,7 +34,42 @@
     .photo-item:hover img { transform: scale(1.08); }
 
     footer { padding: 40px 5%; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); font-size: 0.9rem; color: #666; font-family: 'Jost', sans-serif; }
-    @media (max-width: 768px) { .nav-left { gap: 5px; } .lang-btn { width: 28px; height: 28px; font-size: 0.75rem; } .back-btn { padding: 4px 10px; font-size: 0.75rem; } .logo { font-size: 1.3rem; } }
+    @media (max-width: 768px) {
+      /* 1. iOS-Style Swipeable Language Track */
+      .nav-left { 
+        flex: 0 0 85px; /* Locks the container to exactly fit 1.5 buttons */
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+        padding: 4px 0; 
+        gap: 6px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iPhones */
+        scrollbar-width: none; 
+        /* Fades out the right side so users know to swipe */
+        -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+        mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      }
+      .nav-left::-webkit-scrollbar { display: none; }
+      
+      /* 2. Lock Button Size & Pinned Active Status */
+      .lang-btn { 
+        width: 32px; 
+        height: 32px; 
+        font-size: 0.75rem; 
+        flex-shrink: 0; /* Prevents the buttons from squishing */
+        scroll-snap-align: start; 
+      }
+      .lang-btn.active { order: -1; } /* MAGIC TRICK: Always forces active language to the front! */
+      
+      /* 3. Keep the Logo Centered */
+      .nav-right { flex: 0 0 85px; text-align: right; }
+      .logo { font-size: 1.3rem; }
+      
+      /* 4. Social Sidebar Adjustment */
+      .floating-socials { right: 10px; gap: 10px; } 
+      .social-btn { width: 42px; height: 42px; } 
+      .social-btn svg { width: 18px; height: 18px; } 
+    }
   </style>
 </head>
 <body>
