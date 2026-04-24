@@ -6,6 +6,9 @@
   <title>IVC Seoul — International Volunteers Community</title>
   <meta name="description" content="A youth Catholic family under the Archdiocese of Seoul. Join 100+ internationals building friendships, serving the city, and preparing for WYD Seoul 2027." />
   
+  <link rel="icon" type="image/png" href="ivclogo.png" />
+  <link rel="apple-touch-icon" href="ivclogo.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
@@ -40,7 +43,7 @@
     h1, h2, h3, .logo { font-family: 'Cormorant Garamond', serif; }
     *:focus-visible { outline: 2px solid var(--easter-gold); outline-offset: 4px; }
 
-    /* ── NAVIGATION (Natural Initials) ── */
+    /* ── NAVIGATION ── */
     nav {
       position: fixed; top: 0; width: 100%; padding: 1rem 5%;
       display: flex; justify-content: space-between; align-items: center;
@@ -54,14 +57,23 @@
     
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.6rem; letter-spacing: 1px; text-transform: uppercase; }
     
-    /* Perfected Circular/Pill Buttons for Initials */
     .lang-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.5); color: var(--primary-blue); width: 32px; height: 32px; border-radius: 50%; font-size: 0.85rem; font-weight: 600; font-family: 'Jost', 'Noto Sans KR', sans-serif; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; justify-content: center; padding: 0; }
     .lang-btn:hover, .lang-btn.active { background: var(--easter-gold); color: var(--white); border-color: var(--easter-gold); box-shadow: 0 4px 10px rgba(212,175,55,0.3); }
 
     @media (max-width: 768px) {
-      .nav-left { gap: 5px; max-width: 45%; }
-      .lang-btn { width: 28px; height: 28px; font-size: 0.75rem; }
+      .nav-left { 
+        flex: 0 0 85px; flex-wrap: nowrap; overflow-x: auto; padding: 4px 0; gap: 6px;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+        -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%); mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      }
+      .nav-left::-webkit-scrollbar { display: none; }
+      .lang-btn { width: 32px; height: 32px; font-size: 0.75rem; flex-shrink: 0; scroll-snap-align: start; }
+      .lang-btn.active { order: -1; } 
+      .nav-right { flex: 0 0 85px; text-align: right; }
       .logo { font-size: 1.3rem; }
+      .floating-socials { right: 10px; gap: 10px; } 
+      .social-btn { width: 42px; height: 42px; } 
+      .social-btn svg { width: 18px; height: 18px; } 
     }
 
     /* ── FLOATING SOCIAL SIDEBAR ── */
@@ -71,19 +83,33 @@
     .social-btn.map:hover { background: var(--naver-green); color: white; border-color: transparent; transform: scale(1.1) translateX(-5px); box-shadow: 0 5px 15px rgba(3, 199, 90, 0.4); }
     .social-btn.insta:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border-color: transparent; transform: scale(1.1) translateX(-5px); }
     .social-btn.tiktok:hover { background: #000000; color: white; border-color: transparent; box-shadow: -2px 2px 0px #00f2fe, 2px -2px 0px #fe0979; transform: scale(1.1) translateX(-5px); }
-    @media (max-width: 768px) { .floating-socials { right: 10px; gap: 10px; } .social-btn { width: 42px; height: 42px; } .social-btn svg { width: 18px; height: 18px; } }
 
-    /* ── HERO ── */
+    /* ── HERO & LOGOS ── */
     #hero { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); background-color: #050811; }
     .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center 20%; opacity: 0; transition: opacity 1.5s ease-in-out; z-index: 1; will-change: opacity; }
     .slide.active { opacity: 1; }
-    .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,20,50,0.8) 100%); }
-    .hero-content { position: relative; z-index: 10; padding: 0 5%; max-width: 900px; }
-    .hero-meta { font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--easter-gold); margin-bottom: 20px; display: block; }
-    h1 { font-size: clamp(3.5rem, 8vw, 6rem); font-weight: 600; text-shadow: 0 4px 30px rgba(0,0,0,0.6); line-height: 1.05; letter-spacing: -1px; margin-bottom: 10px; }
+    .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,20,50,0.85) 100%); }
+    .hero-content { position: relative; z-index: 10; padding: 0 5%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
+    
+    /* Hero Logos */
+    .hero-logo-main { width: 160px; height: 160px; border-radius: 50%; box-shadow: 0 8px 30px rgba(0,0,0,0.5); margin-bottom: 20px; border: 2px solid rgba(255,255,255,0.1); background-color: #f1f2f2; }
+    .hero-subtitle { font-family: 'Jost', sans-serif; font-size: 1.1rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--easter-gold); margin-bottom: 15px; }
+    h1 { font-size: clamp(4rem, 10vw, 7rem); font-weight: 600; text-shadow: 0 4px 30px rgba(0,0,0,0.6); line-height: 1; letter-spacing: 2px; margin-bottom: 20px; }
+    
+    .archdiocese-badge { display: inline-flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.4); padding: 8px 20px 8px 8px; border-radius: 50px; backdrop-filter: blur(8px); margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.1); }
+    .hero-logo-sub { width: 40px; height: 40px; border-radius: 50%; background-color: #fff; }
+    .hero-meta { font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: #EAEAEA; }
+
     .duc-in-altum { font-style: italic; font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 40px; color: #EAEAEA; font-weight: 400; }
     .hero-cta { display: inline-block; padding: 16px 40px; background: var(--easter-gold); color: var(--primary-blue); font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.1rem; text-decoration: none; border-radius: 50px; transition: var(--transition-smooth); box-shadow: 0 10px 30px rgba(212,175,55,0.4); text-transform: uppercase; letter-spacing: 1px; }
     .hero-cta:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,255,255,0.4); }
+
+    @media (max-width: 768px) {
+      .hero-logo-main { width: 120px; height: 120px; }
+      .archdiocese-badge { padding: 6px 15px 6px 6px; }
+      .hero-logo-sub { width: 32px; height: 32px; }
+      .hero-meta { font-size: 0.7rem; }
+    }
 
     /* ── GLOBAL LAYOUT & STAINED GLASS ── */
     .container { max-width: 1200px; margin: 0 auto; padding: 80px 5%; }
@@ -161,14 +187,29 @@
   <header id="hero" aria-label="Introduction">
     <div id="slider-container" aria-hidden="true"></div>
     <div class="hero-content reveal">
-      <span class="hero-meta" 
-            data-en="100+ International Youth • Archdiocese of Seoul" 
-            data-ko="100여 명의 다국적 청년 • 천주교 서울대교구"
-            data-es="Más de 100 Jóvenes Internacionales • Arquidiócesis de Seúl"
-            data-fr="Plus de 100 Jeunes Internationaux • Archidiocèse de Séoul"
-            data-it="Oltre 100 Giovani Internazionali • Arcidiocesi di Seul"
-            data-zh="100多名国际青年 • 天主教首尔总教区">100+ International Youth • Archdiocese of Seoul</span>
-      <h1><span style="color: var(--primary-blue);">IVC </span><span style="color: var(--easter-gold);">Seoul</span></h1>
+      
+      <img src="ivclogo.png" alt="IVC Logo" class="hero-logo-main" />
+
+      <h1 data-en="IVC" data-ko="IVC" data-es="IVC" data-fr="IVC" data-it="IVC" data-zh="IVC">IVC</h1>
+      <h2 class="hero-subtitle" 
+          data-en="International Volunteer Community" 
+          data-ko="국제 자원봉사 공동체"
+          data-es="Comunidad Internacional de Voluntarios"
+          data-fr="Communauté Internationale de Bénévoles"
+          data-it="Comunità Internazionale di Volontari"
+          data-zh="国际志愿者社区">International Volunteer Community</h2>
+      
+      <div class="archdiocese-badge">
+        <img src="archdioceseofseoul.png" alt="Archdiocese of Seoul Seal" class="hero-logo-sub" />
+        <span class="hero-meta" 
+              data-en="Under the Archdiocese of Seoul" 
+              data-ko="천주교 서울대교구 소속"
+              data-es="Bajo la Arquidiócesis de Seúl"
+              data-fr="Sous l'Archidiocèse de Séoul"
+              data-it="Sotto l'Arcidiocesi di Seul"
+              data-zh="隶属于天主教首尔总教区">Under the Archdiocese of Seoul</span>
+      </div>
+
       <p class="duc-in-altum" 
          data-en="&quot;Duc in altum&quot; — Put out into the deep." 
          data-ko="&quot;Duc in altum&quot; — 깊은 데로 가서 그물을 쳐라."
@@ -176,6 +217,7 @@
          data-fr="&quot;Duc in altum&quot; — Avance au large."
          data-it="&quot;Duc in altum&quot; — Prendi il largo."
          data-zh="&quot;Duc in altum&quot; — 划到深处去。">"Duc in altum" — Put out into the deep.</p>
+
       <a href="#join-section" class="hero-cta" 
          data-en="Find Your Spiritual Home" 
          data-ko="영적 안식처 찾기"
@@ -334,7 +376,7 @@
       <div class="container" style="padding-top: 40px;">
         <div class="glass-panel" style="max-width: 600px; margin: 0 auto; padding: 60px 50px; border-top: 4px solid var(--primary-red);">
           <div class="stained-glass-bg"></div>
-          <h2 style="font-size: 3rem; text-align: center; margin-bottom: 2.5rem; color: var(--primary-green);" 
+          <h2 style="font-size: 3rem; text-align: center; margin-bottom: 2.5rem; color: var(--primary-blue);" 
               data-en="Join the Family" data-ko="함께하기" data-es="Únete a la Familia" data-fr="Rejoignez la Famille" data-it="Unisciti alla Famiglia" data-zh="加入我们的大家庭">Join the Family</h2>
           <div id="form-wrap">
             <form id="ivc-form">
@@ -344,7 +386,7 @@
                      data-ph-en="Kakao ID" data-ph-ko="카카오톡 아이디" data-ph-es="ID de Kakao" data-ph-fr="ID Kakao" data-ph-it="ID Kakao" data-ph-zh="Kakao ID" placeholder="Kakao ID">
               <input type="tel" id="userPhone" name="phone" required
                      data-ph-en="Phone Number" data-ph-ko="전화번호" data-ph-es="Número de Teléfono" data-ph-fr="Numéro de Téléphone" data-ph-it="Numero di Telefono" data-ph-zh="电话号码" placeholder="Phone Number">
-              <textarea id="userMsg" name="message" rows="4" 
+              <textarea id="userMsg" name="message" rows="4" required
                         data-ph-en="How are you hoping to grow with us?" data-ph-ko="우리와 함께 어떻게 성장하고 싶으신가요?" data-ph-es="¿Cómo esperas crecer con nosotros?" data-ph-fr="Comment souhaitez-vous grandir avec nous ?" data-ph-it="Come speri di crescere con noi?" data-ph-zh="您希望如何在基督内与我们一同成长？" placeholder="How are you hoping to grow with us?"></textarea>
               <button type="submit" id="submitBtn" class="btn-submit" 
                       data-en="Send Message" data-ko="문의하기" data-es="Enviar Mensaje" data-fr="Envoyer le Message" data-it="Invia Messaggio" data-zh="发送信息">Send Message</button>
@@ -386,7 +428,12 @@
         document.querySelectorAll('.lang-btn').forEach(btn => {
           btn.addEventListener('click', (e) => {
             const selectedLang = e.target.getAttribute('data-lang');
-            if(selectedLang) this.setLanguage(selectedLang);
+            if(selectedLang) {
+              this.setLanguage(selectedLang);
+              if(window.innerWidth <= 768) {
+                document.querySelector('.nav-left').scrollLeft = 0;
+              }
+            }
           });
         });
       },
@@ -396,7 +443,6 @@
         localStorage.setItem('ivc-lang', lang); 
         document.documentElement.lang = lang;
         
-        // Update active class on buttons
         document.querySelectorAll('.lang-btn').forEach(btn => {
           if(btn.getAttribute('data-lang') === lang) {
             btn.classList.add('active');
@@ -405,11 +451,8 @@
           }
         });
         
-        // Update all translated strings
         document.querySelectorAll(`[data-${lang}]`).forEach(el => el.innerText = el.getAttribute(`data-${lang}`));
-        // Update all input placeholders
         document.querySelectorAll(`[data-ph-${lang}]`).forEach(el => el.placeholder = el.getAttribute(`data-ph-${lang}`));
-        // Update Image Hover Overlays
         document.querySelectorAll('.slideshow-container').forEach(el => {
           el.setAttribute('data-hover-text', this.hoverTexts[lang]);
         });
