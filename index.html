@@ -350,25 +350,12 @@
       </div>
     </section>
 
-    <section class="container reveal" style="padding-top: 40px; padding-bottom: 0px;">
+   <section class="container reveal" style="padding-top: 40px; padding-bottom: 0px;">
       <div class="glass-panel" style="padding: 70px 50px; text-align: center; border-top: 4px solid var(--easter-gold);">
         <div class="stained-glass-bg"></div>
-        <h3 style="font-size: 2.8rem; color: var(--primary-blue); margin-bottom: 20px; line-height: 1.2;" 
-            data-en="&quot;We are the Easter people and hallelujah is our song.&quot;" 
-            data-ko="&quot;우리는 부활의 백성들이며, 알렐루야는 우리의 노래입니다.&quot;"
-            data-es="&quot;Somos el pueblo de la Pascua y el aleluya es nuestro canto.&quot;"
-            data-fr="&quot;Nous sommes le peuple de Pâques et l'alléluia est notre chant.&quot;"
-            data-it="&quot;Siamo il popolo della Pasqua e l'alleluia è il nostro canto.&quot;"
-            data-zh="&quot;我们是复活的子民，阿肋路亚是我们的凯歌。&quot;">"We are the Easter people and hallelujah is our song."</h3>
-        <p style="font-family: 'Jost', sans-serif; font-size: 1.2rem; color: #444; margin-bottom: 25px;" 
-           data-en="Do not abandon yourselves to despair. He is risen!" 
-           data-ko="절망에 빠지지 마십시오. 주님께서 부활하셨습니다!"
-           data-es="¡No os entreguéis a la desesperación. Él ha resucitado!"
-           data-fr="Ne vous abandonnez pas au désespoir. Il est ressuscité !"
-           data-it="Non abbandonatevi alla disperazione. È risorto!"
-           data-zh="不要陷入绝望。祂已复活！">Do not abandon yourselves to despair. He is risen!</p>
-        <p style="font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 700; color: #b8911c; text-transform: uppercase; letter-spacing: 2px;" 
-           data-en="— Pope St. John Paul II" data-ko="— 성 요한 바오로 2세 교황" data-es="— Papa San Juan Pablo II" data-fr="— Pape Saint Jean-Paul II" data-it="— Papa San Giovanni Paolo II" data-zh="— 教宗圣若望保禄二世">— Pope St. John Paul II</p>
+        <h3 id="quote-main" style="font-size: 2.8rem; color: var(--primary-blue); margin-bottom: 20px; line-height: 1.2;"></h3>
+        <p id="quote-sub" style="font-family: 'Jost', sans-serif; font-size: 1.2rem; color: #444; margin-bottom: 25px;"></p>
+        <p id="quote-author" style="font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 700; color: #b8911c; text-transform: uppercase; letter-spacing: 2px;"></p>
       </div>
     </section>
 
@@ -425,7 +412,61 @@
         it: 'Vedi Galleria', zh: '查看图库'
       },
 
-      init() { this.initLanguage(); this.loadHero(); this.loadMiniSliders(); this.initScrollReveal(); this.initFormHandler(); },
+      // Our Local "AI" Database of Catholic Quotes
+      currentQuoteIndex: 0,
+      quotesDB: [
+        {
+          en: { main: '"We are the Easter people and hallelujah is our song."', sub: 'Do not abandon yourselves to despair. He is risen!', author: '— Pope St. John Paul II' },
+          ko: { main: '"우리는 부활의 백성들이며, 알렐루야는 우리의 노래입니다."', sub: '절망에 빠지지 마십시오. 주님께서 부활하셨습니다!', author: '— 성 요한 바오로 2세 교황' },
+          es: { main: '"Somos el pueblo de la Pascua y el aleluya es nuestro canto."', sub: '¡No os entreguéis a la desesperación. Él ha resucitado!', author: '— Papa San Juan Pablo II' },
+          fr: { main: '"Nous sommes le peuple de Pâques et l\'alléluia est notre chant."', sub: 'Ne vous abandonnez pas au désespoir. Il est ressuscité !', author: '— Pape Saint Jean-Paul II' },
+          it: { main: '"Siamo il popolo della Pasqua e l\'alleluia è il nostro canto."', sub: 'Non abbandonatevi alla disperazione. È risorto!', author: '— Papa San Giovanni Paolo II' },
+          zh: { main: '"我们是复活的子民，阿肋路亚是我们的凯歌。"', sub: '不要陷入绝望。祂已复活！', author: '— 教宗圣若望保禄二世' }
+        },
+        {
+          en: { main: '"Not all of us can do great things. But we can do small things with great love."', sub: 'Find your own Calcutta.', author: '— St. Teresa of Calcutta' },
+          ko: { main: '"우리 모두가 위대한 일을 할 수는 없습니다. 하지만 우리는 위대한 사랑으로 작은 일들을 할 수 있습니다."', sub: '당신만의 캘커타를 찾으십시오.', author: '— 콜카타의 성 데레사' },
+          es: { main: '"No todos podemos hacer grandes cosas. Pero podemos hacer cosas pequeñas con gran amor."', sub: 'Encuentra tu propia Calcuta.', author: '— Santa Teresa de Calcuta' },
+          fr: { main: '"Nous ne pouvons pas tous faire de grandes choses. Mais nous pouvons faire de petites choses avec beaucoup d\'amour."', sub: 'Trouvez votre propre Calcutta.', author: '— Sainte Thérèse de Calcutta' },
+          it: { main: '"Non tutti possiamo fare grandi cose. Ma possiamo fare piccole cose con grande amore."', sub: 'Trova la tua Calcutta.', author: '— Santa Teresa di Calcutta' },
+          zh: { main: '"我们并非所有人都能做伟大的事，但我们可以用伟大的爱做小事。"', sub: '寻找你自己的加尔各答。', author: '— 加尔各答的圣德兰' }
+        },
+        {
+          en: { main: '"You have made us for yourself, O Lord..."', sub: '...and our heart is restless until it rests in you.', author: '— St. Augustine' },
+          ko: { main: '"주님, 당신을 위하여 저희를 지으셨으므로..."', sub: '...저희 마음은 당신 안에서 쉴 때까지 평안하지 않습니다.', author: '— 성 아우구스티노' },
+          es: { main: '"Nos hiciste, Señor, para ti..."', sub: '...y nuestro corazón está inquieto hasta que descanse en ti.', author: '— San Agustín' },
+          fr: { main: '"Tu nous as faits pour toi, Seigneur..."', sub: '...et notre cœur est sans repos tant qu\'il ne demeure en toi.', author: '— Saint Augustin' },
+          it: { main: '"Ci hai fatti per te, o Signore..."', sub: '...e il nostro cuore è inquieto finché non riposa in te.', author: '— Sant\'Agostino' },
+          zh: { main: '"主啊，祢为祢自己创造了我们..."', sub: '...我们的心若不安息在祢内，便永无宁静。', author: '— 圣奥斯定' }
+        },
+        {
+          en: { main: '"Verso l\'alto! To the heights!"', sub: 'Let us live, not just exist.', author: '— Bl. Pier Giorgio Frassati' },
+          ko: { main: '"더 높은 곳을 향하여!"', sub: '그저 존재하는 것이 아니라, 진정으로 살아갑시다.', author: '— 복자 피에르 지오르지오 프라사티' },
+          es: { main: '"¡Hacia lo alto!"', sub: 'Vivamos, no nos limitemos a existir.', author: '— Beato Pier Giorgio Frassati' },
+          fr: { main: '"Vers les sommets !"', sub: 'Vivons, ne nous contentons pas d\'exister.', author: '— Bx. Pier Giorgio Frassati' },
+          it: { main: '"Verso l\'alto!"', sub: 'Viviamo, non vivacchiamo.', author: '— Beato Pier Giorgio Frassati' },
+          zh: { main: '"向高处去！"', sub: '让我们真正地去生活，而不仅仅是生存。', author: '— 真福皮尔·乔治·弗拉萨蒂' }
+        },
+        {
+          en: { main: '"Be who God meant you to be..."', sub: '...and you will set the world on fire.', author: '— St. Catherine of Siena' },
+          ko: { main: '"하느님께서 의도하신 당신의 본모습이 되십시오..."', sub: '...그러면 당신은 세상에 불을 지를 것입니다.', author: '— 시에나의 성녀 가타리나' },
+          es: { main: '"Sé quien Dios quiso que fueras..."', sub: '...y prenderás fuego al mundo.', author: '— Santa Catalina de Siena' },
+          fr: { main: '"Soyez ce que Dieu a voulu que vous soyez..."', sub: '...et vous mettrez le feu au monde.', author: '— Sainte Catherine de Sienne' },
+          it: { main: '"Sii ciò che Dio ha voluto che tu fossi..."', sub: '...e darai fuoco al mondo.', author: '— Santa Caterina da Siena' },
+          zh: { main: '"成为天主所预定你要成为的人..."', sub: '...你就能点燃整个世界。', author: '— 锡耶纳的圣加大利纳' }
+        }
+      ],
+
+      init() { 
+        // Pick a random quote on refresh before anything else loads
+        this.currentQuoteIndex = Math.floor(Math.random() * this.quotesDB.length);
+        
+        this.initLanguage(); 
+        this.loadHero(); 
+        this.initSmartSliders(); 
+        this.initScrollReveal(); 
+        this.initFormHandler(); 
+      },
       
       initLanguage() {
         const savedLang = localStorage.getItem('ivc-lang') || 'en';
@@ -449,49 +490,69 @@
         localStorage.setItem('ivc-lang', lang); 
         document.documentElement.lang = lang;
         
+        // Update nav buttons
         document.querySelectorAll('.lang-btn').forEach(btn => {
-          if(btn.getAttribute('data-lang') === lang) {
-            btn.classList.add('active');
-          } else {
-            btn.classList.remove('active');
-          }
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
         });
         
+        // Update basic translations
         document.querySelectorAll(`[data-${lang}]`).forEach(el => el.innerText = el.getAttribute(`data-${lang}`));
         document.querySelectorAll(`[data-ph-${lang}]`).forEach(el => el.placeholder = el.getAttribute(`data-ph-${lang}`));
-        document.querySelectorAll('.slideshow-container').forEach(el => {
-          el.setAttribute('data-hover-text', this.hoverTexts[lang]);
-        });
+        document.querySelectorAll('.slideshow-container').forEach(el => el.setAttribute('data-hover-text', this.hoverTexts[lang]));
+        
+        // Update the randomly selected quote into the current language!
+        const activeQuote = this.quotesDB[this.currentQuoteIndex][lang];
+        const quoteMainEl = document.getElementById('quote-main');
+        if(quoteMainEl) { // Checks if the element exists on this specific page
+            quoteMainEl.innerText = activeQuote.main;
+            document.getElementById('quote-sub').innerText = activeQuote.sub;
+            document.getElementById('quote-author').innerText = activeQuote.author;
+        }
       },
 
       loadHero() {
-        const images = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
-        const container = document.getElementById('slider-container');
-        images.forEach((img, i) => { const div = document.createElement('div'); div.className = `slide ${i === 0 ? 'active' : ''}`; div.style.backgroundImage = `url('${encodeURI(img)}')`; container.appendChild(div); });
-        let cur = 0; const slides = document.querySelectorAll('#hero .slide');
-        if(slides.length) setInterval(() => { slides[cur].classList.remove('active'); cur = (cur + 1) % slides.length; slides[cur].classList.add('active'); }, 5000);
+        setTimeout(() => {
+          const images = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
+          const container = document.getElementById('slider-container');
+          if(!container) return;
+          images.forEach((img, i) => { 
+            const div = document.createElement('div'); 
+            div.className = `slide ${i === 0 ? 'active' : ''}`; 
+            div.style.backgroundImage = `url('${encodeURI(img)}')`; 
+            container.appendChild(div); 
+          });
+          let cur = 0; const slides = document.querySelectorAll('#hero .slide');
+          if(slides.length) setInterval(() => { slides[cur].classList.remove('active'); cur = (cur + 1) % slides.length; slides[cur].classList.add('active'); }, 5000);
+        }, 100);
       },
 
-      loadMiniSliders() {
+      initSmartSliders() {
         const containers = document.querySelectorAll('.slideshow-container');
         const sliderObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
-            const timerId = entry.target.dataset.timerId;
-            if (entry.isIntersecting) { if(!timerId) this.startSlideshow(entry.target); } 
-            else { if(timerId) { clearInterval(timerId); entry.target.dataset.timerId = ''; } }
+            const cont = entry.target;
+            if (entry.isIntersecting) {
+              if (!cont.dataset.loaded) {
+                const imgList = (cont.dataset.imgs || "").split(',').filter(Boolean);
+                imgList.forEach((src) => { 
+                  const s = document.createElement('div'); 
+                  s.className = 'mini-slide'; 
+                  s.style.backgroundImage = `url('${encodeURI(src.trim())}')`; 
+                  cont.appendChild(s); 
+                });
+                cont.dataset.loaded = 'true';
+                setTimeout(() => this.startSlideshow(cont), 500); 
+              } else if (!cont.dataset.timerId) {
+                this.startSlideshow(cont); 
+              }
+            } else {
+              const timerId = cont.dataset.timerId;
+              if(timerId) { clearInterval(timerId); cont.dataset.timerId = ''; }
+            }
           });
-        }, { rootMargin: '100px' });
+        }, { rootMargin: '100px' }); 
         
-        containers.forEach(cont => {
-          const imgList = cont.dataset.imgs.split(',');
-          imgList.forEach((src) => { 
-            const s = document.createElement('div'); 
-            s.className = 'mini-slide'; 
-            s.style.backgroundImage = `url('${encodeURI(src.trim())}')`; 
-            cont.appendChild(s); 
-          });
-          if(imgList.length > 0) sliderObserver.observe(cont);
-        });
+        containers.forEach(cont => sliderObserver.observe(cont));
       },
 
       startSlideshow(container) {
@@ -515,6 +576,7 @@
 
       initFormHandler() {
         const form = document.getElementById('ivc-form'); const btn = document.getElementById('submitBtn');
+        if(!form) return;
         form.addEventListener('submit', async (e) => {
           e.preventDefault(); const lang = this.config.currentLang; const ogTxt = btn.innerText;
           
