@@ -513,7 +513,7 @@
         });
       },
       
-      setLanguage(lang) {
+setLanguage(lang) {
         this.config.currentLang = lang; 
         localStorage.setItem('ivc-lang', lang); 
         document.documentElement.lang = lang;
@@ -522,11 +522,29 @@
           btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
         });
         
-        // Added smooth transition logic for language text switching
-        const translatableElements = document.querySelectorAll(`[data-lang], [data-ph-lang]`);
-        translatableElements.forEach(el => {
-          el.style.opacity = '0';
+        // Update texts immediately without glitchy opacity hiding loops
+        document.querySelectorAll(`[data-lang]`).forEach(el => {
+          const translation = el.getAttribute(`data-${lang}`);
+          if (translation) el.innerText = translation;
         });
+
+        document.querySelectorAll(`[data-ph-lang]`).forEach(el => {
+          const placeholderVal = el.getAttribute(`data-ph-${lang}`);
+          if (placeholderVal) el.placeholder = placeholderVal;
+        });
+        
+        document.querySelectorAll('.slideshow-container').forEach(el => {
+          el.setAttribute('data-hover-text', this.hoverTexts[lang]);
+        });
+        
+        const activeQuote = this.quotesDB[this.currentQuoteIndex][lang];
+        const quoteMainEl = document.getElementById('quote-main');
+        if(quoteMainEl) { 
+            quoteMainEl.innerText = activeQuote.main;
+            document.getElementById('quote-sub').innerText = activeQuote.sub;
+            document.getElementById('quote-author').innerText = activeQuote.author;
+        }
+      }
 
         setTimeout(() => {
           document.querySelectorAll(`[data-lang]`).forEach(el => {
