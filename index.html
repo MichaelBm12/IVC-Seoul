@@ -442,45 +442,85 @@
       currentQuoteIndex: 0,
       quotesDB: [
         {
-          en: { main: '"We are the Easter people and hallelujah is our song."', sub: 'Do not abandon yourselves to despair. He is risen!', author: '— Pope St. John Paul II' },
-          ko: { main: '"우리는 부활의 백성들이며, 알렐루야는 우리의 노래입니다."', sub: '절망에 빠지지 마십시오. 주님께서 부활하셨습니다!', author: '— 성 요한 바오로 2세 교황' },
-          es: { main: '"Somos el pueblo de la Pascua y el aleluya es nuestro canto."', sub: '¡No os entreguéis a la desesperación. Él ha resucitado!', author: '— Papa San Juan Pablo II' },
-          fr: { main: '"Nous sommes le peuple de Pâques et l\'alléluia est notre chant."', sub: 'Ne vous abandonnez pas au désespoir. Il est ressuscité !', author: '— Pape Saint Jean-Paul II' },
-          it: { main: '"Siamo il popolo della Pasqua e l\'alleluia è il nostro canto."', sub: 'Non abbandonatevi alla disperazione. È risorto!', author: '— Papa San Giovanni Paolo II' },
-          zh: { main: '"我们是复活的子民，阿肋路亚是我们的凯歌。"', sub: '不要陷入绝望。祂已复活！', author: '— 教宗圣若望保禄二世' }
-        },
-        {
-          en: { main: '"Not all of us can do great things. But we can do small things with great love."', sub: 'Find your own Calcutta.', author: '— St. Teresa of Calcutta' },
-          ko: { main: '"우리 모두가 위대한 일을 할 수는 없습니다. 하지만 우리는 위대한 사랑으로 작은 일들을 할 수 있습니다."', sub: '당신만의 캘커타를 찾으십시오.', author: '— 콜카타의 성 데레사' },
-          es: { main: '"No todos podemos hacer grandes cosas. Pero podemos hacer cosas pequeñas con gran amor."', sub: 'Encuentra tu propia Calcuta.', author: '— Santa Teresa de Calcuta' },
-          fr: { main: '"Nous ne pouvons pas tous faire de grandes choses. Mais nous pouvons faire de petites choses avec beaucoup d\'amour."', sub: 'Trouvez votre propre Calcutta.', author: '— Sainte Thérèse de Calcutta' },
-          it: { main: '"Non tutti possiamo fare grandi cose. Ma possiamo fare piccole cose con grande amore."', sub: 'Trova la tua Calcutta.', author: '— Santa Teresa di Calcutta' },
-          zh: { main: '"我们并非所有人都能做伟大的事，但我们可以用伟大的爱做小事。"', sub: '寻找你自己的加尔各答。', author: '— 加尔各答的圣德兰' }
-        },
-        {
-          en: { main: '"You have made us for yourself, O Lord..."', sub: '...and our heart is restless until it rests in you.', author: '— St. Augustine' },
-          ko: { main: '"주님, 당신을 위하여 저희를 지으셨으므로..."', sub: '...저희 마음은 당신 안에서 쉴 때까지 평안하지 않습니다.', author: '— 성 아우구스티노' },
-          es: { main: '"Nos hiciste, Señor, para ti..."', sub: '...y nuestro corazón está inquieto hasta que descanse en ti.', author: '— San Agustín' },
-          fr: { main: '"Tu nous as faits pour toi, Seigneur..."', sub: '...et notre cœur est sans repos tant qu\'il ne demeure en toi.', author: '— Saint Augustin' },
-          it: { main: '"Ci hai fatti per te, o Signore..."', sub: '...e il nostro cuore è inquieto finché non riposa in te.', author: '— Sant\'Agostino' },
-          zh: { main: '"主啊，祢为祢自己创造了我们..."', sub: '...我们的心若不安息在祢内，便永无宁静。', author: '— 圣奥斯定' }
-        },
-        {
-          en: { main: '"Verso l\'alto! To the heights!"', sub: 'Let us live, not just exist.', author: '— Bl. Pier Giorgio Frassati' },
-          ko: { main: '"더 높은 곳을 향하여!"', sub: '그저 존재하는 것이 아니라, 진정으로 살아갑시다.', author: '— 복자 피에르 지오르지오 프라사티' },
-          es: { main: '"¡Hacia lo alto!"', sub: 'Vivamos, no nos limitemos a existir.', author: '— Beato Pier Giorgio Frassati' },
-          fr: { main: '"Vers les sommets !"', sub: 'Vivons, ne nous contentons pas d\'exister.', author: '— Bx. Pier Giorgio Frassati' },
-          it: { main: '"Verso l\'alto!"', sub: 'Viviamo, non vivacchiamo.', author: '— Beato Pier Giorgio Frassati' },
-          zh: { main: '"向高处去！"', sub: '让我们真正地去生活，而不仅仅是生存。', author: '— 真福皮尔·乔治·弗拉萨蒂' }
-        },
-        {
-          en: { main: '"Be who God meant you to be..."', sub: '...and you will set the world on fire.', author: '— St. Catherine of Siena' },
-          ko: { main: '"하느님께서 의도하신 당신의 본모습이 되십시오..."', sub: '...그러면 당신은 세상에 불을 지를 것입니다.', author: '— 시에나의 성녀 가타리나' },
-          es: { main: '"Sé quien Dios quiso que fueras..."', sub: '...y prenderás fuego al mundo.', author: '— Santa Catalina de Siena' },
-          fr: { main: '"Soyez ce que Dieu a voulu que vous soyez..."', sub: '...et vous mettrez le feu au monde.', author: '— Sainte Catherine de Sienne' },
-          it: { main: '"Sii ciò che Dio ha voluto che tu fossi..."', sub: '...e darai fuoco al mondo.', author: '— Santa Caterina da Siena' },
-          zh: { main: '"成为天主所预定你要成为的人..."', sub: '...你就能点燃整个世界。', author: '— 锡耶纳的圣加大利纳' }
-        }
+    en: { main: '"Start by doing what\'s necessary; then do what\'s possible; and suddenly you are doing the impossible."', sub: 'Preach the Gospel at all times and if necessary, use words.', author: '— St. Francis of Assisi' },
+    ko: { main: '"필요한 일을 먼저 하고, 그다음 가능한 일을 하십시오. 문득 보면 당신은 불가능한 일을 하고 있습니다."', sub: '언제나 복음을 전하십시오. 필요하다면 말로 하십시오.', author: '— 아시시의 성 프란치스코' },
+    es: { main: '"Comienza haciendo lo necesario, después lo posible, y de repente estarás haciendo lo imposible."', sub: 'Predica el Evangelio en todo momento y, si es necesario, usa palabras.', author: '— San Francisco de Asís' },
+    fr: { main: '"Commencez par faire ce qui est nécessaire, puis faites ce qui est possible, et soudain vous faites l\'impossible."', sub: 'Prêchez l\'Évangile en tout temps et, si nécessaire, utilisez des mots.', author: '— Saint François d\'Assise' },
+    it: { main: '"Cominciate col fare ciò che è necessario, poi ciò che è possibile. E all\'improvviso vi sorprenderete a fare l\'impossibile."', sub: 'Predicate il Vangelo in ogni momento e, se necessario, usate le parole.', author: '— San Francesco d\'Assisi' },
+    zh: { main: '"先做必需的事，然后做可能的事，突然之间你就在创造不可能。"', sub: '随时随地传福音，必要时才用言语。', author: '— 亚西西的圣方济各' }
+  },
+  {
+    en: { main: '"Our Lord does not look so much at the greatness of our actions, nor even at their difficulty, as at the love with which we do them."', sub: 'Miss nothing, always take every small opportunity to love.', author: '— St. Thérèse of Lisieux' },
+    ko: { main: '"주님께서는 우리의 행위가 얼마나 위대하거나 힘든지보다, 그것을 할 때 담은 사랑을 더 보십니다."', sub: '작은 일도 놓치지 말고, 언제나 사랑할 기회를 잡으십시오.', author: '— 리제의 성녀 소테레사' },
+    es: { main: '"Nuestro Señor no mira tanto la grandeza de nuestras obras, ni su dificultad, sino el amor con el que las hacemos."', sub: 'No pierdas la oportunidad de hacer cualquier pequeño sacrificio por amor.', author: '— Santa Teresita de Lisieux' },
+    fr: { main: '"Notre Seigneur ne regarde pas tant la grandeur de nos actions, ni leur difficulté, que l\'amour avec lequel nous les faisons."', sub: 'Ne manquez aucune petite occasion de faire plaisir par amour.', author: '— Sainte Thérèse de Lisieux' },
+    it: { main: '"Il nostro Signore non guarda tanto alla grandezza delle nostre opere, né alla loro difficoltà, ma all\'amore con cui le compiamo."', sub: 'Non lasciate sfuggire alcuna piccola occasione per amare.', author: '— Santa Teresa di Lisieux' },
+    zh: { main: '"我们的主并不太看重我们行为的伟大或困难，而是看我们做这些事时所怀的爱意。"', sub: '不要错过任何一个通过爱来付出的机会。', author: '— 利修的圣德兰' }
+  },
+  {
+    en: { main: '"Let nothing disturb you, let nothing frighten you. All things pass; God does not change."', sub: 'Patience obtains all things. Whoever has God lacks nothing: God alone suffices.', author: '— St. Teresa of Ávila' },
+    ko: { main: '"그 무엇에도 흔들리지 말고, 그 무엇에도 두려워하지 마십시오. 모든 것은 지나가나, 하느님은 변하지 않으십니다."', sub: '인내는 모든 것을 얻습니다. 하느님을 가진 이는 부족함이 없으니, 하느님 한 분만으로 충분합니다.', author: '— 아빌라의 성녀 데레사' },
+    es: { main: '"Nada te turbe, nada te espante; todo se pasa, Dios no se muda."', sub: 'La paciencia todo lo alcanza; quien a Dios tiene nada le falta: sólo Dios basta.', author: '— Santa Teresa de Jesús' },
+    fr: { main: '"Que rien ne te trouble, que rien ne t\'effraie, tout passe, Dieu ne change pas."', sub: 'La patience obtient tout ; celui qui possède Dieu ne manque de rien : Dieu seul suffit.', author: '— Sainte Thérèse d\'Ávila' },
+    it: { main: '"Nulla ti turbi, nulla ti spaventi. Tutto passa, Dio non cambia."', sub: 'La pazienza ottiene tutto. Chi ha Dio non manca di nulla: solo Dio basta.', author: '— Santa Teresa d\'Ávila' },
+    zh: { main: '"不要让任何事物扰乱你，不要让任何事物惊吓你。万物都会过去，唯有天主永不改变。"', sub: '忍耐能赢得一切。拥有天主的人一无所缺：唯有天主足矣。', author: '— 阿维拉的圣德兰' }
+  },
+  {
+    en: { main: '"Actions speak louder than words; let your words teach and your actions speak."', sub: 'The preaching of the tongue is worthless unless it is backed up by the preaching of the life.', author: '— St. Anthony of Padua' },
+    ko: { main: '"행동은 말보다 더 큰 소리를 냅니다. 당신의 말로 가르치고, 당신의 행동으로 증거하십시오."', sub: '삶의 모범이 뒷받침되지 않는 말의 설교는 가치가 없습니다.', author: '— 파도바의 성 안토니오' },
+    es: { main: '"Las palabras hablan, pero las acciones enseñan. Deja que tus palabras enseñen y tus acciones hablen."', sub: 'La predicación de la lengua no vale nada si no está respaldada por la predicación de la vida.', author: '— San Antonio de Padua' },
+    fr: { main: '"Les actions parlent plus fort que les mots ; laissez vos paroles enseigner et vos actions parler."', sub: 'La prédication de la langue ne vaut rien si elle n\'est pas soutenue par la vie.', author: '— Saint Antoine de Padoue' },
+    it: { main: '"Le azioni parlano più forte delle parole; lasciate che le vostre parole insegnino e le vostre azioni parlino."', sub: 'La predicazione della lingua non vale nulla se non è sostenuta dalla vita.', author: '— Sant\'Antonio di Padova' },
+    zh: { main: '"行动胜于言语；让你的言语去教导，让你的行动去说话。"', sub: '如果言语的宣讲没有生活的宣讲作后盾，那就毫无价值。', author: '— 帕多瓦的圣安多尼' }
+  },
+  {
+    en: { main: '"Pray, hope, and don\'t worry. Worry is useless. God is merciful and will hear your prayer."', sub: 'In times of trial, anchor your soul to the heart of Jesus.', author: '— St. Pio of Pietrelcina' },
+    ko: { main: '"기도하고, 희망하며, 걱정하지 마십시오. 걱정은 쓸데없는 것입니다. 하느님은 자비로우시어 당신의 기도를 들어주실 것입니다."', sub: '시련의 때일수록 예수님의 성심에 영혼을 닻을 내리십시오.', author: '— 피에트렐치나의 성 비오 신부' },
+    es: { main: '"Ora, espera y no te preocupes. La preocupación es inútil. Dios es misericordioso y escuchará tu oración."', sub: 'En los momentos de prueba, ancla tu alma al corazón de Jesús.', author: '— San Pío de Pietrelcina' },
+    fr: { main: '"Priez, espérez et ne vous inquiétez pas. L\'inquiétude est inutile. Dieu est miséricordieux et exaucera votre prière."', sub: 'Dans l\'épreuve, ancrez votre âme au cœur de Jésus.', author: '— Saint Padre Pio de Pietrelcina' },
+    it: { main: '"Pregate, sperate e non abbiate ansia. L\'ansia non serve a nulla. Dio è misericordioso e ascolterà la vostra preghiera."', sub: 'Nei momenti di prova, ancora la tua anima al cuore di Gesù.', author: '— San Pio da Pietrelcina' },
+    zh: { main: '"祈祷，希望，不要焦虑。焦虑毫无用处。天主是仁慈的，祂会俯听你的祈祷。"', sub: '在磨难时刻，将你的灵魂锚定在耶稣圣心上。', author: '— 比特雷尔奇纳的圣比约神父' }
+  },
+  {
+    en: { main: '"To fall in love with God is the greatest romance; to seek Him, the greatest adventure; to find Him, the greatest human achievement."', sub: 'Be who God meant you to be and you will set the world on fire.', author: '— St. Augustine of Hippo' },
+    ko: { main: '"하느님과 사랑에 빠지는 것이 가장 위대한 로맨스이며, 그분을 찾는 것이 가장 위대한 모험이고, 그분을 찾는 것이 가장 위대한 인간의 성취입니다."', sub: '하느님께서 원하시는 사람이 되십시오, 그러면 세상을 불태울 것입니다.', author: '— 히포의 성 아우구스티노' },
+    es: { main: '"Enamorarse de Dios es el mayor romance; buscarle, la mayor aventura; encontrarle, el mayor logro humano."', sub: 'Sé quien Dios quiso que fueras y prenderás fuego al mundo.', author: '— San Agustín de Hipona' },
+    fr: { main: '"Tomber amoureux de Dieu est la plus grande romance ; le chercher, la plus grande aventure ; le trouver, la plus grande réalisation humaine."', sub: 'Soyez ce que Dieu a voulu que vous soyez et vous embraserez le monde.', author: '— Saint Augustin d\'Hippone' },
+    it: { main: '"Innamorarsi di Dio è il più grande romanzo; cercarlo, la più grande avventura; trovarlo, il più grande risultato umano."', sub: 'Siate ciò che Dio vuole che siate e accenderete il mondo.', author: '— Sant\'Agostino di Ippona' },
+    zh: { main: '"爱上天主是最伟大的浪漫；寻找祂是最伟大的冒险；找到祂是人类最伟大的成就。"', sub: '成为天主期望你成为的人，你就能燃点整个世界。', author: '— 希ppo的圣奥思定' }
+  },
+  {
+    en: { main: '"Give me a museum of people who pray, and I will conquer the world."', sub: 'Prayer is the oxygen of the soul.', author: '— St. John Vianney' },
+    ko: { main: '"기도하는 사람들로 가득한 박물관 하나만 내게 주십시오, 그러면 세상을 정복하겠습니다."', sub: '기도는 영혼의 산소입니다.', author: '— 아르스의 성 요한 비안네' },
+    es: { main: '"Dadme un museo de personas que recen y conquistaré el mundo."', sub: 'La oración es el oxígeno del alma.', author: '— San Juan María Vianney' },
+    fr: { main: '"Donnez-moi un musée de personnes qui prient, et je conquerrai le monde."', sub: 'La prière est l\'oxygène de l\'âme.', author: '— Saint Jean-Marie Vianney' },
+    it: { main: '"Datemi un museo di persone che pregano e conquisterò il mondo."', sub: 'La preghiera è l\'ossigeno dell\'anima.', author: '— San Giovanni Maria Vianney' },
+    zh: { main: '"给我一个充满祈祷之人的博物馆，我就能征服世界。"', sub: '祈祷是灵魂的氧气。', author: '— 亚尔的圣若翰·维ianney' }
+  },
+  {
+    en: { main: '"Holiness does not consist in not erring or in not sinning. Holiness consists in a great love for God."', sub: 'Never discourage anyone who continually makes progress, no matter how slow.', author: '— St. Francis de Sales' },
+    ko: { main: '"거룩함란 실수하지 않거나 죄를 짓지 않는 것에 있지 않습니다. 거룩함은 하느님을 향한 큰 사랑에 있습니다."', sub: '아무리 느릴지라도 꾸준히 전진하는 이들을 결코 낙담하게 하지 마십시오.', author: '— 살레시의 성 프란치스코' },
+    es: { main: '"La santidad no consiste en no errar ni en no pecar. La santidad consiste en un gran amor a Dios."', sub: 'No desanimes nunca a nadie que progrese continuamente, por lento que sea.', author: '— San Francisco de Sales' },
+    fr: { main: '"La sainteté ne consiste pas à ne pas faillir ni pécher. La sainteté consiste dans un grand amour pour Dieu."', sub: 'Ne découragez jamais personne qui progresse continuellement, si lentement soit-il.', author: '— Saint François de Sales' },
+    it: { main: '"La santità non consiste nel non errare né nel non peccare. La santità consiste in un grande amore per Dio."', sub: 'Non scoraggiate mai nessuno che fa progressi continui, per quanto lenti siano.', author: '— San Francesco di Sales' },
+    zh: { main: '"圣德不在于不犯错或不犯罪，圣德在于对天主怀有伟大的爱。"', sub: '永远不要让任何持续进步的人灰心，无论他多么缓慢。', author: '— 日内瓦的圣方济各·沙雷士' }
+  },
+  {
+    en: { main: '"God never allows a closed door without opening a window elsewhere."', sub: 'Trust in His providence even when the path is hidden.', author: '— St. Rose of Lima' },
+    ko: { main: '"하느님께서는 다른 곳에 창문을 열어주지 않으시고는 결코 닫힌 문만 두지 않으십니다."', sub: '길이 보이지 않을 때에도 그분의 섭리를 신뢰하십시오.', author: '— 리마의 성녀 로사' },
+    es: { main: '"Dios nunca permite una puerta cerrada sin abrir una ventana en otra parte."', sub: 'Confía en Su providencia incluso cuando el camino esté oculto.', author: '— Santa Rosa de Lima' },
+    fr: { main: '"Dieu ne permet jamais une porte fermée sans ouvrir une fenêtre ailleurs."', sub: 'Confiez-vous en Sa providence même lorsque le chemin est caché.', author: '— Sainte Rose de Lima' },
+    it: { main: '"Dio non permette mai una porta chiusa senza aprire una finestra altrove."', sub: 'Abbi fiducia nella Sua provvidenza anche quando il cammino è nascosto.', author: '— Santa Rosa da Lima' },
+    zh: { main: '"天主绝不会只允许关闭一扇门，而不去别处打开一扇窗。"', sub: '即使道路隐匿，也要信赖祂的照顾。', author: '— 利马的圣罗撒' }
+  },
+  {
+    en: { main: '"The measure of love is to love without measure."', sub: 'Where there is no love, put love and you will find love.', author: '— St. John of the Cross' },
+    ko: { main: '"사랑의 척도는 한계 없이 사랑하는 것입니다."', sub: '사랑이 없는 곳에 사랑을 두십시오, 그러면 사랑을 찾을 것입니다.', author: '— 십자가의 성 요한' },
+    es: { main: '"La medida del amor es amar sin medida."', sub: 'Donde no hay amor, pon amor y sacarás amor.', author: '— San Juan de la Cruz' },
+    fr: { main: '"La mesure de l\'amour est d\'aimer sans mesure."', sub: 'Là où il n\'y a pas d\'amour, mettez de l\'amour et vous trouverez de l\'amour.', author: '— Saint Jean de la Croix' },
+    it: { main: '"La misura dell\'amore è amare senza misura."', sub: 'Dove non c\'è amore, metti amore e troverai amore.', author: '— San Giovanni della Croce' },
+    zh: { main: '"爱的尺度就是没有尺度地去爱。"', sub: '哪里没有爱，就播种爱，你就会收获爱。', author: '— 十字若望' }
+  }
       ],
       init() { 
         this.currentQuoteIndex = Math.floor(Math.random() * this.quotesDB.length);
