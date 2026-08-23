@@ -38,7 +38,6 @@
       -webkit-font-smoothing: antialiased; 
       background-image: radial-gradient(var(--parchment-dark) 1px, transparent 1px);
       background-size: 40px 40px;
-      /* Fade In on Load */
       opacity: 0;
       animation: fadeInPage 0.8s ease-out forwards;
     }
@@ -52,7 +51,6 @@
       to { opacity: 1; }
     }
 
-    /* Smooth text transition for language switching */
     [data-lang], [data-ph-lang] {
       transition: opacity 0.3s ease-in-out;
     }
@@ -75,7 +73,7 @@
     .logo { font-weight: 700; color: var(--primary-blue); text-decoration: none; font-size: 1.6rem; letter-spacing: 1px; text-transform: uppercase; }
     
     .lang-btn { background: transparent; border: 1px solid rgba(212, 175, 55, 0.5); color: var(--primary-blue); width: 32px; height: 32px; border-radius: 50%; font-size: 0.85rem; font-weight: 600; font-family: 'Jost', 'Noto Sans KR', sans-serif; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; justify-content: center; padding: 0; }
-    .lang-btn:hover, .lang-btn.active { background: var(--easter-gold); color: var(--white); border-color: var(--easter-gold); box-shadow: 0 4px 10px rgba(212,175,55,0.3); }
+    .lang-btn:hover, .lang-btn.active { background: var(--easter-gold); color: #fff; border-color: var(--easter-gold); box-shadow: 0 4px 10px rgba(212,175,55,0.3); }
     @media (max-width: 768px) {
       .nav-left { 
         flex: 0 0 85px; flex-wrap: nowrap; overflow-x: auto; padding: 4px 0; gap: 6px;
@@ -114,13 +112,12 @@
     .social-btn.insta:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; border-color: transparent; transform: scale(1.1) translateX(-5px); }
     .social-btn.tiktok:hover { background: #000000; color: white; border-color: transparent; box-shadow: -2px 2px 0px #00f2fe, 2px -2px 0px #fe0979; transform: scale(1.1) translateX(-5px); }
     /* ── HERO & LOGOS ── */
-    #hero { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); background-color: #050811; }
+    #hero { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; background-color: #050811; }
     .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center 20%; opacity: 0; transition: opacity 1.5s ease-in-out; z-index: 1; will-change: opacity; }
     .slide.active { opacity: 1; }
     .slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,20,50,0.85) 100%); }
     .hero-content { position: relative; z-index: 10; padding: 0 5%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
     
-    /* Hero Logos */
     .hero-logo-main { width: 160px; height: 160px; border-radius: 50%; box-shadow: 0 8px 30px rgba(0,0,0,0.5); margin-bottom: 20px; border: 2px solid rgba(255,255,255,0.1); background-color: #f1f2f2; }
     .hero-subtitle { font-family: 'Jost', sans-serif; font-size: 1.1rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--easter-gold); margin-bottom: 15px; }
     h1 { font-size: clamp(4rem, 10vw, 7rem); font-weight: 600; text-shadow: 0 4px 30px rgba(0,0,0,0.6); line-height: 1; letter-spacing: 2px; margin-bottom: 20px; }
@@ -130,14 +127,13 @@
     .hero-meta { font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: #EAEAEA; }
     .duc-in-altum { font-style: italic; font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 40px; color: #EAEAEA; font-weight: 400; }
     .hero-cta { display: inline-block; padding: 16px 40px; background: var(--easter-gold); color: var(--primary-blue); font-family: 'Jost', sans-serif; font-weight: 700; font-size: 1.1rem; text-decoration: none; border-radius: 50px; transition: var(--transition-smooth); box-shadow: 0 10px 30px rgba(212,175,55,0.4); text-transform: uppercase; letter-spacing: 1px; }
-    .hero-cta:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,255,255,0.4); }
+    .hero-cta:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,255,255,0.4); }
     @media (max-width: 768px) {
       .hero-logo-main { width: 120px; height: 120px; }
       .archdiocese-badge { padding: 6px 15px 6px 6px; }
       .hero-logo-sub { width: 32px; height: 32px; }
       .hero-meta { font-size: 0.7rem; }
     }
-    /* ── GLOBAL LAYOUT & STAINED GLASS ── */
     .container { max-width: 1200px; margin: 0 auto; padding: 80px 5%; }
     .section-title { font-size: 3.8rem; text-align: center; margin-bottom: 15px; color: var(--primary-blue); font-weight: 600; }
     .section-subtitle { text-align: center; color: #666; margin-bottom: 60px; font-size: 1.2rem; font-family: 'Cormorant Garamond', serif; font-style: italic; }
@@ -145,14 +141,13 @@
     .stained-glass-bg { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 20% 30%, rgba(0, 51, 128, 0.05) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 40%), radial-gradient(circle at 50% 10%, rgba(204, 0, 0, 0.03) 0%, transparent 40%); z-index: -1; animation: divineLight 20s ease-in-out infinite alternate; }
     @keyframes divineLight { 0% { transform: rotate(0deg); } 100% { transform: rotate(3deg); scale(1.05); } }
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .card { background: var(--white); border-radius: 16px; padding: 45px; box-shadow: var(--glow-light); border-top: 4px solid var(--easter-gold); transition: var(--transition-smooth); position: relative; overflow: hidden; }
+    .card { background: #fff; border-radius: 16px; padding: 45px; box-shadow: var(--glow-light); border-top: 4px solid var(--easter-gold); transition: var(--transition-smooth); position: relative; overflow: hidden; }
     .card::before { content: '✝'; position: absolute; top: -20px; right: -10px; font-size: 8rem; color: var(--parchment-dark); opacity: 0.4; font-family: 'Cormorant Garamond', serif; z-index: 0; pointer-events: none; transition: var(--transition-smooth); }
     .card:hover { transform: translateY(-5px); box-shadow: var(--glow-heavy); }
     .card:hover::before { transform: scale(1.1) rotate(5deg); opacity: 0.6; }
     .card h2, .card p { position: relative; z-index: 2; }
-    /* ── INTERACTIVE ACTIVITIES GRID ── */
     .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 20px; }
-    a.activity-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: var(--glow-light); border-top: 4px solid var(--primary-blue); transition: all var(--transition-smooth); cursor: pointer; }
+    a.activity-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: var(--glow-light); border-top: 4px solid var(--primary-blue); transition: all var(--transition-smooth); cursor: pointer; }
     a.activity-card:hover { transform: translateY(-8px); box-shadow: var(--glow-heavy); border-top-color: var(--easter-gold); }
     a.activity-card:hover .mini-slide { transform: scale(1.08); }
     .slideshow-container { position: relative; width: 100%; height: 280px; background-color: var(--parchment-dark); background-size: cover; background-position: center; overflow: hidden; }
@@ -160,17 +155,16 @@
     a.activity-card:hover .slideshow-container::after { opacity: 1; }
     .mini-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s ease, transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: opacity, transform; z-index: 2; }
     .mini-slide.active { opacity: 1; }
-    .activity-info { padding: 35px 30px; flex-grow: 1; position: relative; z-index: 6; background: var(--white); display: flex; flex-direction: column; }
+    .activity-info { padding: 35px 30px; flex-grow: 1; position: relative; z-index: 6; background: #fff; display: flex; flex-direction: column; }
     .activity-tag { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--easter-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; display: block; }
     .activity-info h3 { font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 12px; line-height: 1.1; }
     .activity-info p { font-family: 'Jost', sans-serif; font-size: 1rem; color: #555; line-height: 1.6; flex-grow: 1; }
     .view-more { margin-top: 25px; font-family: 'Jost', sans-serif; font-weight: 600; color: var(--primary-red); font-size: 0.9rem; display: flex; align-items: center; gap: 5px; transition: gap 0.3s; text-transform: uppercase; letter-spacing: 1px; }
     a.activity-card:hover .view-more { gap: 12px; color: var(--primary-blue); }
-    /* ── FORMS ── */
     #join-section { padding: 100px 0; position: relative; }
     input, textarea { width: 100%; padding: 1.2rem; margin-bottom: 1.5rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); font-size: 1rem; font-family: 'Jost', sans-serif; background: rgba(255,255,255,0.9); transition: var(--transition-smooth); }
-    input:focus, textarea:focus { border-color: var(--easter-gold); background: var(--white); outline: none; box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15); }
-    .btn-submit { background: var(--primary-blue); color: var(--white); border: none; padding: 1.4rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; transition: var(--transition-smooth); text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; font-family: 'Jost', sans-serif; box-shadow: 0 4px 15px rgba(0,51,128,0.2); }
+    input:focus, textarea:focus { border-color: var(--easter-gold); background: #fff; outline: none; box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15); }
+    .btn-submit { background: var(--primary-blue); color: #fff; border: none; padding: 1.4rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; transition: var(--transition-smooth); text-transform: uppercase; letter-spacing: 2px; font-size: 1rem; font-family: 'Jost', sans-serif; box-shadow: 0 4px 15px rgba(0,51,128,0.2); }
     .btn-submit:hover:not(:disabled) { background: var(--easter-gold); color: var(--primary-blue); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,0.4); }
     
     footer { padding: 60px 5%; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); font-size: 0.95rem; color: #777; background: var(--parchment-dark); font-family: 'Jost', sans-serif; }
@@ -358,7 +352,7 @@
             <span class="view-more" data-en="View Gallery &rarr;" data-ko="갤러리 보기 &rarr;" data-es="Ver Galería &rarr;" data-fr="Voir la Galerie &rarr;" data-it="Vedi Galleria &rarr;" data-zh="查看图库 &rarr;">View Gallery &rarr;</span>
           </div>
         </a>
-           <a href="pilgrimage.html" class="activity-card" style="border-top-color: var(--primary-blue);">
+        <a href="pilgrimage.html" class="activity-card" style="border-top-color: var(--primary-blue);">
           <div class="slideshow-container" style="background-image: url('Pilgrimage12.jpg')" data-imgs="Pilgrimage13.jpg,Pilgrimage6.jpg,Pilgrimage14.jpg" aria-hidden="true"></div>
           <div class="activity-info">
             <span class="activity-tag" 
@@ -375,7 +369,8 @@
         </a>
       </div>
     </section>
-   <section class="container reveal" style="padding-top: 40px; padding-bottom: 0px;">
+    
+    <section class="container reveal" style="padding-top: 40px; padding-bottom: 0px;">
       <div class="glass-panel" style="padding: 70px 50px; text-align: center; border-top: 4px solid var(--easter-gold);">
         <div class="stained-glass-bg"></div>
         <h3 id="quote-main" style="font-size: 2.8rem; color: var(--primary-blue); margin-bottom: 20px; line-height: 1.2;"></h3>
@@ -384,12 +379,12 @@
       </div>
     </section>
 
-    <!-- NEW PRAYER SECTION ADDED HERE -->
+    <!-- PRAYER SECTION -->
     <section class="prayer-card-wrapper reveal" aria-label="IVC Prayer">
       <div class="container" style="text-align: center; padding-top: 20px; padding-bottom: 20px;">
         <h2 class="section-title" style="margin-bottom: 30px;"
             data-en="Our Prayer" data-ko="우리의 기도" data-es="Nuestra Oración" data-fr="Notre Prière" data-it="La Nostra Preghiera" data-zh="我们的祈祷">Our Prayer</h2>
-        <img src="ivcprayer.jpeg" alt="IVC Prayer Card" class="ivc-prayer-img" />
+        <img src="prayer-card.jpg" alt="IVC Prayer Card" class="ivc-prayer-img" />
       </div>
     </section>
     
@@ -423,7 +418,7 @@
       </div>
     </section>
   </main>
-<footer>
+  <footer>
     <div style="display: flex; align-items: center; justify-content: center; gap: 25px; margin-bottom: 25px;">
       <img src="ivclogo.png" alt="IVC Logo" style="width: 75px; height: 75px; border-radius: 50%; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.05);" />
       <div style="width: 1px; height: 45px; background-color: rgba(0,0,0,0.1);"></div>
@@ -434,6 +429,7 @@
     <p style="font-weight: 500; font-size: 0.95rem;">International Volunteers Community</p>
     <p style="margin-top: 8px; font-size: 0.85rem; opacity: 0.7;">Under the Archdiocese of Seoul · 천주교 서울대교구</p>
   </footer>
+
   <script>
     const AppController = {
       config: { ntfyTopic: 'ivc-michael-private', formspreeId: 'xdaydyan', currentLang: 'en' },
@@ -443,7 +439,6 @@
         es: 'Ver Galería', fr: 'Voir la Galerie',
         it: 'Vedi Galleria', zh: '查看图库'
       },
-      // Our Local "AI" Database of Catholic Quotes
       currentQuoteIndex: 0,
       quotesDB: [
         {
@@ -494,7 +489,7 @@
         this.initSmartSliders(); 
         this.initScrollReveal(); 
         this.initFormHandler(); 
-        this.initPageTransitions(); // Added call for the link navigation transitions
+        this.initPageTransitions();
       },
       
       initLanguage() {
@@ -513,7 +508,7 @@
         });
       },
       
-setLanguage(lang) {
+      setLanguage(lang) {
         this.config.currentLang = lang; 
         localStorage.setItem('ivc-lang', lang); 
         document.documentElement.lang = lang;
@@ -522,29 +517,29 @@ setLanguage(lang) {
           btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
         });
         
-      }
+        document.querySelectorAll('[data-lang]').forEach(el => {
+          const translation = el.getAttribute(`data-${lang}`);
+          if (translation) el.innerText = translation;
+        });
 
-        setTimeout(() => {
-          document.querySelectorAll(`[data-lang]`).forEach(el => {
-            el.innerText = el.getAttribute(`data-${lang}`);
-            el.style.opacity = '1';
-          });
-          document.querySelectorAll(`[data-ph-lang]`).forEach(el => {
-            el.placeholder = el.getAttribute(`data-ph-${lang}`);
-            el.style.opacity = '1';
-          });
-          
-          document.querySelectorAll('.slideshow-container').forEach(el => el.setAttribute('data-hover-text', this.hoverTexts[lang]));
-          
-          const activeQuote = this.quotesDB[this.currentQuoteIndex][lang];
-          const quoteMainEl = document.getElementById('quote-main');
-          if(quoteMainEl) { 
-              quoteMainEl.innerText = activeQuote.main;
-              document.getElementById('quote-sub').innerText = activeQuote.sub;
-              document.getElementById('quote-author').innerText = activeQuote.author;
-          }
-        }, 300); // 300ms matches the CSS transition delay
+        document.querySelectorAll('[data-ph-lang]').forEach(el => {
+          const phVal = el.getAttribute(`data-ph-${lang}`);
+          if (phVal) el.placeholder = phVal;
+        });
+        
+        document.querySelectorAll('.slideshow-container').forEach(el => {
+          el.setAttribute('data-hover-text', this.hoverTexts[lang]);
+        });
+        
+        const activeQuote = this.quotesDB[this.currentQuoteIndex][lang];
+        const quoteMainEl = document.getElementById('quote-main');
+        if(quoteMainEl) { 
+            quoteMainEl.innerText = activeQuote.main;
+            document.getElementById('quote-sub').innerText = activeQuote.sub;
+            document.getElementById('quote-author').innerText = activeQuote.author;
+        }
       },
+
       loadHero() {
         setTimeout(() => {
           const images = ['IVC 1.jpeg', 'IVC 2.jpeg', 'IVC 3.jpeg', 'IVC 4.jpeg', 'IVC 6.jpeg'];
@@ -560,6 +555,7 @@ setLanguage(lang) {
           if(slides.length) setInterval(() => { slides[cur].classList.remove('active'); cur = (cur + 1) % slides.length; slides[cur].classList.add('active'); }, 5000);
         }, 100);
       },
+
       initSmartSliders() {
         const containers = document.querySelectorAll('.slideshow-container');
         const sliderObserver = new IntersectionObserver((entries) => {
@@ -588,6 +584,7 @@ setLanguage(lang) {
         
         containers.forEach(cont => sliderObserver.observe(cont));
       },
+
       startSlideshow(container) {
         const slides = container.querySelectorAll('.mini-slide');
         if(slides.length === 0) return;
@@ -601,10 +598,12 @@ setLanguage(lang) {
         }, 4000 + (Math.random() * 1500));
         container.dataset.timerId = timerId;
       },
+
       initScrollReveal() {
         const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
       },
+
       initFormHandler() {
         const form = document.getElementById('ivc-form'); const btn = document.getElementById('submitBtn');
         if(!form) return;
@@ -621,18 +620,17 @@ setLanguage(lang) {
           } catch (err) { alert(errorText[lang]); btn.innerText = ogTxt; btn.disabled = false; }
         });
       },
-      // Added smooth page exit transitions for standard internal links
+
       initPageTransitions() {
         document.querySelectorAll('a').forEach(anchor => {
           anchor.addEventListener('click', function(e) {
             const target = this.getAttribute('href');
-            // Check if it's an internal html link (e.g., rosary.html) rather than an anchor or external link
             if (target && target.endsWith('.html')) {
               e.preventDefault();
               document.body.classList.add('fade-out');
               setTimeout(() => {
                 window.location.href = target;
-              }, 500); // Trigger navigation after the fade-out duration matches
+              }, 500);
             }
           });
         });
